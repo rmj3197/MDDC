@@ -1,42 +1,49 @@
-# Available at setup time due to pyproject.toml
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup
 import setuptools
 
-__version__ = "0.0.1"
+__version__ = "1.0.1"
 
-# The main interface is through Pybind11Extension.
-# * You can add cxx_std=11/14/17, and then build_ext can be removed.
-# * You can set include_pybind11=false to add the include directory yourself,
-#   say from a submodule.
-#
-# Note:
-#   Sort input source files if you glob sources to ensure bit-for-bit
-#   reproducible builds (https://github.com/pybind/python_example/pull/53)
+
+class get_eigen_include(object):
+    """Helper class to determine the Eigen include path
+    The purpose of this class is to postpone importing Eigen
+    until it is actually installed, so that the ``get_include()``
+    method can be invoked.
+    """
+
+    def __init__(self, user=False):
+        self.user = user
+
+    def __str__(self):
+        import peigen
+
+        return peigen.header_path
+
 
 ext_modules = [
     Pybind11Extension(
-        "python_example",
+        "mddc_cpp_helper",
         ["src/main.cpp"],
-        # Example: passing in the version to the compiled code
+        include_dirs=[str(get_eigen_include())],
         define_macros=[("VERSION_INFO", __version__)],
+        language="c++",
     ),
 ]
 
 setup(
     name="MDDC",
     version=__version__,
-    author="Sylvain Corlay",
-    author_email="sylvain.corlay@gmail.com",
-    url="https://github.com/pybind/python_example",
-    description="A test project using pybind11",
+    author="Raktim Mukhopadhyay, Anran Liu, Marianthi Markatou",
+    author_email="raktimmu@buffalo.edu, anranliu@buffalo.edu, markatou@buffalo.edu",
+    url="https://github.com/pybind/mddc_cpp_helper",
+    description="MDDC provides methods for detecting (adverse event, drug) signals, a data generating function for simulating pharmacovigilance data, and a few functions for pre-processing and computing statistics such as expectations or residuals.",
     long_description="",
-     packages = setuptools.find_packages(),
+    packages=setuptools.find_packages(),
+    install_requires=["pybind11", "peigen"],
     ext_modules=ext_modules,
     extras_require={"test": "pytest"},
-    # Currently, build_ext only provides an optional "highest supported C++
-    # level" feature, but in the future it may provide more features.
     cmdclass={"build_ext": build_ext},
     zip_safe=False,
-    python_requires=">=3.7",
+    python_requires=">=3.10, <3.13",
 )

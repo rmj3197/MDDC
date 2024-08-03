@@ -1,4 +1,21 @@
-from python_example import add
+from importlib import metadata, import_module
 
-def add_mddc(x, y):
-    return add(x,y)
+__version__ = "1.0.1"
+
+submodules = ["MDDC", "utils"]
+__all__ = submodules + [__version__]
+
+
+def __dir__():
+    return __all__
+
+
+# taken from scipy
+def __getattr__(name):
+    if name in submodules:
+        return import_module(f"MDDC.{name}")
+    else:
+        try:
+            return globals()[name]
+        except KeyError:
+            raise AttributeError(f"Module 'MDDC' has no attribute '{name}'")
