@@ -11,14 +11,14 @@ Modified Detecting Deviating Data Cells (MDDC)
 
 .. only:: not html
 
-=================
-Getting Started
-=================
+   =================
+   Getting Started
+   =================
 
-.. toctree::
-   :maxdepth: 4
+   .. toctree::
+      :maxdepth: 4
 
-   getting_started/index.rst
+      getting_started/index.rst
 
 .. only:: not html
 
@@ -33,7 +33,7 @@ Getting Started
       api_reference/index.rst
 
 .. only:: not html
-   
+
    =================
    User Guide
    =================

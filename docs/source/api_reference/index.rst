@@ -29,4 +29,17 @@ Utility Functions
     generate_contin_table_with_clustered_AE
     report_drug_AE_pairs
     plot_heatmap
+
+.. automodule:: MDDC.datasets
+
+.. currentmodule:: MDDC.datasets
+   
+Datasets
+==========
+
+.. autosummary::
+   :toctree: generated/
+
+    load_statin49_data
+
         
