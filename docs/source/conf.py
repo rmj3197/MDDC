@@ -66,8 +66,9 @@ latex_elements = {
 latex_documents = [
     (
         "index",
-        "MDDC.tex",
-        "MDDC",
+        "QuadratiK.tex",
+        "QuadratiK",
+        author,
         "manual",
     )
 ]
