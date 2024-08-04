@@ -19,6 +19,46 @@ def _mddc_boxplot(
     if_col_corr=False,
     corr_lim=0.8,
 ):
+    """
+    Modified Detecting Deviating Cells (MDDC) algorithm for adverse event signal identification with boxplot method for cutoff selection.
+
+    This function implements the MDDC algorithm using the Boxplot method to determine cutoffs for identifying cells with high standardized Pearson residuals.
+
+    For details on the algorithm please see :ref:`MDDC Algorithm <mddc_algorithm>`.
+
+    Parameters
+    ----------
+    contin_table : pd.DataFrame or np.ndarray
+        A contingency table of shape (I, J) where rows represent adverse events and columns represent drugs.
+        If a DataFrame, it might have index and column names corresponding to the adverse events and drugs.
+
+    col_specific_cutoff : bool, optional, default=True
+        Apply Monte Carlo method to the standardized Pearson residuals of the entire table, or within each drug column.
+        If True, applies the Monte Carlo method to residuals within each drug column. If False, applies it to the entire table.
+        Utilized in Step 2 of the algorithm.
+
+    separate : bool, optional, default=True
+        Whether to separate the standardized Pearson residuals for the zero cells and non zero cells and apply MC method separately or together.
+        If True, separates zero and non-zero cells for cutoff application. If False, applies the cutoff method to all cells together. Utilized in Step 2 of MDDC algorithm.
+
+    if_col_corr : bool, optional, default=False
+        Whether to use column (drug) correlation or row (adverse event) correlation
+        If True, uses drug correlation instead of adverse event correlation. Utilized in Step 3 of the MDDC algorithm.
+
+    corr_lim : float, optional, default=0.8
+        Correlation threshold used to select connected adverse events. Utilized in Step 3 of MDDC algorithm.
+    
+    Returns
+    -------
+    result : tuple
+        A tuple with the following members:
+        - 'signal': np.ndarray
+            Matrix indicating significant signals with count greater than five and identified in the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
+        - 'corr_signal_pval': np.ndarray
+            p-values for each cell in the contingency table in the step 5, when the r_{ij} (residual) values are mapped back to the standard normal distribution.
+        - 'corr_signal_adj_pval': np.ndarray
+            Benjamini-Hochberg adjusted p values for each cell in the step 5.
+    """
 
     z_ij_mat = getZijMat(contin_table, na=False)[0]
     res_all = z_ij_mat.flatten(order="F")

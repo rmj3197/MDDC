@@ -1,6 +1,6 @@
 from importlib import metadata, import_module
 
-__version__ = "1.0.1"
+__version__ = "1.0.0"
 
 submodules = ["MDDC", "utils"]
 __all__ = submodules + [__version__]

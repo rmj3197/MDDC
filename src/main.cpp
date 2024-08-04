@@ -4,13 +4,14 @@
 #include <tuple>
 #include <limits>
 #include <algorithm>
-// #include <omp.h>
 
 #define STRINGIFY(x) #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
 
 Eigen::MatrixXd getEijMat(const Eigen::MatrixXd &continTable)
 {
+    // This calculates the expected count matrix Eij
+
     int nRow = continTable.rows();
     int nCol = continTable.cols();
     Eigen::VectorXd niDot = continTable.rowwise().sum();
@@ -27,6 +28,7 @@ Eigen::MatrixXd getEijMat(const Eigen::MatrixXd &continTable)
 
 std::tuple<Eigen::MatrixXd, double, Eigen::VectorXd, Eigen::VectorXd> getZijMat(const Eigen::MatrixXd &continTable, bool na = true)
 {
+    // This calculates the standardized Pearson residuals Zij
     int nRow = continTable.rows();
     int nCol = continTable.cols();
     Eigen::VectorXd niDot = continTable.rowwise().sum();
@@ -52,6 +54,8 @@ std::tuple<Eigen::MatrixXd, double, Eigen::VectorXd, Eigen::VectorXd> getZijMat(
 }
 Eigen::VectorXd getPVal(const Eigen::VectorXd &obs, const Eigen::VectorXd &dist)
 {
+    // This calculates the p values
+
     // Create a sorted copy of dist
     Eigen::VectorXd sortedDist = dist;
     std::sort(sortedDist.data(), sortedDist.data() + sortedDist.size());
@@ -79,6 +83,7 @@ Eigen::VectorXd getPVal(const Eigen::VectorXd &obs, const Eigen::VectorXd &dist)
 
 Eigen::MatrixXd getFisherExactTestTable(Eigen::MatrixXd continTable, int rowIdx, int colIdx, bool excludeSameDrugClass)
 {
+    // This generates the tables used for Fisher Exact Test
     Eigen::MatrixXd tabl(2, 2);
 
     // Set the values of tabl
@@ -102,12 +107,12 @@ Eigen::MatrixXd getFisherExactTestTable(Eigen::MatrixXd continTable, int rowIdx,
 
 Eigen::MatrixXd pearsonCorWithNA(const Eigen::MatrixXd &mat, bool ifColCorr = true)
 {
+    // Computes the Pearson Correlation in the presence of NA values
     Eigen::MatrixXd matrix = ifColCorr ? mat : mat.transpose();
     int nCol = matrix.cols();
     Eigen::MatrixXd corMat(nCol, nCol);
     corMat.fill(std::numeric_limits<double>::quiet_NaN());
 
-// #pragma omp parallel for shared(corMat, matrix)
     for (int i = 0; i < nCol; ++i)
     {
         for (int j = i + 1; j < nCol; ++j)
@@ -142,7 +147,6 @@ Eigen::MatrixXd pearsonCorWithNA(const Eigen::MatrixXd &mat, bool ifColCorr = tr
                 double denominator = std::sqrt(denomX * denomY);
                 double correlation = numerator / denominator;
 
-// #pragma omp critical
                 {
                     corMat(i, j) = correlation;
                     corMat(j, i) = correlation;
@@ -158,23 +162,10 @@ namespace py = pybind11;
 
 PYBIND11_MODULE(mddc_cpp_helper, m)
 {
-    m.doc() = R"pbdoc(
-        Pybind11 example plugin
-        -----------------------
-
-        .. currentmodule:: mddc_cpp_helper
-
-        .. autosummary::
-           :toctree: _generate
-
-           add
-           subtract
-    )pbdoc";
-
-    m.def("getEijMat", &getEijMat, "Calculate Eij matrix",
+    m.def("getEijMat", &getEijMat, "Calculate the expected count matrix Eij",
           py::arg("continTable"));
 
-    m.def("getZijMat", &getZijMat, "Calculate Zij matrix",
+    m.def("getZijMat", &getZijMat, "Calculate the standardized Pearson residuals Zij",
           py::arg("continTable"), py::arg("na") = true);
 
     m.def("getPVal", &getPVal, "Calculate p vals",
@@ -188,12 +179,6 @@ PYBIND11_MODULE(mddc_cpp_helper, m)
           py::arg("colIdx"),
           py::arg("excludeSameDrugClass"));
 
-    m.def("pearsonCorWithNA", &pearsonCorWithNA, "Pearson Correlation",
+    m.def("pearsonCorWithNA", &pearsonCorWithNA, "Pearson Correlation with NA values",
           py::arg("mat"), py::arg("ifColCorr") = true);
-
-#ifdef VERSION_INFO
-    m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);
-#else
-    m.attr("__version__") = "dev";
-#endif
 }

@@ -1,0 +1,51 @@
+"","Atorvastatin","Fluvastatin","Lovastatin","Pravastatin","Rosuvastatin","Simvastatin","Other"
+"Rhabdomyolysis",2041,52,44,163,936,1376,31707
+"Muscle Disorder",291,2,7,21,191,87,7329
+"Muscle Fatigue",85,0,2,16,30,39,4257
+"Muscle Haemorrhage",24,0,0,5,13,4,3806
+"Muscle Necrosis",68,2,0,1,10,20,662
+"Muscle Rupture",181,25,0,61,36,120,3219
+"Muscular Weakness",1857,45,31,152,808,859,111003
+"Musculoskeletal Discomfort",137,18,15,25,187,93,19931
+"Musculoskeletal Disorder",56,3,0,9,65,73,25881
+"Musculoskeletal Pain",420,3,2,38,324,228,82576
+"Myalgia",5362,341,151,939,2757,3216,143819
+"Myasthenic Syndrome",1,0,9,0,3,6,643
+"Myopathy",849,64,45,145,377,544,6695
+"Myopathy Toxic",31,0,0,1,2,21,457
+"Myositis",219,8,10,28,62,141,7482
+"Necrotising Myositis",279,0,0,2,10,52,278
+"Tendon Discomfort",9,0,0,3,22,10,794
+"Diaphragm Muscle Weakness",14,0,0,0,8,1,94
+"Compartment Syndrome",53,0,0,1,12,12,2644
+"Electromyogram Abnormal",2,0,0,2,0,0,132
+"Blood Creatine Phosphokinase Abnormal",34,0,0,0,8,11,261
+"Blood Creatine Phosphokinase Increased",1175,125,32,200,562,768,23805
+"Blood Creatine Phosphokinase Mm Increased",2,0,0,0,9,0,14
+"Muscle Enzyme Increased",48,1,0,0,13,9,410
+"Myoglobin Blood Increased",71,4,0,4,16,39,1003
+"Myoglobin Blood Present",2,0,0,0,0,0,8
+"Myoglobinaemia",15,0,0,0,0,0,62
+"Blood Calcium Decreased",14,2,0,0,110,17,15918
+"Hypocalcaemia",36,0,0,16,8,18,23102
+"Chromaturia",340,10,6,33,174,114,19294
+"Myoglobinuria",26,4,0,1,1,9,296
+"Myoglobin Urine Present",0,0,0,0,1,2,70
+"Acute Kidney Injury",1353,42,7,154,689,823,355651
+"Renal Tubular Necrosis",40,0,0,12,10,24,12762
+"Renal Impairment",390,52,11,37,161,169,103343
+"Renal Failure",534,26,11,69,225,195,250710
+"Renal Failure Acute",18,0,0,7,16,31,5246
+"Oliguria",52,0,0,4,24,37,7590
+"Anuria",71,0,0,2,43,62,10403
+"Glomerular Filtration Rate Decreased",59,1,0,8,39,29,13190
+"Glomerular Filtration Rate Abnormal",8,0,0,0,1,0,1069
+"Hypercreatininaemia",0,0,0,0,8,0,648
+"Creatinine Renal Clearance Decreased",6,0,0,2,124,6,7768
+"Blood Creatinine Abnormal",27,0,0,0,5,3,3385
+"Blood Creatinine Increased",227,10,0,17,210,97,74742
+"Dialysis",12,0,0,7,4,16,10796
+"Haemodialysis",10,0,0,4,8,6,4363
+"Chronic Kidney Disease",152,16,2,19,177,37,339179
+"End Stage Renal Disease",30,0,0,0,19,6,97553
+"Other AE",180659,4886,2845,20278,113932,76015,61703817

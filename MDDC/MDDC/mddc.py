@@ -16,10 +16,85 @@ def mddc(
     separate=True,
     if_col_corr=False,
     corr_lim=0.8,
-    r_cutoff=2.326348,
     n_jobs=-1,
     seed=None,
 ):
+    """
+    Modified Detecting Deviating Cells (MDDC) algorithm for adverse event signal identification.
+
+    This function implements the MDDC algorithm using either a Monte Carlo or Boxplot method for cutoff selection.
+    The Monte Carlo or Boxplot method is used to estimate thresholds for identifying cells with high values of standardized Pearson residuals,
+    
+    Parameters
+    ----------
+    contin_table : pd.DataFrame or np.ndarray
+        A contingency table of shape (I, J) where rows represent adverse events and columns represent drugs.
+        If a DataFrame, it might have index and column names corresponding to the adverse events and drugs.
+
+    method : str, optional, default="monte_carlo"
+        Method for cutoff selection. Can be either "monte_carlo" or "boxplot".
+
+    rep : int, optional, default=10000
+        Number of Monte Carlo replications used for estimating thresholds. Utilized in Step 2 of the MDDC algorithm. 
+        Only used if method is "monte_carlo".
+
+    quantile : float, optional, default=0.95
+        The quantile of the null distribution obtained via Monte Carlo method to use as a threshold for identify cells with high value of the standardized Pearson residuals.
+        Used in Step 2 of the MDDC algorithm. Only used if method is "monte_carlo".
+        
+    exclude_same_drug_class : bool, optional, default=True
+        If True, excludes other drugs in the same class when constructing 2x2 tables for Fisher's exact test. Only used if method is "monte_carlo".
+
+    col_specific_cutoff : bool, optional, default=True
+        Apply Monte Carlo method to the standardized Pearson residuals of the entire table, or within each drug column.
+        If True, applies the Monte Carlo method to residuals within each drug column. If False, applies it to the entire table.
+        Utilized in Step 2 of the algorithm.
+
+    separate : bool, optional, default=True
+        Whether to separate the standardized Pearson residuals for the zero cells and non zero cells and apply MC method separately or together.
+        If True, separates zero and non-zero cells for cutoff application. If False, applies the cutoff method to all cells together. Utilized in Step 2 of MDDC algorithm.
+
+    if_col_corr : bool, optional, default=False
+        Whether to use column (drug) correlation or row (adverse event) correlation
+        If True, uses drug correlation instead of adverse event correlation. Utilized in Step 3 of the MDDC algorithm.
+
+    corr_lim : float, optional, default=0.8
+        Correlation threshold used to select connected adverse events. Utilized in Step 3 of MDDC algorithm.
+
+    n_jobs : int, optional, default=-1
+        n_jobs specifies the maximum number of concurrently
+        running workers. If 1 is given, no joblib parallelism
+        is used at all, which is useful for debugging. For more
+        information on joblib `n_jobs` refer to -
+        https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
+
+    seed : int or None, optional, default=None
+        Random seed for reproducibility.
+
+    Returns
+    -------
+    result : namedtuple
+        - If method is "monte_carlo" returns MDDCMonteCarloResult:
+            * pval : numpy.ndarray, pandas.DataFrame
+                p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method for cells with count greater than five, and Fisher's exact test for cells with count less than or equal to five.
+            * signal : numpy.ndarray, pd.DataFrame
+                Matrix indicating significant signals with count greater than five and identified in the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
+            * fisher_signal : numpy.ndarray, pd.DataFrame
+                Matrix indicating signals with a count less than or equal to five and identified by Fisher's exact test. 1 indicates a signal, 0 indicates non-signal.
+            * corr_signal_pval : numpy.ndarray, pd.DataFrame
+                p-values for each cell in the contingency table in the step 5, when the r_{ij} (residual) values are mapped back to the standard normal distribution.
+            * corr_signal_adj_pval : numpy.ndarray, pd.DataFrame
+                Benjamini-Hochberg adjusted p values for each cell in the step 5.
+
+        - If method is "boxplot" returns MDDCMBoxplotResult:
+            * signal : numpy.ndarray, pd.DataFrame
+                Matrix indicating significant signals with count greater than five and identified in the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
+            * corr_signal_pval : numpy.ndarray, pd.DataFrame
+                p-values for each cell in the contingency table in the step 5, when the r_{ij} (residual) values are mapped back to the standard normal distribution.
+            * corr_signal_adj_pval : numpy.ndarray, pd.DataFrame
+                Benjamini-Hochberg adjusted p values for each cell in the step 5.
+    """
+
     # Check the type of contin_table
     if not (
         isinstance(contin_table, pd.DataFrame) or isinstance(contin_table, np.ndarray)
@@ -57,10 +132,6 @@ def mddc(
     # Check the type of corr_lim
     if not isinstance(corr_lim, (float, int)) or not (0 <= corr_lim <= 1):
         raise TypeError("corr_lim must be a float between 0 and 1.")
-
-    # Check the type of r_cutoff
-    if not isinstance(r_cutoff, (float, int)):
-        raise TypeError("r_cutoff must be a float or integer.")
 
     # Check the type of n_jobs
     if not isinstance(n_jobs, int):

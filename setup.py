@@ -2,7 +2,7 @@ from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup
 import setuptools
 
-__version__ = "1.0.1"
+__version__ = "1.0.0"
 
 
 class get_eigen_include(object):

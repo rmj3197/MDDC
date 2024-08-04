@@ -22,10 +22,73 @@ def _mddc_monte_carlo(
     separate=True,
     if_col_corr=False,
     corr_lim=0.8,
-    r_cutoff=2.326348,
     n_jobs=-1,
     seed=None,
 ):
+    """
+    Modified Detecting Deviating Cells (MDDC) algorithm for adverse event signal identification using Monte Carlo method for cutoff selection.
+
+    This function implements the MDDC algorithm using the Monte Carlo method to determine cutoffs for identifying cells with high standardized Pearson residuals.
+
+    For details on the algorithm please see :ref:`MDDC Algorithm <mddc_algorithm>`.
+
+    Parameters
+    ----------
+    contin_table : pd.DataFrame or np.ndarray
+        A contingency table of shape (I, J) where rows represent adverse events and columns represent drugs.
+        If a DataFrame, it might have index and column names corresponding to the adverse events and drugs.
+
+    rep : int, optional, default=10000
+        Number of Monte Carlo replications used for estimating thresholds. Utilized in Step 2 of the MDDC algorithm.
+
+    quantile : float, optional, default=0.95
+        The quantile of the null distribution obtained via Monte Carlo method to use as a threshold for identify cells with high value of the standardized Pearson residuals.
+        Used in Step 2 of the MDDC algorithm.
+
+    exclude_same_drug_class : bool, optional, default=True
+        If True, excludes other drugs in the same class when constructing 2x2 tables for Fisher's exact test.
+
+    col_specific_cutoff : bool, optional, default=True
+        Apply Monte Carlo method to the standardized Pearson residuals of the entire table, or within each drug column.
+        If True, applies the Monte Carlo method to residuals within each drug column. If False, applies it to the entire table.
+        Utilized in Step 2 of the algorithm.
+
+    separate : bool, optional, default=True
+        Whether to separate the standardized Pearson residuals for the zero cells and non zero cells and apply MC method separately or together.
+        If True, separates zero and non-zero cells for cutoff application. If False, applies the cutoff method to all cells together. Utilized in Step 2 of MDDC algorithm.
+
+    if_col_corr : bool, optional, default=False
+        Whether to use column (drug) correlation or row (adverse event) correlation
+        If True, uses drug correlation instead of adverse event correlation. Utilized in Step 3 of the MDDC algorithm.
+
+    corr_lim : float, optional, default=0.8
+        Correlation threshold used to select connected adverse events. Utilized in Step 3 of MDDC algorithm.
+
+    n_jobs : int, optional, default=-1
+        n_jobs specifies the maximum number of concurrently
+        running workers. If 1 is given, no joblib parallelism
+        is used at all, which is useful for debugging. For more
+        information on joblib `n_jobs` refer to -
+        https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
+
+    seed : int or None, optional, default=None
+        Random seed for reproducibility.
+
+    Returns
+    -------
+    result : tuple
+        A tuple with the following members:
+        - 'pval': np.ndarray
+            p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method for cells with count greater than five, and Fisher's exact test for cells with count less than or equal to five.
+        - 'signal': np.ndarray
+            Matrix indicating significant signals with count greater than five and identified in the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
+        - 'fisher_signal': np.ndarray
+            Matrix indicating signals with a count less than or equal to five and identified by Fisher's exact test. 1 indicates a signal, 0 indicates non-signal.
+        - 'corr_signal_pval': np.ndarray
+            p-values for each cell in the contingency table in the step 5, when the r_{ij} (residual) values are mapped back to the standard normal distribution.
+        - 'corr_signal_adj_pval': np.ndarray
+            Benjamini-Hochberg adjusted p values for each cell in the step 5.
+    """
 
     c_univ_drug, null_dist_s = get_log_bootstrap_cutoff(
         contin_table, quantile, rep, seed
