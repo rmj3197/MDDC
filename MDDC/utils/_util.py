@@ -95,8 +95,7 @@ def _generate_simulated_zijmat(
             )
 
     new_contin_table = np.round(
-        z_ij_mat * np.sqrt(e_ij_mat * signal_mat *
-                           ((1 - p_i_dot) @ (1 - p_dot_j)))
+        z_ij_mat * np.sqrt(e_ij_mat * signal_mat * ((1 - p_i_dot) @ (1 - p_dot_j)))
         + e_ij_mat * signal_mat
     )
     new_contin_table[new_contin_table < 0] = 0
@@ -332,8 +331,7 @@ def plot_heatmap(mddc_result, plot="signal", size_cell=0.20, **kwargs):
 
     if plot not in mddc_result._fields:
         raise ValueError(
-            f"{mddc_result.__class__.__name__} does not contain attribute {
-                plot}. Please check both `mddc_result` and `plot` arguments."
+            f"{mddc_result.__class__.__name__} does not contain attribute {plot}. Please check both `mddc_result` and `plot` arguments."
         )
     else:
         plot_obj = mddc_result._asdict()[plot]
