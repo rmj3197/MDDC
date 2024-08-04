@@ -1,7 +1,7 @@
 .. _statin49:
 
-FDA statin dataset with 49 adverse events
-=========================================
+`statin49`: FDA statin dataset with 49 adverse events
+========================================================
 
 Description
 -----------

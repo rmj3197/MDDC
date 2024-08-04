@@ -1,7 +1,7 @@
 .. _mddc_algorithm:
 
 Modified Detecting Deviating Cells (MDDC) Algorithm
-===================================================
+====================================================
 
 The Modified Detecting Deviating Cells (MDDC) algorithm is described as follows:
 
@@ -83,4 +83,5 @@ The Modified Detecting Deviating Cells (MDDC) algorithm is described as follows:
 
       B_j = \frac{1}{I_j} \sum_{i \in I_j} \left[(e_{ij} - \hat{u}_{ij}) - A_j\right]^2
 
-   The computation is over all :math:`i` within drug :math:`j` where neither :math:`e_{ij}` nor :math:`\hat{u}_{ij}` is NA. Calculate the upper tail probability of :math:`r_{ij}` in the standard normal distribution, which is used as the p-value for each cell. Obtain adjusted p-values via the Benjamini-Hochberg procedure to control the false discovery rate. The second set of signals are the cells with adjusted p-values less than 0.05.
+   The computation is over all :math:`i` within drug :math:`j` where neither :math:`e_{ij}` nor :math:`\hat{u}_{ij}` is NA. 
+   Calculate the upper tail probability of :math:`r_{ij}` in the standard normal distribution, which is used as the p-value for each cell. Obtain adjusted p-values via the Benjamini-Hochberg procedure to control the false discovery rate. The second set of signals are the cells with adjusted p-values less than 0.05.

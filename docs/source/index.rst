@@ -21,6 +21,7 @@ Getting Started
    getting_started/index.rst
 
 .. only:: not html
+
    =================
    API Reference
    =================
@@ -32,7 +33,7 @@ Getting Started
       api_reference/index.rst
 
 .. only:: not html
-
+   
    =================
    User Guide
    =================
