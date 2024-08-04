@@ -1,3 +1,3 @@
-from .mddc import mddc
+from ._mddc import mddc
 
-__all__ = ["mddc"]
+__all__ = ["_mddc"]

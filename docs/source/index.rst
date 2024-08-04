@@ -3,18 +3,66 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to MDDC's documentation!
-================================
+Modified Detecting Deviating Data Cells (MDDC)
+==============================================
+
+.. include:: ../../README.md
+   :parser: commonmark
+
+.. only:: not html
+
+=================
+Getting Started
+=================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 4
 
+   getting_started/index.rst
 
+.. only:: not html
+   =================
+   API Reference
+   =================
 
-Indices and tables
-==================
+   .. toctree::
+      :hidden:
+      :maxdepth: 4
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+      api_reference/index.rst
+
+.. only:: not html
+
+   =================
+   User Guide
+   =================
+
+   .. toctree::
+      :hidden:
+      :maxdepth: 4
+
+      user_guide/index.rst
+
+.. only:: not html
+
+   =================
+   Development
+   =================
+
+   .. toctree::
+      :hidden:
+      :maxdepth: 4
+
+      development/index.rst
+
+.. only:: not html
+
+   =================
+   Changelog
+   =================
+
+   .. toctree::
+      :hidden:
+      :maxdepth: 4
+
+      changelog/index.rst

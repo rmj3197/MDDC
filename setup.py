@@ -4,6 +4,19 @@ import setuptools
 
 __version__ = "1.0.0"
 
+AUTHOR = ("Raktim Mukhopadhyay", "Anran Liu", "Marianthi Markatou")
+AUTHOR_EMAIL = ("raktimmu@buffalo.edu", "anranliu@buffalo.edu", "markatou@buffalo.edu")
+URL = "https://github.com/rmj3197/MDDC"
+
+REQUIRED_PACKAGES = [
+    "matplotlib>=3.8.2",
+    "numpy>=1.26.2",
+    "pandas>=2.1.3",
+    "peigen>=0.0.9",
+    "pybind11>=2.9.0",
+    "scipy>=1.11.0",
+]
+
 
 class get_eigen_include(object):
     """Helper class to determine the Eigen include path
@@ -34,13 +47,13 @@ ext_modules = [
 setup(
     name="MDDC",
     version=__version__,
-    author="Raktim Mukhopadhyay, Anran Liu, Marianthi Markatou",
-    author_email="raktimmu@buffalo.edu, anranliu@buffalo.edu, markatou@buffalo.edu",
-    url="https://github.com/pybind/mddc_cpp_helper",
+    author=AUTHOR,
+    author_email=AUTHOR_EMAIL,
+    url=URL,
     description="MDDC provides methods for detecting (adverse event, drug) signals, a data generating function for simulating pharmacovigilance data, and a few functions for pre-processing and computing statistics such as expectations or residuals.",
     long_description="",
     packages=setuptools.find_packages(),
-    install_requires=["pybind11", "peigen"],
+    install_requires=REQUIRED_PACKAGES,
     ext_modules=ext_modules,
     extras_require={"test": "pytest"},
     cmdclass={"build_ext": build_ext},

@@ -55,7 +55,7 @@ def _mddc_boxplot(
         - 'signal': np.ndarray
             Matrix indicating significant signals with count greater than five and identified in the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
         - 'corr_signal_pval': np.ndarray
-            p-values for each cell in the contingency table in the step 5, when the r_{ij} (residual) values are mapped back to the standard normal distribution.
+            p-values for each cell in the contingency table in the step 5, when the :math:`r_{ij}` (residual) values are mapped back to the standard normal distribution.
         - 'corr_signal_adj_pval': np.ndarray
             Benjamini-Hochberg adjusted p values for each cell in the step 5.
     """

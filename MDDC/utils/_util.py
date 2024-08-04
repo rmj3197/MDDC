@@ -199,18 +199,13 @@ def report_drug_AE_pairs(contin_table, contin_table_signal):
 
     Returns
     -------
-    pandas.DataFrame
+    Identified Drug-AE pairs : pandas.DataFrame
         A DataFrame with five columns:
-        - `Drug` : str
-            The name of the drug.
-        - `AE` : str
-            The potential adverse event associated with the drug.
-        - `Observed Count` : int
-            The observed count of the (drug, adverse event) pair.
-        - `Expected Count` : float
-            The expected count of the (drug, adverse event) pair.
-        - `Standard Pearson Residual` : float
-            The value of the standardized Pearson residual for the (drug, adverse event) pair.
+            - `Drug` : str, The name of the drug.
+            - `AE` : str, The potential adverse event associated with the drug.
+            - `Observed Count` : int, The observed count of the (drug, adverse event) pair.
+            - `Expected Count` : float, The expected count of the (drug, adverse event) pair.
+            - `Standard Pearson Residual` : float, The value of the standardized Pearson residual for the (drug, adverse event) pair.
     """
     if not (
         isinstance(contin_table, (np.ndarray, pd.DataFrame))

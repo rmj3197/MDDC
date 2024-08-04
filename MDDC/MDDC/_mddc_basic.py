@@ -13,7 +13,7 @@ easy access to specific result fields by name.
       - `corr_signal_pval`: p-value of the correlation signal.
       - `corr_signal_adj_pval`: adjusted p-value of the correlation signal.
 
-2. `MDDCMBoxplotResult`:
+2. `MDDCBoxplotResult`:
     - Represents the result of a boxplot analysis in MDDC.
     - Fields:
       - `signal`: computed signal value.
@@ -30,6 +30,6 @@ MDDCMonteCarloResult = _make_tuple_bunch(
     ["pval", "signal", "fisher_signal", "corr_signal_pval", "corr_signal_adj_pval"],
 )
 
-MDDCMBoxplotResult = _make_tuple_bunch(
-    "MDDCMBoxplotResult", ["signal", "corr_signal_pval", "corr_signal_adj_pval"]
+MDDCBoxplotResult = _make_tuple_bunch(
+    "MDDCBoxplotResult", ["signal", "corr_signal_pval", "corr_signal_adj_pval"]
 )

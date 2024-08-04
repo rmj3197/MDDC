@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from ._mddc_basic import MDDCMBoxplotResult, MDDCMonteCarloResult
+from ._mddc_basic import MDDCBoxplotResult, MDDCMonteCarloResult
 from ._mddc_boxplot import _mddc_boxplot
 from ._mddc_monte_carlo import _mddc_monte_carlo
 
@@ -82,15 +82,15 @@ def mddc(
             * fisher_signal : numpy.ndarray, pd.DataFrame
                 Matrix indicating signals with a count less than or equal to five and identified by Fisher's exact test. 1 indicates a signal, 0 indicates non-signal.
             * corr_signal_pval : numpy.ndarray, pd.DataFrame
-                p-values for each cell in the contingency table in the step 5, when the r_{ij} (residual) values are mapped back to the standard normal distribution.
+                p-values for each cell in the contingency table in the step 5, when the :math:`r_{ij}` (residual) values are mapped back to the standard normal distribution.
             * corr_signal_adj_pval : numpy.ndarray, pd.DataFrame
                 Benjamini-Hochberg adjusted p values for each cell in the step 5.
 
-        - If method is "boxplot" returns MDDCMBoxplotResult:
+        - If method is "boxplot" returns MDDCBoxplotResult:
             * signal : numpy.ndarray, pd.DataFrame
                 Matrix indicating significant signals with count greater than five and identified in the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
             * corr_signal_pval : numpy.ndarray, pd.DataFrame
-                p-values for each cell in the contingency table in the step 5, when the r_{ij} (residual) values are mapped back to the standard normal distribution.
+                p-values for each cell in the contingency table in the step 5, when the :math:`r_{ij}` (residual) values are mapped back to the standard normal distribution.
             * corr_signal_adj_pval : numpy.ndarray, pd.DataFrame
                 Benjamini-Hochberg adjusted p values for each cell in the step 5.
     """
@@ -225,14 +225,14 @@ def mddc(
             r_pval_adj.index = row_names
             r_pval_adj.columns = col_names
 
-            return MDDCMBoxplotResult(
+            return MDDCBoxplotResult(
                 signal=high_outlier,
                 corr_signal_pval=r_pval,
                 corr_signal_adj_pval=r_pval_adj,
             )
 
         else:
-            return MDDCMBoxplotResult(
+            return MDDCBoxplotResult(
                 signal=high_outlier,
                 corr_signal_pval=r_pval,
                 corr_signal_adj_pval=r_pval_adj,
