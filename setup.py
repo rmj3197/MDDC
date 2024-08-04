@@ -1,3 +1,4 @@
+import pybind11
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup
 import setuptools
@@ -38,7 +39,7 @@ ext_modules = [
     Pybind11Extension(
         "mddc_cpp_helper",
         ["src/main.cpp"],
-        include_dirs=[str(get_eigen_include())],
+        include_dirs=[str(pybind11.get_include()), str(get_eigen_include())],
         define_macros=[("VERSION_INFO", __version__)],
         language="c++",
     ),
