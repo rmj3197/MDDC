@@ -10,6 +10,7 @@ AUTHOR_EMAIL = ("raktimmu@buffalo.edu", "anranliu@buffalo.edu", "markatou@buffal
 URL = "https://github.com/rmj3197/MDDC"
 
 REQUIRED_PACKAGES = [
+    "joblib>=1.2.0",
     "matplotlib>=3.8.2",
     "numpy>=1.26.2",
     "pandas>=2.1.3",
