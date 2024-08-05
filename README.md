@@ -33,11 +33,11 @@ Email: [raktimmu@buffalo.edu](mailto:raktimmu@buffalo.edu)
 
 ## Documentation
 
-The documentation is hosted on `Read the Docs` at - https://quadratik.readthedocs.io/en/latest/
+The documentation is hosted on `Read the Docs` at - https://mddc.readthedocs.io/en/latest/
 
 ## Installation using `pip`
 
-``pip install QuadratiK``
+``pip install MDDC``
 
 ## Community
 
@@ -46,8 +46,8 @@ Please note that installation from Github might be buggy, for the latest stable 
 For downloading from Github, use the following instructions:
 
 ```bash
-git clone https://github.com/rmj3197/QuadratiK.git
-cd QuadratiK
+git clone https://github.com/rmj3197/MDDC.git
+cd MDDC
 pip install -e .
 ```
 

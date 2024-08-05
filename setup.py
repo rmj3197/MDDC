@@ -2,8 +2,10 @@ import pybind11
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup
 import setuptools
+import glob
+import os
 
-__version__ = "1.0.0"
+__version__ = "1.0.dev0"
 
 AUTHOR = ("Raktim Mukhopadhyay", "Anran Liu", "Marianthi Markatou")
 AUTHOR_EMAIL = ("raktimmu@buffalo.edu", "anranliu@buffalo.edu", "markatou@buffalo.edu")
@@ -57,6 +59,7 @@ setup(
     packages=setuptools.find_packages(),
     install_requires=REQUIRED_PACKAGES,
     ext_modules=ext_modules,
+    include_package_data=True,
     extras_require={"test": "pytest"},
     cmdclass={"build_ext": build_ext},
     zip_safe=False,

@@ -24,7 +24,7 @@ def mddc(
 
     This function implements the MDDC algorithm using either a Monte Carlo or Boxplot method for cutoff selection.
     The Monte Carlo or Boxplot method is used to estimate thresholds for identifying cells with high values of standardized Pearson residuals,
-    
+
     Parameters
     ----------
     contin_table : pd.DataFrame or np.ndarray
@@ -35,13 +35,13 @@ def mddc(
         Method for cutoff selection. Can be either "monte_carlo" or "boxplot".
 
     rep : int, optional, default=10000
-        Number of Monte Carlo replications used for estimating thresholds. Utilized in Step 2 of the MDDC algorithm. 
+        Number of Monte Carlo replications used for estimating thresholds. Utilized in Step 2 of the MDDC algorithm.
         Only used if method is "monte_carlo".
 
     quantile : float, optional, default=0.95
         The quantile of the null distribution obtained via Monte Carlo method to use as a threshold for identify cells with high value of the standardized Pearson residuals.
         Used in Step 2 of the MDDC algorithm. Only used if method is "monte_carlo".
-        
+
     exclude_same_drug_class : bool, optional, default=True
         If True, excludes other drugs in the same class when constructing 2x2 tables for Fisher's exact test. Only used if method is "monte_carlo".
 
@@ -157,7 +157,6 @@ def mddc(
                 separate,
                 if_col_corr,
                 corr_lim,
-                r_cutoff,
                 n_jobs,
                 seed,
             )

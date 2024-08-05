@@ -41,5 +41,6 @@ Datasets
    :toctree: generated/
 
     load_statin49_data
+    load_statin49_cluster_idx_data
 
         

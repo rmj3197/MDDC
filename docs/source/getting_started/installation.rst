@@ -16,7 +16,7 @@ MDDC is availble on PyPI and can be installed using ``pip install MDDC``.
 
 Dependencies
 -------------
-QuadratiK requires the following (arranged alphabetically):
+MDDC requires the following (arranged alphabetically):
 
 - `matplotlib <https://matplotlib.org/>`_ (>=3.8.2)
 - `numpy <https://numpy.org/>`_  (>= 1.26.2)

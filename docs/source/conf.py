@@ -13,10 +13,10 @@ basedir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, basedir)
 
 
-project = 'MDDC'
-copyright = '2024, Raktim Mukhopadhyay, Anran Liu, Marianthi Markatou'
-author = 'Raktim Mukhopadhyay, Anran Liu, Marianthi Markatou'
-release = '1.0.0'
+project = "MDDC"
+copyright = "2024, Raktim Mukhopadhyay, Anran Liu, Marianthi Markatou"
+author = "Raktim Mukhopadhyay, Anran Liu, Marianthi Markatou"
+release = "1.0.dev0"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -32,18 +32,17 @@ extensions = [
     "sphinx.ext.intersphinx",
     "myst_parser",
 ]
-autosummary_generate = True  
+autosummary_generate = True
 
 
-templates_path = ['_templates']
+templates_path = ["_templates"]
 exclude_patterns = []
-
 
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'sphinx_book_theme'
+html_theme = "sphinx_book_theme"
 html_static_path = ["_static"]
 html_css_files = ["css/custom.css"]
 strip_signature_backslash = True
@@ -66,8 +65,8 @@ latex_elements = {
 latex_documents = [
     (
         "index",
-        "QuadratiK.tex",
-        "QuadratiK",
+        "MDDC.tex",
+        "MDDC",
         author,
         "manual",
     )

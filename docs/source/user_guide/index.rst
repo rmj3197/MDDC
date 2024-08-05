@@ -16,3 +16,10 @@ Datasets
    :maxdepth: 4
 
    datasets.rst
+
+Usage Examples
+================
+.. toctree::
+   :maxdepth: 4
+
+   MDDC_Usage

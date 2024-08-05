@@ -47,7 +47,7 @@ def _mddc_boxplot(
 
     corr_lim : float, optional, default=0.8
         Correlation threshold used to select connected adverse events. Utilized in Step 3 of MDDC algorithm.
-    
+
     Returns
     -------
     result : tuple
@@ -153,6 +153,7 @@ def _mddc_boxplot(
                 coeff_list.append([beta.intercept, beta.slope])
 
         nan_mask = np.isnan(fitted_values)
+        any_all_nan = np.all(nan_mask, axis=0)
         weight_array = np.array(weight_list[i])
         if if_col_corr:
             wt_avg_weights = np.where(
@@ -165,6 +166,7 @@ def _mddc_boxplot(
             z_ij_hat_mat[:, i] = np.ma.average(
                 np.nan_to_num(fitted_values, 0), weights=wt_avg_weights, axis=1
             ).data
+            z_ij_hat_mat[i, any_all_nan] = np.nan
         else:
             wt_avg_weights = np.where(
                 nan_mask,
@@ -176,10 +178,12 @@ def _mddc_boxplot(
             z_ij_hat_mat[i, :] = np.ma.average(
                 np.nan_to_num(fitted_values, 0), weights=wt_avg_weights, axis=0
             ).data
+            z_ij_hat_mat[i, any_all_nan] = np.nan
 
     # Step 5: standardize the residuals within each drug column and flag outliers
     R_ij_mat = z_ij_mat - z_ij_hat_mat
     r_ij_mat = np.apply_along_axis(normalize_column, 0, R_ij_mat)
+
     r_pval = 1 - scipy.stats.norm.cdf(r_ij_mat)
 
     r_pval_adj = r_pval.copy().flatten()

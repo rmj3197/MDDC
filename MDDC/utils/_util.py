@@ -79,21 +79,19 @@ def _generate_simulated_zijmat(
     else:
         generator = np.random.RandomState(None)
 
-    z_ij_mat = np.full_like(contin_table, fill_value=np.nan)
+    z_ij_mat = np.zeros(contin_table.shape)
 
     for group in count_dict.keys():
         if count_dict[group] > 1:
             cov = np.full((count_dict[group], count_dict[group]), rho)
             np.fill_diagonal(cov, 1)
             z_ij_mat[np.where(cluster_idx == group), :] = generator.multivariate_normal(
-                mean=np.zeros(count_dict[group]), cov=cov, size=contin_table.shape[0]
+                mean=np.zeros(count_dict[group]), cov=cov, size=contin_table.shape[1]
             ).T
-
         else:
             z_ij_mat[np.where(cluster_idx == group), :] = generator.randn(
-                contin_table.shape[0]
+                contin_table.shape[1]
             )
-
     new_contin_table = np.round(
         z_ij_mat * np.sqrt(e_ij_mat * signal_mat * ((1 - p_i_dot) @ (1 - p_dot_j)))
         + e_ij_mat * signal_mat
@@ -114,17 +112,17 @@ def generate_contin_table_with_clustered_AE(
 
     Parameters
     ----------
-    contin_table : numpy.ndarray
+    contin_table : numpy.ndarray, pandas.DataFrame
         A data matrix representing an I x J contingency table with row (adverse event) and column (drug) names.
         The row and column marginals of this table are used to generate the simulated data. It is advisable to
         check the input contingency table using the function `check_and_fix_contin_table()` before using this function.
 
-    signal_mat : numpy.ndarray
+    signal_mat : numpy.ndarray, pandas.DataFrame
         A data matrix of the same dimensions as `contin_table`, where entries represent signal strength. Values
         should be greater than or equal to 1, where 1 indicates no signal and values greater than 1 indicate the
         presence of a signal.
 
-    cluster_idx : numpy.ndarray
+    cluster_idx : numpy.ndarray, list, pd.DataFrame
         An array indicating the cluster index for each row in the `contin_table`. Clusters can be represented by
         names or numerical indices.
 
@@ -150,9 +148,34 @@ def generate_contin_table_with_clustered_AE(
     simulated tables : list of numpy.ndarray
         A list containing the simulated contingency tables.
     """
+    if not isinstance(contin_table, (pd.DataFrame, np.ndarray)):
+        raise TypeError("contin_table must be a pandas DataFrame or numpy array.")
+
+    if not isinstance(cluster_idx, (list, np.ndarray, pd.DataFrame)):
+        raise TypeError("cluster_idx must be a list or numpy array.")
+
+    if isinstance(cluster_idx, pd.DataFrame):
+        if (cluster_idx.shape[1]) or (cluster_idx.shape[1]):
+            cluster_idx = cluster_idx.values.flatten()
+        else:
+            raise ValueError(
+                "The pandas DataFrame is not of the correct format. Expected a dataframe with dimensions (n,1) or (1,n)"
+            )
+
+    is_dataframe = False
+    if isinstance(contin_table, pd.DataFrame):
+        is_dataframe = True
+        row_names = list(contin_table.index)
+        column_names = list(contin_table.columns)
+        contin_table = contin_table.values
+
     e_ij_mat = getEijMat(contin_table)
-    p_i_dot = e_ij_mat.sum(axis=1, keepdims=True)
-    p_dot_j = e_ij_mat.sum(axis=0, keepdims=True)
+    n_i_dot = e_ij_mat.sum(axis=1, keepdims=True)
+    n_dot_j = e_ij_mat.sum(axis=0, keepdims=True)
+    n_dot_dot = e_ij_mat.sum()
+
+    p_i_dot = n_i_dot / n_dot_dot
+    p_dot_j = n_dot_j / n_dot_dot
 
     groups, group_counts = np.unique(cluster_idx, return_counts=True)
     count_dict = dict(zip(groups, group_counts))
@@ -172,6 +195,17 @@ def generate_contin_table_with_clustered_AE(
         )
         for i in range(n)
     )
+
+    if is_dataframe:
+        simulated_samples = list(
+            map(
+                lambda sample: pd.DataFrame(
+                    sample, columns=column_names, index=row_names
+                ),
+                simulated_samples,
+            )
+        )
+
     return simulated_samples
 
 
@@ -185,13 +219,13 @@ def report_drug_AE_pairs(contin_table, contin_table_signal):
 
     Parameters
     ----------
-    contin_table : numpy.ndarray
+    contin_table : numpy.ndarray, pandas..DataFrame
         A data matrix representing an I x J contingency table with rows corresponding to adverse events and columns
         corresponding to drugs. The row and column names of this matrix are used in the analysis. It is advisable
         to check the input contingency table using the function `check_and_fix_contin_table()` before using this
         function.
 
-    contin_table_signal : numpy.ndarray
+    contin_table_signal : numpy.ndarray, pandas.DataFrame
         A data matrix of the same dimensions as `contin_table`, with entries of either 1 (indicating a signal) or
         0 (indicating no signal). This matrix should have the same row and column names as `contin_table` and can
         be obtained using the function `MDDC.MDDC.mddc()`.
@@ -212,12 +246,6 @@ def report_drug_AE_pairs(contin_table, contin_table_signal):
     ):
         raise ValueError("Both inputs must be data matrices.")
 
-    if isinstance(contin_table, np.ndarray):
-        contin_table = pd.DataFrame(contin_table)
-
-    if isinstance(contin_table_signal, np.ndarray):
-        contin_table_signal = pd.DataFrame(contin_table_signal)
-
     # Check if the dimensions match
     if contin_table.shape != contin_table_signal.shape:
         raise ValueError(
@@ -235,12 +263,20 @@ def report_drug_AE_pairs(contin_table, contin_table_signal):
             "The column names of contin_table and contin_table_signal must match."
         )
 
+    if isinstance(contin_table_signal, pd.DataFrame):
+        row_names = list(contin_table_signal.index)
+        column_names = list(contin_table_signal.columns)
+        contin_table_signal = contin_table_signal.values
+
+    if isinstance(contin_table, pd.DataFrame):
+        contin_table = contin_table.values
+
     contin_table_signal = np.where(
         np.isnan(contin_table_signal), 0, contin_table_signal
     )
 
     mat_expected_count = np.round(getEijMat(contin_table), 4)
-    mat_std_res = np.round(getZijMat(contin_table), 4)
+    mat_std_res = np.round(getZijMat(contin_table)[0], 4)
 
     pairs = []
 
@@ -249,8 +285,8 @@ def report_drug_AE_pairs(contin_table, contin_table_signal):
             if contin_table_signal[i, j] == 1 and contin_table[i, j] != 0:
                 pairs.append(
                     [
-                        list(contin_table_signal.columns)[j],
-                        list(contin_table_signal.index)[i],
+                        column_names[j],
+                        row_names[i],
                         contin_table[i, j],
                         mat_expected_count[i, j],
                         mat_std_res[i, j],
@@ -302,13 +338,12 @@ def plot_heatmap(mddc_result, plot="signal", size_cell=0.20, **kwargs):
         generating the heatmap. Ensure that `mddc_result` contains the specified field.
 
     plot : str, optional, default="signal"
-        The name of the attribute in `mddc_result` to be plotted. This attribute should be a 2D array-like structure
-        (e.g., a NumPy array or Pandas DataFrame).
+        The name of the attribute in `mddc_result` to be plotted. This attribute should be a numpy.ndarray or pandas.DataFrame.
 
     size_cell : float, optional, default=0.20
         The size of each cell in the heatmap, which affects the dimensions of the resulting plot.
 
-    **kwargs
+    \**kwargs
         Additional keyword arguments to be passed to `ax.pcolormesh()` for customizing the heatmap appearance.
 
     Returns
