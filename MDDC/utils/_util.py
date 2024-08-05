@@ -234,8 +234,8 @@ def report_drug_AE_pairs(contin_table, contin_table_signal):
     -------
     Identified Drug-AE pairs : pandas.DataFrame
         A DataFrame with five columns:
-            - `Drug` : str, The name of the drug.
-            - `AE` : str, The potential adverse event associated with the drug.
+            - `Drug` : str, The name of the drug. In case the `contin_table_signal` is a numpy.ndarray the `Drug` represents the column index.
+            - `AE` : str, The potential adverse event associated with the drug. n case the `contin_table_signal` is a numpy.ndarray the `AE` represents the row index.
             - `Observed Count` : int, The observed count of the (drug, adverse event) pair.
             - `Expected Count` : float, The expected count of the (drug, adverse event) pair.
             - `Standard Pearson Residual` : float, The value of the standardized Pearson residual for the (drug, adverse event) pair.
@@ -253,20 +253,26 @@ def report_drug_AE_pairs(contin_table, contin_table_signal):
         )
 
     # Check if the row and column names match
-    if not np.array_equal(contin_table.index, contin_table_signal.index):
-        raise ValueError(
-            "The row names of contin_table and contin_table_signal must match."
-        )
+    if isinstance(contin_table, pd.DataFrame) and isinstance(
+        contin_table_signal, pd.DataFrame
+    ):
+        if not np.array_equal(contin_table.index, contin_table_signal.index):
+            raise ValueError(
+                "The row names of contin_table and contin_table_signal must match."
+            )
 
-    if not np.array_equal(contin_table.columns, contin_table_signal.columns):
-        raise ValueError(
-            "The column names of contin_table and contin_table_signal must match."
-        )
+        if not np.array_equal(contin_table.columns, contin_table_signal.columns):
+            raise ValueError(
+                "The column names of contin_table and contin_table_signal must match."
+            )
 
     if isinstance(contin_table_signal, pd.DataFrame):
         row_names = list(contin_table_signal.index)
         column_names = list(contin_table_signal.columns)
         contin_table_signal = contin_table_signal.values
+    else:
+        row_names = range(contin_table.shape[0])
+        column_names = range(contin_table_signal.shape[1])
 
     if isinstance(contin_table, pd.DataFrame):
         contin_table = contin_table.values
