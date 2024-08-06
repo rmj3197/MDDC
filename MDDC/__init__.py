@@ -1,4 +1,4 @@
-from importlib import import_module, metadata
+from importlib import import_module
 
 __version__ = "1.0.dev0"
 
