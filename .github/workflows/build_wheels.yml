@@ -8,18 +8,30 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # macos-13 is an intel runner, macos-14 is apple silicon
         os: [ubuntu-latest, windows-latest, macos-13, macos-14]
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build wheels
-        uses: pypa/cibuildwheel@v2.20.0
+      # Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          package-dir: .
-          output-dir: wheelhouse
-          config-file: "{package}/pyproject.toml"
+          python-version: '3.11'  # Specify the Python version you need
+
+      # Install dependencies (example for Ubuntu)
+      - name: Install dependencies on Ubuntu
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-dev python3-pip python3-setuptools build-essential
+          
+      # Install cibuildwheel
+      - name: Install cibuildwheel
+        run: pip install cibuildwheel==2.20.0
+
+      - name: Build wheels
+        run: cibuildwheel --output-dir wheelhouse --config-file {package}/pyproject.toml
 
       - uses: actions/upload-artifact@v4
         with:
