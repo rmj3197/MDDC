@@ -11,7 +11,7 @@ jobs:
         # macos-13 is an intel runner, macos-14 is apple silicon
         os: [ubuntu-latest, windows-latest, macos-13, macos-14]
 
-    timeout-minutes: 10
+    timeout-minutes: 30
 
     steps:
       - uses: actions/checkout@v4
