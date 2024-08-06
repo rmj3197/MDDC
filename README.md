@@ -1,3 +1,5 @@
+[![Ruff](https://github.com/rmj3197/MDDC/actions/workflows/ruff.yml/badge.svg)](https://github.com/rmj3197/MDDC/actions/workflows/ruff.yml)
+
 # Introduction
 
 - In this package, we present the Modified Detecting Deviating Cells (MDDC) algorithm for adverse event identification.
