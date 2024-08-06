@@ -243,7 +243,10 @@ def _mddc_monte_carlo(
         fitted_values = np.full(contin_table.shape, np.nan)
         if if_col_corr:
             for k in cor_list[i]:
-                beta = scipy.stats.linregress(u_ij_mat[:, k], u_ij_mat[:, i])
+                var_x = u_ij_mat[:, k]
+                var_y = u_ij_mat[:, i]
+                mask = ~np.isnan(var_x) & ~np.isnan(var_y)
+                beta = scipy.stats.linregress(var_x[mask], var_y[mask])
                 fit_values = u_ij_mat[:, k] * beta.slope + beta.intercept
                 fitted_values[:, k] = fit_values
                 coeff_list.append([beta.intercept, beta.slope])
@@ -258,9 +261,9 @@ def _mddc_monte_carlo(
                 coeff_list.append([beta.intercept, beta.slope])
 
         nan_mask = np.isnan(fitted_values)
-        any_all_nan = np.all(nan_mask, axis=0)
         weight_array = np.array(weight_list[i])
         if if_col_corr:
+            any_all_nan = np.all(nan_mask, axis=1)
             wt_avg_weights = np.where(
                 nan_mask,
                 0,
@@ -271,8 +274,9 @@ def _mddc_monte_carlo(
             z_ij_hat_mat[:, i] = np.ma.average(
                 np.nan_to_num(fitted_values, 0), weights=wt_avg_weights, axis=1
             ).data
-            z_ij_hat_mat[i, any_all_nan] = np.nan
+            z_ij_hat_mat[any_all_nan, i] = np.nan
         else:
+            any_all_nan = np.all(nan_mask, axis=0)
             wt_avg_weights = np.where(
                 nan_mask,
                 0,

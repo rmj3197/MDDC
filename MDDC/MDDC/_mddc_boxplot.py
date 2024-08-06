@@ -153,9 +153,9 @@ def _mddc_boxplot(
                 coeff_list.append([beta.intercept, beta.slope])
 
         nan_mask = np.isnan(fitted_values)
-        any_all_nan = np.all(nan_mask, axis=0)
         weight_array = np.array(weight_list[i])
         if if_col_corr:
+            any_all_nan = np.all(nan_mask, axis=1)
             wt_avg_weights = np.where(
                 nan_mask,
                 0,
@@ -166,8 +166,9 @@ def _mddc_boxplot(
             z_ij_hat_mat[:, i] = np.ma.average(
                 np.nan_to_num(fitted_values, 0), weights=wt_avg_weights, axis=1
             ).data
-            z_ij_hat_mat[i, any_all_nan] = np.nan
+            z_ij_hat_mat[any_all_nan, i] = np.nan
         else:
+            any_all_nan = np.all(nan_mask, axis=0)
             wt_avg_weights = np.where(
                 nan_mask,
                 0,

@@ -209,7 +209,9 @@ def generate_contin_table_with_clustered_AE(
     return simulated_samples
 
 
-def report_drug_AE_pairs(contin_table, contin_table_signal):
+def report_drug_AE_pairs(
+    contin_table, contin_table_signal, along_rows="AE", along_columns="Drug"
+):
     """
     Report potential adverse events for drugs based on the contingency table.
 
@@ -219,7 +221,7 @@ def report_drug_AE_pairs(contin_table, contin_table_signal):
 
     Parameters
     ----------
-    contin_table : numpy.ndarray, pandas..DataFrame
+    contin_table : numpy.ndarray, pandas.DataFrame
         A data matrix representing an I x J contingency table with rows corresponding to adverse events and columns
         corresponding to drugs. The row and column names of this matrix are used in the analysis. It is advisable
         to check the input contingency table using the function `check_and_fix_contin_table()` before using this
@@ -229,6 +231,12 @@ def report_drug_AE_pairs(contin_table, contin_table_signal):
         A data matrix of the same dimensions as `contin_table`, with entries of either 1 (indicating a signal) or
         0 (indicating no signal). This matrix should have the same row and column names as `contin_table` and can
         be obtained using the function `MDDC.MDDC.mddc()`.
+
+    along_rows : str, optional, default = "AE"
+        Specifies the content along the rows of the `contin_table` (e.g. AE or Drug).
+
+    along_columns : str, optional, default = "Drug"
+        Specifies the content along the columns of the `contin_table` (e.g. AE or Drug).
 
     Returns
     -------
@@ -265,6 +273,9 @@ def report_drug_AE_pairs(contin_table, contin_table_signal):
             raise ValueError(
                 "The column names of contin_table and contin_table_signal must match."
             )
+
+    if not isinstance(along_rows, str) | isinstance(along_columns, str):
+        raise ValueError("The `along_rows` and `along_columns` values must be string.")
 
     if isinstance(contin_table_signal, pd.DataFrame):
         row_names = list(contin_table_signal.index)
@@ -304,8 +315,8 @@ def report_drug_AE_pairs(contin_table, contin_table_signal):
         pairs_df = pd.DataFrame(
             pairs,
             columns=[
-                "Drug",
-                "AE",
+                along_columns,
+                along_rows,
                 "Observed Count",
                 "Expected Count",
                 "Standard Pearson Residual",
@@ -320,8 +331,8 @@ def report_drug_AE_pairs(contin_table, contin_table_signal):
         )
         return pd.DataFrame(
             columns=[
-                "Drug",
-                "AE",
+                along_columns,
+                along_rows,
                 "Observed Count",
                 "Expected Count",
                 "Standard Pearson Residual",

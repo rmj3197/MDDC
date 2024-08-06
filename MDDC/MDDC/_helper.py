@@ -188,8 +188,8 @@ def boxplot_stats(x, coef=1.5, na_rm=True):
     low_lim = stats[1] - coef * iqr
     upper_lim = stats[3] + coef * iqr
 
-    low_whisker = np.min(x[x > low_lim])
-    upper_whisker = np.max(x[x < upper_lim])
+    low_whisker = np.min(x[x >= low_lim])
+    upper_whisker = np.max(x[x <= upper_lim])
 
     stats[1] = low_whisker
     stats[3] = upper_whisker
