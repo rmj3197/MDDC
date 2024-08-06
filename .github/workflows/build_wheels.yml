@@ -16,12 +16,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set Swap Space
+        if: runner.os == 'Linux' || runner.os == 'Windows'
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 10
+
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.20.0
         with:
           package-dir: .
           output-dir: wheelhouse
-          config-file: "{package}/pyproject.toml"
 
       - uses: actions/upload-artifact@v4
         with:
