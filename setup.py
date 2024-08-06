@@ -1,9 +1,7 @@
 import pybind11
+import setuptools
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup
-import setuptools
-import glob
-import os
 
 __version__ = "1.0.dev0"
 
@@ -22,7 +20,7 @@ REQUIRED_PACKAGES = [
 ]
 
 
-class get_eigen_include(object):
+class get_eigen_include:
     """Helper class to determine the Eigen include path
     The purpose of this class is to postpone importing Eigen
     until it is actually installed, so that the ``get_include()``

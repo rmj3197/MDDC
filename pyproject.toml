@@ -6,14 +6,9 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
-
-[tool.cibuildwheel]
-test-command = "python {project}/tests/test.py"
-test-skip = "*universal2:arm64"
-
-
 [tool.ruff]
 target-version = "py311"
+line-length = 88 # same as black
 
 [tool.ruff.lint]
 extend-select = [
@@ -23,3 +18,6 @@ extend-select = [
   "RUF", # Ruff-specific
   "UP",  # pyupgrade
 ]
+
+[tool.isort]
+profile = "black"

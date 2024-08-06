@@ -110,7 +110,7 @@ def mddc(
         raise TypeError("rep must be a positive integer.")
 
     # Check the type of quantile
-    if not isinstance(quantile, (float, int)) or not (0 <= quantile <= 1):
+    if not isinstance(quantile, float | int) or not (0 <= quantile <= 1):
         raise TypeError("quantile must be a float between 0 and 1.")
 
     # Check the type of exclude_same_drug_class
@@ -130,7 +130,7 @@ def mddc(
         raise TypeError("if_col_corr must be a boolean.")
 
     # Check the type of corr_lim
-    if not isinstance(corr_lim, (float, int)) or not (0 <= corr_lim <= 1):
+    if not isinstance(corr_lim, float | int) or not (0 <= corr_lim <= 1):
         raise TypeError("corr_lim must be a float between 0 and 1.")
 
     # Check the type of n_jobs

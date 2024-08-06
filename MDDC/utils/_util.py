@@ -1,5 +1,5 @@
 """
-`utils.py` contains additional utility functions made available to a user. 
+`utils.py` contains additional utility functions made available to a user.
 """
 
 import warnings
@@ -148,10 +148,10 @@ def generate_contin_table_with_clustered_AE(
     simulated tables : list of numpy.ndarray
         A list containing the simulated contingency tables.
     """
-    if not isinstance(contin_table, (pd.DataFrame, np.ndarray)):
+    if not isinstance(contin_table, pd.DataFrame | np.ndarray):
         raise TypeError("contin_table must be a pandas DataFrame or numpy array.")
 
-    if not isinstance(cluster_idx, (list, np.ndarray, pd.DataFrame)):
+    if not isinstance(cluster_idx, list | np.ndarray | pd.DataFrame):
         raise TypeError("cluster_idx must be a list or numpy array.")
 
     if isinstance(cluster_idx, pd.DataFrame):
@@ -178,7 +178,7 @@ def generate_contin_table_with_clustered_AE(
     p_dot_j = n_dot_j / n_dot_dot
 
     groups, group_counts = np.unique(cluster_idx, return_counts=True)
-    count_dict = dict(zip(groups, group_counts))
+    count_dict = dict(zip(groups, group_counts, strict=False))
 
     simulated_samples = Parallel(n_jobs=n_jobs)(
         delayed(_generate_simulated_zijmat)(
@@ -241,8 +241,8 @@ def report_drug_AE_pairs(contin_table, contin_table_signal):
             - `Standard Pearson Residual` : float, The value of the standardized Pearson residual for the (drug, adverse event) pair.
     """
     if not (
-        isinstance(contin_table, (np.ndarray, pd.DataFrame))
-        and isinstance(contin_table_signal, (np.ndarray, pd.DataFrame))
+        isinstance(contin_table, np.ndarray | pd.DataFrame)
+        and isinstance(contin_table_signal, np.ndarray | pd.DataFrame)
     ):
         raise ValueError("Both inputs must be data matrices.")
 

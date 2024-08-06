@@ -1,9 +1,9 @@
-from importlib import metadata, import_module
+from importlib import import_module
 
 __version__ = "1.0.dev0"
 
 submodules = ["MDDC", "utils", "datasets"]
-__all__ = submodules + [__version__]
+__all__ = [*submodules, __version__]
 
 
 def __dir__():
@@ -17,5 +17,5 @@ def __getattr__(name):
     else:
         try:
             return globals()[name]
-        except KeyError:
-            raise AttributeError(f"Module 'MDDC' has no attribute '{name}'")
+        except KeyError as err:
+            raise AttributeError(f"Module 'MDDC' has no attribute '{name}'") from err

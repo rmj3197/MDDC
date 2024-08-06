@@ -1,6 +1,6 @@
-import pandas as pd
-import numpy as np
 from importlib import resources
+
+import pandas as pd
 
 
 def load_statin49_data(desc=False, as_dataframe=True):

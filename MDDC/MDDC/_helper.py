@@ -4,7 +4,7 @@
 
 import numpy as np
 import scipy
-from mddc_cpp_helper import getZijMat, getFisherExactTestTable
+from mddc_cpp_helper import getFisherExactTestTable, getZijMat
 
 
 def apply_func(row, n, m):

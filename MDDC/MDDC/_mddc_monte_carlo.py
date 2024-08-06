@@ -113,9 +113,11 @@ def _mddc_monte_carlo(
     indices = np.where(mask)
     fisher_exact_test_vals = Parallel(n_jobs=-1, prefer="threads")(
         delayed(compute_fisher_exact)(i, j, contin_table, exclude_same_drug_class)
-        for i, j in zip(*indices)
+        for i, j in zip(*indices, strict=False)
     )
-    for (i, j), p_value in zip(zip(*indices), fisher_exact_test_vals):
+    for (i, j), p_value in zip(
+        zip(*indices, strict=False), fisher_exact_test_vals, strict=False
+    ):
         p_val_mat[i, j] = p_value
 
     p_val_mat = np.nan_to_num(p_val_mat, nan=1)
