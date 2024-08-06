@@ -12,10 +12,10 @@
 - [**Rousseeuw and Bossche (2018)**](https://wis.kuleuven.be/stat/robust/papers/publications-2018/rousseeuwvandenbossche-ddc-technometrics-2018.pdf) proposed the Detecting Deviating Cells (DDC) algorithm for outlier identification in a multivariate dataset.
 - The original DDC algorithm assumes multivariate normality of the data and selects cutoff values based on this assumption. The foundation of the DDC algorithm lies in detecting deviating data cells within a multivariate dataset. Inspired by this work, we modify the DDC algorithm to better suit the discrete nature of adverse event data in pharmacovigilance.
 - Our Modified Detecting Deviating Cells (MDDC) algorithm has the following characteristics:
-  1. It is easy to compute
-  2. It considers AE relationships
-  3. It depends on data-driven cutoffs
-- The MDDC algorithm involves five steps, with the first two steps identifying univariate outliers via cutoffs, and the next three steps evaluating the signals via the use of AE correlations. The algorithm can be found here - 
+  1. It is easy to compute.
+  2. It considers AE relationships.
+  3. It depends on data-driven cutoffs.
+- The MDDC algorithm involves five steps, with the first two steps identifying univariate outliers via cutoffs, and the next three steps evaluating the signals via the use of AE correlations. The algorithm can be found at **[MDDC algorithm](https://mddc.readthedocs.io/en/latest/user_guide/mddc_algorithm.html)**.
 
 ## Authors
 
