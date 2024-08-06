@@ -11,7 +11,7 @@ URL = "https://github.com/rmj3197/MDDC"
 
 REQUIRED_PACKAGES = [
     "joblib>=1.2.0",
-    "matplotlib>=3.8.2,<3.9.0",
+    "matplotlib>=3.8.4,<3.9.0",
     "numpy>=1.26.2",
     "pandas>=2.1.3",
     "peigen>=0.0.9",
