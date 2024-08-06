@@ -18,6 +18,3 @@ extend-select = [
   "RUF", # Ruff-specific
   "UP",  # pyupgrade
 ]
-
-[tool.isort]
-profile = "black"
