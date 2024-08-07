@@ -1,4 +1,4 @@
-[![Ruff](https://github.com/rmj3197/MDDC/actions/workflows/ruff.yml/badge.svg)](https://github.com/rmj3197/MDDC/actions/workflows/ruff.yml)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Ruff](https://github.com/rmj3197/MDDC/actions/workflows/ruff.yml/badge.svg)](https://github.com/rmj3197/MDDC/actions/workflows/ruff.yml)
 
 # Introduction
 

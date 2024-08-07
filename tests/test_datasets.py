@@ -1,7 +1,9 @@
 import unittest
-import pandas as pd
+
 import numpy as np
-from MDDC.datasets import load_statin49_data, load_statin49_cluster_idx_data
+import pandas as pd
+
+from MDDC.datasets import load_statin49_cluster_idx_data, load_statin49_data
 
 
 class TestLoadStatin49Data(unittest.TestCase):

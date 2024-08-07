@@ -148,19 +148,31 @@ def generate_contin_table_with_clustered_AE(
     simulated tables : list of numpy.ndarray
         A list containing the simulated contingency tables.
     """
-    if not isinstance(contin_table, pd.DataFrame | np.ndarray):
+    if not isinstance(contin_table, (pd.DataFrame, np.ndarray)):
         raise TypeError("contin_table must be a pandas DataFrame or numpy array.")
 
-    if not isinstance(cluster_idx, list | np.ndarray | pd.DataFrame):
+    if pd.DataFrame(contin_table).empty:
+        raise ValueError("The `contin_table` or `cluster_idx` cannot be empty")
+
+    if not isinstance(cluster_idx, (list, np.ndarray, pd.DataFrame)):
         raise TypeError("cluster_idx must be a list or numpy array.")
 
-    if isinstance(cluster_idx, pd.DataFrame):
-        if (cluster_idx.shape[1]) or (cluster_idx.shape[1]):
-            cluster_idx = cluster_idx.values.flatten()
-        else:
-            raise ValueError(
-                "The pandas DataFrame is not of the correct format. Expected a dataframe with dimensions (n,1) or (1,n)"
-            )
+    if (pd.DataFrame(cluster_idx).shape[1] == 1) or (
+        pd.DataFrame(cluster_idx).shape[0] == 1
+    ):
+        cluster_idx = pd.DataFrame(cluster_idx).values.flatten()
+    else:
+        raise ValueError(
+            "The pandas DataFrame is not of the correct format. Expected a dataframe with dimensions (n,1) or (1,n)"
+        )
+
+    if contin_table.shape[0] != len(cluster_idx):
+        raise ValueError(
+            "The length of `cluster_idx` should be same as rows of `contin_table`."
+        )
+
+    if not (0 <= rho <= 1):
+        raise ValueError("The value of `rho` must lie between [0,1]")
 
     is_dataframe = False
     if isinstance(contin_table, pd.DataFrame):
@@ -249,10 +261,10 @@ def report_drug_AE_pairs(
             - `Standard Pearson Residual` : float, The value of the standardized Pearson residual for the (drug, adverse event) pair.
     """
     if not (
-        isinstance(contin_table, np.ndarray | pd.DataFrame)
-        and isinstance(contin_table_signal, np.ndarray | pd.DataFrame)
+        isinstance(contin_table, (np.ndarray, pd.DataFrame))
+        and isinstance(contin_table_signal, (np.ndarray, pd.DataFrame))
     ):
-        raise ValueError("Both inputs must be data matrices.")
+        raise TypeError("Both inputs must be data matrices.")
 
     # Check if the dimensions match
     if contin_table.shape != contin_table_signal.shape:
@@ -274,8 +286,8 @@ def report_drug_AE_pairs(
                 "The column names of contin_table and contin_table_signal must match."
             )
 
-    if not isinstance(along_rows, str) | isinstance(along_columns, str):
-        raise ValueError("The `along_rows` and `along_columns` values must be string.")
+    if not (isinstance(along_rows, str) and isinstance(along_columns, str)):
+        raise TypeError("The `along_rows` and `along_columns` values must be string.")
 
     if isinstance(contin_table_signal, pd.DataFrame):
         row_names = list(contin_table_signal.index)

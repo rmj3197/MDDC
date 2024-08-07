@@ -89,12 +89,10 @@ def _mddc_monte_carlo(
         - 'corr_signal_adj_pval': np.ndarray
             Benjamini-Hochberg adjusted p values for each cell in the step 5.
     """
-
     c_univ_drug, null_dist_s = get_log_bootstrap_cutoff(
         contin_table, quantile, rep, seed
     )
     z_ij_mat = getZijMat(contin_table, na=False)[0]
-
     log_Z_ij_mat = np.log(z_ij_mat)
 
     # Step 1: for each cell compute the standardized Pearson residual
@@ -165,8 +163,6 @@ def _mddc_monte_carlo(
 
     # Step 3 & 4: consider the bivariate relations between AEs and predict values based on the connected AEs
 
-    # cor_orig = np.corrcoef(contin_table.T, rowvar=False)
-    # cor_z = np.corrcoef(z_ij_mat.T, rowvar=False)
     cor_u = pearsonCorWithNA(u_ij_mat, if_col_corr)
 
     iter_over = contin_table.shape[1] if if_col_corr else contin_table.shape[0]
@@ -177,58 +173,8 @@ def _mddc_monte_carlo(
     coeff_list = []
     z_ij_hat_mat = np.full(contin_table.shape, fill_value=np.nan)
 
-    # for i in range(iter_over):
-    #     idx = np.where(np.abs(cor_u[i, :]) >= corr_lim)[0]
-    #     cor_list.append(idx[idx != i])
-    #     weight = np.zeros_like(cor_u[i])
-    #     weight[cor_list[i]] = np.abs(cor_u[i, cor_list[i]])
-    #     weight_list.append(weight)
-
-    #     if len(cor_list[i]) == 0:
-    #         fitted_value_list.append(np.array([]))
-    #     else:
-    #         fitted_value_list.append(np.full(contin_table.shape, np.nan))
-    #         if if_col_corr:
-    #             for k in cor_list[i]:
-    #                 beta = scipy.stats.linregress(u_ij_mat[:, k], u_ij_mat[:, i])
-    #                 fit_values = u_ij_mat[:, k] * beta.slope + beta.intercept
-    #                 fitted_value_list[i][:, k] = fit_values
-    #                 coeff_list.append([beta.intercept, beta.slope])
-    #         else:
-    #             for k in cor_list[i]:
-    #                 var_x = u_ij_mat[k, :]
-    #                 var_y = u_ij_mat[i, :]
-    #                 mask = ~np.isnan(var_x) & ~np.isnan(var_y)
-    #                 beta = scipy.stats.linregress(var_x[mask], var_y[mask])
-    #                 fit_values = u_ij_mat[k, :] * beta.slope + beta.intercept
-    #                 fitted_value_list[i][k, :] = fit_values
-    #                 coeff_list.append([beta.intercept, beta.slope])
-
-    #     if len(fitted_value_list[i] != 0):
-    #         if if_col_corr:
-    #             nan_mask = np.isnan(fitted_value_list[i])
-    #             wt_avg_weights = np.tile(
-    #                 np.array(weight_list[i]).reshape(1, -1), contin_table.shape[0]
-    #             ).reshape(contin_table.shape)
-    #             wt_avg_weights = np.where(nan_mask, 0, wt_avg_weights)
-    #             z_ij_hat_mat[:, i] = np.ma.average(
-    #                 np.nan_to_num(fitted_value_list[i], 0),
-    #                 weights=wt_avg_weights,
-    #                 axis=1,
-    #             ).data
-    #         else:
-    #             nan_mask = np.isnan(fitted_value_list[i])
-    #             wt_avg_weights = np.tile(
-    #                 np.array(weight_list[i]).reshape(-1, 1), contin_table.shape[1]
-    #             ).reshape(contin_table.shape)
-    #             wt_avg_weights = np.where(nan_mask, 0, wt_avg_weights)
-    #             z_ij_hat_mat[i, :] = np.ma.average(
-    #                 np.nan_to_num(fitted_value_list[i], 0),
-    #                 weights=wt_avg_weights,
-    #                 axis=0,
-    #             ).data
-
     for i in range(iter_over):
+        print(i)
         idx = np.where(np.abs(cor_u[i, :]) >= corr_lim)[0]
         cor_list.append(idx[idx != i])
 
