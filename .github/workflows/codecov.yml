@@ -1,0 +1,24 @@
+name: Codecov Workflow
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    name: Run pytest with cov
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Python 3.12
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.12.0
+    - name: Run tests and collect coverage
+      run: |
+        pip install pytest
+        pip install pytest-cov
+        pytest --cov-report=xml --cov . 
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3.1.6
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: rmj3197/MDDC
