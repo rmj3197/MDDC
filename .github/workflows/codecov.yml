@@ -14,6 +14,7 @@ jobs:
         python-version: 3.12.0
     - name: Run tests and collect coverage
       run: |
+        pip install . --upgrade
         pip install pytest
         pip install pytest-cov
         pytest --cov-report=xml --cov . 
