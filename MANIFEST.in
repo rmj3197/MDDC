@@ -1,1 +1,1 @@
-include MDDC/datasets/data/*.csv
+include MDDC/datasets/data/*

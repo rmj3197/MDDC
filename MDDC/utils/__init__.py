@@ -1,4 +1,4 @@
-from ._util import (
+from ._utils import (
     generate_contin_table_with_clustered_AE,
     plot_heatmap,
     report_drug_AE_pairs,

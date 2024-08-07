@@ -340,7 +340,7 @@ def report_drug_AE_pairs(
         )
 
 
-def plot_heatmap(mddc_result, plot="signal", size_cell=0.20, **kwargs):
+def plot_heatmap(data, size_cell=0.20, **kwargs):
     """
     Plot a heatmap of the specified attribute from the `mddc_result`.
 
@@ -350,17 +350,13 @@ def plot_heatmap(mddc_result, plot="signal", size_cell=0.20, **kwargs):
 
     Parameters
     ----------
-    mddc_result : namedtuple
-        A named tuple object containing various fields. The field specified by the `plot` parameter is used for
-        generating the heatmap. Ensure that `mddc_result` contains the specified field.
-
-    plot : str, optional, default="signal"
-        The name of the attribute in `mddc_result` to be plotted. This attribute should be a numpy.ndarray or pandas.DataFrame.
+    data : numpy.ndarray, pandas.DataFrame
+        Data which should be plotted as a heatmap.
 
     size_cell : float, optional, default=0.20
         The size of each cell in the heatmap, which affects the dimensions of the resulting plot.
 
-    \**kwargs
+    \\**kwargs
         Additional keyword arguments to be passed to `ax.pcolormesh()` for customizing the heatmap appearance.
 
     Returns
@@ -381,29 +377,25 @@ def plot_heatmap(mddc_result, plot="signal", size_cell=0.20, **kwargs):
     - The x-axis tick labels are rotated 90 degrees for better readability.
     """
 
-    if plot not in mddc_result._fields:
-        raise ValueError(
-            f"{mddc_result.__class__.__name__} does not contain attribute {plot}. Please check both `mddc_result` and `plot` arguments."
-        )
-    else:
-        plot_obj = mddc_result._asdict()[plot]
+    if not isinstance(data, (np.ndarray, pd.DataFrame)):
+        raise TypeError("Data must be a numpy array or a pandas DataFrame.")
 
-    if isinstance(plot_obj, np.ndarray):
-        plot_obj = pd.DataFrame(plot_obj)
+    if isinstance(data, np.ndarray):
+        data = pd.DataFrame(data)
 
-    num_rows, num_cols = plot_obj.shape
+    num_rows, num_cols = data.shape
     fig_width = max(8, num_cols * size_cell)
     fig_height = max(6, num_rows * size_cell)
 
     fig, ax = plt.subplots(figsize=(fig_width, fig_height))
-    c = ax.pcolormesh(plot_obj, **kwargs)
+    c = ax.pcolormesh(data, **kwargs)
     fig.colorbar(c, ax=ax)
 
-    ax.set_xticks(np.arange(0.5, len(plot_obj.columns), 1))
-    ax.set_yticks(np.arange(0.5, len(plot_obj.index), 1))
+    ax.set_xticks(np.arange(0.5, len(data.columns), 1))
+    ax.set_yticks(np.arange(0.5, len(data.index), 1))
 
-    ax.set_xticklabels(plot_obj.columns)
-    ax.set_yticklabels(plot_obj.index)
+    ax.set_xticklabels(data.columns)
+    ax.set_yticklabels(data.index)
 
     plt.xticks(rotation=90)
     plt.tight_layout()
