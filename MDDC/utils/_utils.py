@@ -30,8 +30,8 @@ def _generate_simulated_zijmat(
     within each cluster are accounted for. The simulation incorporates the correlation structure specified by `rho`
     and adjusts the matrix according to the input `signal_mat` and `e_ij_mat`.
 
-    Parameters
-    ----------
+    Parameters:
+    -----------
     contin_table : numpy.ndarray
         A data matrix representing the original contingency table. This matrix provides the dimensions and structure
         for the simulated output.
@@ -68,8 +68,8 @@ def _generate_simulated_zijmat(
     seed : int or None
         The random seed for reproducibility of the simulation. If None, a random seed is used.
 
-    Returns
-    -------
+    Returns:
+    --------
     simulated contingency table : numpy.ndarray
         The simulated contingency table matrix. The values are rounded and any negative values are set to 0.
     """
@@ -110,8 +110,8 @@ def generate_contin_table_with_clustered_AE(
     signal strength matrix (`signal_mat`), and cluster indices (`cluster_idx`). It incorporates adverse event
     correlation within each cluster according to the specified correlation parameter (`rho`).
 
-    Parameters
-    ----------
+    Parameters:
+    -----------
     contin_table : numpy.ndarray, pandas.DataFrame
         A data matrix representing an I x J contingency table with row (adverse event) and column (drug) names.
         The row and column marginals of this table are used to generate the simulated data. It is advisable to
@@ -143,8 +143,8 @@ def generate_contin_table_with_clustered_AE(
     seed : int, optional, default=None
         Random seed for reproducibility of the simulation.
 
-    Returns
-    -------
+    Returns:
+    --------
     simulated tables : list of numpy.ndarray
         A list containing the simulated contingency tables.
     """
@@ -231,8 +231,8 @@ def report_drug_AE_pairs(
     associated with each drug. It computes the observed counts, expected counts, and standardized Pearson residuals
     for each (drug, adverse event) pair.
 
-    Parameters
-    ----------
+    Parameters:
+    -----------
     contin_table : numpy.ndarray, pandas.DataFrame
         A data matrix representing an I x J contingency table with rows corresponding to adverse events and columns
         corresponding to drugs. The row and column names of this matrix are used in the analysis. It is advisable
@@ -250,8 +250,8 @@ def report_drug_AE_pairs(
     along_columns : str, optional, default = "Drug"
         Specifies the content along the columns of the `contin_table` (e.g. AE or Drug).
 
-    Returns
-    -------
+    Returns:
+    --------
     Identified Drug-AE pairs : pandas.DataFrame
         A DataFrame with five columns:
             - `Drug` : str, The name of the drug. In case the `contin_table_signal` is a numpy.ndarray the `Drug` represents the column index.
@@ -360,8 +360,8 @@ def plot_heatmap(data, size_cell=0.20, **kwargs):
     fields that include the attribute specified by the `plot` parameter. The heatmap is visualized using a color
     mesh plot, with optional customization through additional keyword arguments.
 
-    Parameters
-    ----------
+    Parameters:
+    -----------
     data : numpy.ndarray, pandas.DataFrame
         Data which should be plotted as a heatmap.
 
@@ -376,13 +376,13 @@ def plot_heatmap(data, size_cell=0.20, **kwargs):
     matplotlib.figure.Figure
         The generated heatmap figure.
 
-    Raises
-    ------
+    Raises:
+    -------
     ValueError
         If the specified `plot` attribute is not found in `mddc_result`.
 
-    Notes
-    -----
+    Notes:
+    ------
     - The function automatically adjusts the figure size based on the dimensions of the heatmap data and the specified
       `size_cell`.
     - The x and y axis labels are set according to the columns and index of the heatmap data.

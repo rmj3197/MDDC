@@ -338,3 +338,137 @@ def compute_whislo2(vec):
         The lower whisker value from the boxplot statistics of the input vector.
     """
     return boxplot_stats(vec)[1]
+
+
+def process_index(i, cor_u, corr_lim, contin_table, if_col_corr, u_ij_mat):
+    """
+    Process the correlation of a specific index with others and fit a linear regression model
+    to predict the values based on correlated variables.
+
+    Parameters:
+    -----------
+    i : int
+        The index of the variable to process.
+
+    cor_u : numpy.ndarray
+        The correlation matrix with shape (n, n), where `n` is the number of variables.
+
+    corr_lim : float
+        The threshold for correlation. Variables with absolute correlation greater than or equal
+        to this value with `i` are considered for linear regression.
+
+    contin_table : numpy.ndarray
+        The contingency table or data matrix with shape (m, n), where `m` is the number of samples
+        and `n` is the number of variables.
+
+    if_col_corr : bool
+        Flag indicating whether to treat `u_ij_mat` as columns (True) or rows (False) for
+        correlation.
+
+    u_ij_mat : numpy.ndarray
+        The matrix containing the variables to be used in the regression, with shape (m, n)
+        or (n, m) depending on `if_col_corr`.
+
+    Returns:
+    --------
+    z_ij_hat : numpy.ndarray
+        The fitted values averaged and weighted across correlated variables, with shape (m,) if
+        `if_col_corr` is True, or (n,) if False.
+
+    i : int
+        The index of the processed variable.
+
+    cor_list : list
+        A list containing indices of variables that are highly correlated with the variable at
+        index `i`.
+
+    weight_list : list
+        A list containing the weights based on the absolute correlations for the selected variables.
+
+    fitted_value_list : list
+        A list of numpy arrays containing the fitted values from the linear regression for each
+        correlated variable.
+
+    coeff_list : list
+        A list of lists, each containing the intercept and slope of the linear regression model
+        fitted for each correlated variable.
+
+    Notes
+    -----
+    - If no variables are found to be highly correlated with the variable at index `i`,
+      the function returns empty arrays for `z_ij_hat` and `fitted_value_list`, and `cor_list`
+      and `weight_list` will contain empty entries.
+    - The function handles missing values (`NaN`) by excluding them from the linear regression
+      calculation and setting the corresponding fitted values to `NaN`.
+    - The fitted values are weighted and averaged across all correlated variables to obtain the
+      final predicted values, `z_ij_hat`.
+    """
+    cor_list = []
+    weight_list = []
+    fitted_value_list = []
+    coeff_list = []
+
+    idx = np.where(np.abs(cor_u[i, :]) >= corr_lim)[0]
+    cor_list.append(idx[idx != i])
+
+    weight = np.zeros_like(cor_u[i])
+    weight[cor_list[0]] = np.abs(cor_u[i, cor_list[0]])
+    weight_list.append(weight)
+
+    if len(cor_list[0]) == 0:
+        fitted_value_list.append(np.array([]))
+        return (
+            np.array([]),
+            np.array([]),
+            cor_list,
+            weight_list,
+            fitted_value_list,
+            coeff_list,
+        )
+
+    fitted_values = np.full(contin_table.shape, np.nan)
+    if if_col_corr:
+        for k in cor_list[0]:
+            beta = scipy.stats.linregress(u_ij_mat[:, k], u_ij_mat[:, i])
+            fit_values = u_ij_mat[:, k] * beta.slope + beta.intercept
+            fitted_values[:, k] = fit_values
+            coeff_list.append([beta.intercept, beta.slope])
+    else:
+        for k in cor_list[0]:
+            var_x = u_ij_mat[k, :]
+            var_y = u_ij_mat[i, :]
+            mask = ~np.isnan(var_x) & ~np.isnan(var_y)
+            beta = scipy.stats.linregress(var_x[mask], var_y[mask])
+            fit_values = u_ij_mat[k, :] * beta.slope + beta.intercept
+            fitted_values[k, :] = fit_values
+            coeff_list.append([beta.intercept, beta.slope])
+
+    nan_mask = np.isnan(fitted_values)
+    weight_array = np.array(weight_list[0])
+    if if_col_corr:
+        any_all_nan = np.all(nan_mask, axis=1)
+        wt_avg_weights = np.where(
+            nan_mask,
+            0,
+            np.tile(weight_array.reshape(1, -1), contin_table.shape[0]).reshape(
+                contin_table.shape
+            ),
+        )
+        z_ij_hat = np.ma.average(
+            np.nan_to_num(fitted_values, 0), weights=wt_avg_weights, axis=1
+        ).data
+        z_ij_hat[any_all_nan] = np.nan
+    else:
+        any_all_nan = np.all(nan_mask, axis=0)
+        wt_avg_weights = np.where(
+            nan_mask,
+            0,
+            np.tile(weight_array.reshape(-1, 1), contin_table.shape[1]).reshape(
+                contin_table.shape
+            ),
+        )
+        z_ij_hat = np.ma.average(
+            np.nan_to_num(fitted_values, 0), weights=wt_avg_weights, axis=0
+        ).data
+        z_ij_hat[any_all_nan] = np.nan
+    return z_ij_hat, i, cor_list, weight_list, fitted_value_list, coeff_list

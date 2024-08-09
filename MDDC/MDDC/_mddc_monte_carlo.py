@@ -10,6 +10,7 @@ from ._helper import (
     compute_whislo2,
     get_log_bootstrap_cutoff,
     normalize_column,
+    process_index,
 )
 
 
@@ -32,8 +33,8 @@ def _mddc_monte_carlo(
 
     For details on the algorithm please see :ref:`MDDC Algorithm <mddc_algorithm>`.
 
-    Parameters
-    ----------
+    Parameters:
+    -----------
     contin_table : pd.DataFrame or np.ndarray
         A contingency table of shape (I, J) where rows represent adverse events and columns represent drugs.
         If a DataFrame, it might have index and column names corresponding to the adverse events and drugs.
@@ -74,8 +75,8 @@ def _mddc_monte_carlo(
     seed : int or None, optional, default=None
         Random seed for reproducibility.
 
-    Returns
-    -------
+    Returns:
+    --------
     result : tuple
         A tuple with the following members:
         - 'pval': np.ndarray
@@ -167,73 +168,20 @@ def _mddc_monte_carlo(
 
     iter_over = contin_table.shape[1] if if_col_corr else contin_table.shape[0]
 
-    cor_list = []
-    weight_list = []
-    fitted_value_list = []
-    coeff_list = []
     z_ij_hat_mat = np.full(contin_table.shape, fill_value=np.nan)
 
-    for i in range(iter_over):
-        print(i)
-        idx = np.where(np.abs(cor_u[i, :]) >= corr_lim)[0]
-        cor_list.append(idx[idx != i])
+    results = Parallel(n_jobs=n_jobs)(
+        delayed(process_index)(i, cor_u, corr_lim, contin_table, if_col_corr, u_ij_mat)
+        for i in range(iter_over)
+    )
 
-        weight = np.zeros_like(cor_u[i])
-        weight[cor_list[i]] = np.abs(cor_u[i, cor_list[i]])
-        weight_list.append(weight)
-
-        if len(cor_list[i]) == 0:
-            fitted_value_list.append(np.array([]))
-            continue
-
-        fitted_values = np.full(contin_table.shape, np.nan)
-        if if_col_corr:
-            for k in cor_list[i]:
-                var_x = u_ij_mat[:, k]
-                var_y = u_ij_mat[:, i]
-                mask = ~np.isnan(var_x) & ~np.isnan(var_y)
-                beta = scipy.stats.linregress(var_x[mask], var_y[mask])
-                fit_values = u_ij_mat[:, k] * beta.slope + beta.intercept
-                fitted_values[:, k] = fit_values
-                coeff_list.append([beta.intercept, beta.slope])
-        else:
-            for k in cor_list[i]:
-                var_x = u_ij_mat[k, :]
-                var_y = u_ij_mat[i, :]
-                mask = ~np.isnan(var_x) & ~np.isnan(var_y)
-                beta = scipy.stats.linregress(var_x[mask], var_y[mask])
-                fit_values = u_ij_mat[k, :] * beta.slope + beta.intercept
-                fitted_values[k, :] = fit_values
-                coeff_list.append([beta.intercept, beta.slope])
-
-        nan_mask = np.isnan(fitted_values)
-        weight_array = np.array(weight_list[i])
-        if if_col_corr:
-            any_all_nan = np.all(nan_mask, axis=1)
-            wt_avg_weights = np.where(
-                nan_mask,
-                0,
-                np.tile(weight_array.reshape(1, -1), contin_table.shape[0]).reshape(
-                    contin_table.shape
-                ),
-            )
-            z_ij_hat_mat[:, i] = np.ma.average(
-                np.nan_to_num(fitted_values, 0), weights=wt_avg_weights, axis=1
-            ).data
-            z_ij_hat_mat[any_all_nan, i] = np.nan
-        else:
-            any_all_nan = np.all(nan_mask, axis=0)
-            wt_avg_weights = np.where(
-                nan_mask,
-                0,
-                np.tile(weight_array.reshape(-1, 1), contin_table.shape[1]).reshape(
-                    contin_table.shape
-                ),
-            )
-            z_ij_hat_mat[i, :] = np.ma.average(
-                np.nan_to_num(fitted_values, 0), weights=wt_avg_weights, axis=0
-            ).data
-            z_ij_hat_mat[i, any_all_nan] = np.nan
+    # Process the results to update the main variables
+    for z_ij_hat, i, *_ in results:
+        if z_ij_hat:  # Checks if z_ij_hat is not empty
+            if if_col_corr:
+                z_ij_hat_mat[:, i] = z_ij_hat
+            else:
+                z_ij_hat_mat[i, :] = z_ij_hat
 
     # Step 5: standardize the residuals within each drug column and flag outliers
     R_ij_mat = z_ij_mat - z_ij_hat_mat
