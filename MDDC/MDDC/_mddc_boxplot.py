@@ -136,7 +136,7 @@ def _mddc_boxplot(
 
     # Process the results to update the main variables
     for z_ij_hat, i, *_ in results:
-        if z_ij_hat:  # Checks if z_ij_hat is not empty
+        if len(z_ij_hat)!=0:  # Checks if z_ij_hat is not empty
             if if_col_corr:
                 z_ij_hat_mat[:, i] = z_ij_hat
             else:
