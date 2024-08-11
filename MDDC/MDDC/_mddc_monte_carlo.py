@@ -9,6 +9,7 @@ from ._helper import (
     compute_whislo1,
     compute_whislo2,
     get_log_bootstrap_cutoff,
+    get_log_bootstrap_cutoff_sequential,
     normalize_column,
     process_index,
 )
@@ -23,6 +24,7 @@ def _mddc_monte_carlo(
     separate=True,
     if_col_corr=False,
     corr_lim=0.8,
+    chunk_size=None,
     n_jobs=-1,
     seed=None,
 ):
@@ -65,6 +67,10 @@ def _mddc_monte_carlo(
     corr_lim : float, optional, default=0.8
         Correlation threshold used to select connected adverse events. Utilized in Step 3 of MDDC algorithm.
 
+    chunk_size : int, optional, default=None
+        Useful in scenarios when the dimensions of the contingency table is large as well as the number of Monte Carlo replications. In such scenario the Monte Carlo samples
+        need to be generated sequentially such that the memory footprint is manageable (or rather the generated samples fit into the RAM).
+
     n_jobs : int, optional, default=-1
         n_jobs specifies the maximum number of concurrently
         running workers. If 1 is given, no joblib parallelism
@@ -89,10 +95,23 @@ def _mddc_monte_carlo(
             p-values for each cell in the contingency table in the step 5, when the :math:`r_{ij}` (residual) values are mapped back to the standard normal distribution.
         - 'corr_signal_adj_pval': np.ndarray
             Benjamini-Hochberg adjusted p values for each cell in the step 5.
+            
+    Notes
+    ------
+    This `chunk_size` option of the function function is designed to be used in scenarios where the contingency table dimensions and the number of Monte Carlo replications are large. In such cases, 
+    the Monte Carlo samples need to be generated sequentially to ensure that the memory footprint remains manageable and the generated samples fit into the available RAM.
     """
-    c_univ_drug, null_dist_s = get_log_bootstrap_cutoff(
-        contin_table, quantile, rep, seed
-    )
+
+    if chunk_size is not None:
+        print("Entered here")
+        c_univ_drug, null_dist_s = get_log_bootstrap_cutoff_sequential(
+            contin_table, quantile, rep, chunk_size, seed
+        )
+    else:
+        c_univ_drug, null_dist_s = get_log_bootstrap_cutoff(
+            contin_table, quantile, rep, seed
+        )
+
     z_ij_mat = getZijMat(contin_table, na=False)[0]
     log_Z_ij_mat = np.log(z_ij_mat)
 
@@ -177,7 +196,7 @@ def _mddc_monte_carlo(
 
     # Process the results to update the main variables
     for z_ij_hat, i, *_ in results:
-        if len(z_ij_hat)!=0:  # Checks if z_ij_hat is not empty
+        if len(z_ij_hat) != 0:  # Checks if z_ij_hat is not empty
             if if_col_corr:
                 z_ij_hat_mat[:, i] = z_ij_hat
             else:

@@ -51,6 +51,112 @@ def max_log_col(matrix):
     return np.nanmax(np.log(matrix), axis=0)
 
 
+def _process_chunk(chunk_rep, n, m, n_dot_dot, p_mat, seed, iter):
+    """
+    Process a chunk of data by generating multinomial samples and applying 
+    transformation functions to compute the maximum log column for each sample.
+
+    Parameters
+    ----------
+    chunk_rep : int
+        The number of replications or samples to generate in this chunk.
+        
+    n : int
+        The number of rows in the contingency table.
+        
+    m : int
+        The number of columns in the contingency table.
+        
+    n_dot_dot : int
+        The total number of observations across all cells in the contingency table.
+        
+    p_mat : np.ndarray
+        A matrix of probabilities for the multinomial distribution. The matrix 
+        should have shape `(n, m)` and represent the probability for each cell.
+        
+    seed : int or None
+        A seed value for random number generation. If `None`, the seed is not set. 
+        The seed is modified by the `iter` value to ensure different sequences 
+        in different iterations.
+        
+    iter : int
+        The current iteration number, used to modify the seed for random number 
+        generation.
+
+    Returns
+    -------
+    np.ndarray
+        A 1D array of maximum log column values, computed from the generated 
+        multinomial samples and their corresponding `Z_ij` matrices.    
+    """
+    if seed is not None:
+        seed = seed * iter
+    generator = np.random.RandomState(seed)
+    sim_tables_chunk = generator.multinomial(
+        n=n_dot_dot, pvals=p_mat.flatten(), size=chunk_rep
+    )
+    z_ij_mat_list_chunk = np.apply_along_axis(
+        lambda row: apply_func(row, n, m), 1, sim_tables_chunk
+    )
+    return np.apply_along_axis(max_log_col, 1, z_ij_mat_list_chunk)
+
+
+def get_log_bootstrap_cutoff_sequential(
+    contin_table,
+    quantile=0.95,
+    rep=3,
+    chunk_size=1,
+    seed=None,
+):
+    """
+    Computes the bootstrap cutoffs for the maximum logarithm of bootstrap samples
+    based on a contingency table.
+
+    This function generates bootstrap samples from a contingency table, applies
+    the `getZijMat` function to each sample, computes the logarithm of each element,
+    and then returns the quantile cutoff for the maximum log values across all
+    bootstrap samples.
+
+    Parameters
+    ----------
+    contin_table : numpy.ndarray
+        A 2D contingency table containing numerical values.
+    quantile : float, optional
+        The quantile value to be computed for the cutoff. Default is 0.95.
+    rep : int, optional
+        The number of bootstrap replications. Default is 3.
+    seed : int or None, optional
+        A seed for the random number generator to ensure reproducibility. Default is None.
+
+    Returns
+    -------
+    cutoffs : numpy.ndarray
+        The quantile cutoff values for the maximum log values across bootstrap samples.
+    max_list : numpy.ndarray
+        The maximum log values across all bootstrap samples.
+    """
+    print(chunk_size)
+    z_ij_mat, n_dot_dot, p_i_dot, p_dot_j = getZijMat(contin_table)
+
+    n, m = contin_table.shape
+
+    p_i_dot = p_i_dot.reshape(contin_table.shape[0], 1)
+    p_dot_j = p_dot_j.reshape(1, contin_table.shape[1])
+    p_mat = p_i_dot * p_dot_j
+
+    chunks = [chunk_size] * (rep // chunk_size) + [rep % chunk_size]
+    chunks = [chunk for chunk in chunks if chunk > 0]
+
+    max_list = [
+        _process_chunk(chunk, n, m, n_dot_dot, p_mat, seed, i)
+        for i, chunk in enumerate(chunks)
+    ]
+    max_list = np.concatenate(max_list, axis=0)
+    cutoffs = np.quantile(max_list, quantile, axis=0)
+
+    return (cutoffs, max_list)
+
+
 def get_log_bootstrap_cutoff(
     contin_table,
     quantile=0.95,

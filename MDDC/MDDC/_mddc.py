@@ -16,6 +16,7 @@ def mddc(
     separate=True,
     if_col_corr=False,
     corr_lim=0.8,
+    chunk_size=None,
     n_jobs=-1,
     seed=None,
 ):
@@ -61,6 +62,10 @@ def mddc(
     corr_lim : float, optional, default=0.8
         Correlation threshold used to select connected adverse events. Utilized in Step 3 of MDDC algorithm.
 
+    chunk_size : int, optional, default=None
+        Useful in scenarios when the dimensions of the contingency table is large as well as the number of Monte Carlo replications. In such scenario the Monte Carlo samples
+        need to be generated sequentially such that the memory footprint is manageable (or rather the generated samples fit into the RAM).
+
     n_jobs : int, optional, default=-1
         n_jobs specifies the maximum number of concurrently
         running workers. If 1 is given, no joblib parallelism
@@ -93,6 +98,11 @@ def mddc(
                 p-values for each cell in the contingency table in the step 5, when the :math:`r_{ij}` (residual) values are mapped back to the standard normal distribution.
             * corr_signal_adj_pval : numpy.ndarray, pd.DataFrame
                 Benjamini-Hochberg adjusted p values for each cell in the step 5.
+                
+    Notes
+    ------
+    This `chunk_size` option of the function function is designed to be used in scenarios where the contingency table dimensions and the number of Monte Carlo replications are large. In such cases, 
+    the Monte Carlo samples need to be generated sequentially to ensure that the memory footprint remains manageable and the generated samples fit into the available RAM.
     """
 
     # Check the type of contin_table
@@ -157,6 +167,7 @@ def mddc(
                 separate,
                 if_col_corr,
                 corr_lim,
+                chunk_size,
                 n_jobs,
                 seed,
             )
