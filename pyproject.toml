@@ -20,4 +20,3 @@ extend-select = [
   "RUF", # Ruff-specific
   "UP",  # pyupgrade
 ]
-exclude = ["*.ipynb"]
