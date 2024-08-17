@@ -95,10 +95,10 @@ def _mddc_monte_carlo(
             p-values for each cell in the contingency table in the step 5, when the :math:`r_{ij}` (residual) values are mapped back to the standard normal distribution.
         - 'corr_signal_adj_pval': np.ndarray
             Benjamini-Hochberg adjusted p values for each cell in the step 5.
-            
+
     Notes
     ------
-    This `chunk_size` option of the function function is designed to be used in scenarios where the contingency table dimensions and the number of Monte Carlo replications are large. In such cases, 
+    This `chunk_size` option of the function function is designed to be used in scenarios where the contingency table dimensions and the number of Monte Carlo replications are large. In such cases,
     the Monte Carlo samples need to be generated sequentially to ensure that the memory footprint remains manageable and the generated samples fit into the available RAM.
     """
 

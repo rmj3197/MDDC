@@ -93,8 +93,7 @@ def _generate_simulated_zijmat(
                 contin_table.shape[1]
             )
     new_contin_table = np.round(
-        z_ij_mat * np.sqrt(e_ij_mat * signal_mat *
-                           ((1 - p_i_dot) @ (1 - p_dot_j)))
+        z_ij_mat * np.sqrt(e_ij_mat * signal_mat * ((1 - p_i_dot) @ (1 - p_dot_j)))
         + e_ij_mat * signal_mat
     )
     new_contin_table[new_contin_table < 0] = 0
@@ -150,8 +149,7 @@ def generate_contin_table_with_clustered_AE(
         A list containing the simulated contingency tables.
     """
     if not isinstance(contin_table, (pd.DataFrame, np.ndarray)):
-        raise TypeError(
-            "contin_table must be a pandas DataFrame or numpy array.")
+        raise TypeError("contin_table must be a pandas DataFrame or numpy array.")
 
     if pd.DataFrame(contin_table).empty:
         raise ValueError("The `contin_table` or `cluster_idx` cannot be empty")
@@ -289,8 +287,7 @@ def report_drug_AE_pairs(
             )
 
     if not (isinstance(along_rows, str) and isinstance(along_columns, str)):
-        raise TypeError(
-            "The `along_rows` and `along_columns` values must be string.")
+        raise TypeError("The `along_rows` and `along_columns` values must be string.")
 
     if isinstance(contin_table_signal, pd.DataFrame):
         row_names = list(contin_table_signal.index)
@@ -472,28 +469,28 @@ def get_std_pearson_res(contin_table):
     """
     Compute the standardized Pearson residuals for a given contingency table.
 
-    This function calculates the standardized Pearson residuals from a 
-    contingency table, which measures the deviation of observed counts 
-    from expected counts under the assumption of independence between 
+    This function calculates the standardized Pearson residuals from a
+    contingency table, which measures the deviation of observed counts
+    from expected counts under the assumption of independence between
     the rows and columns.
 
-    If the input is a pandas DataFrame, the row and column names are 
+    If the input is a pandas DataFrame, the row and column names are
     retained in the resulting DataFrame of standardized Pearson residuals.
     Otherwise, the function returns a numpy array of residuals.
 
     Parameters
     ----------
     contin_table : numpy.ndarray or pandas.DataFrame
-        A contingency table representing the observed counts for different 
-        categories. The table must be a 2D array-like structure (numpy array 
+        A contingency table representing the observed counts for different
+        categories. The table must be a 2D array-like structure (numpy array
         or pandas DataFrame).
 
     Returns
     -------
     standardized pearson residuals : numpy.ndarray or pandas.DataFrame
-        The standardized Pearson residuals matrix. If the input is a 
-        pandas DataFrame, the output will also be a pandas DataFrame 
-        with the same row and column labels. Otherwise, the result 
+        The standardized Pearson residuals matrix. If the input is a
+        pandas DataFrame, the output will also be a pandas DataFrame
+        with the same row and column labels. Otherwise, the result
         is a numpy array.
 
     Raises
@@ -505,7 +502,7 @@ def get_std_pearson_res(contin_table):
     -----
     The standardized Pearson residuals are calculated as:
         Z[i, j] = (O[i, j] - E[i, j]) / sqrt(E[i, j])
-    where `O[i, j]` is the observed count and `E[i, j]` is the expected 
+    where `O[i, j]` is the observed count and `E[i, j]` is the expected
     count under the independence model.
     """
     if not (isinstance(contin_table, (np.ndarray, pd.DataFrame))):

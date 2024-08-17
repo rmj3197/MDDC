@@ -53,41 +53,41 @@ def max_log_col(matrix):
 
 def _process_chunk(chunk_rep, n, m, n_dot_dot, p_mat, seed, iter):
     """
-    Process a chunk of data by generating multinomial samples and applying 
+    Process a chunk of data by generating multinomial samples and applying
     transformation functions to compute the maximum log column for each sample.
 
     Parameters
     ----------
     chunk_rep : int
         The number of replications or samples to generate in this chunk.
-        
+
     n : int
         The number of rows in the contingency table.
-        
+
     m : int
         The number of columns in the contingency table.
-        
+
     n_dot_dot : int
         The total number of observations across all cells in the contingency table.
-        
+
     p_mat : np.ndarray
-        A matrix of probabilities for the multinomial distribution. The matrix 
+        A matrix of probabilities for the multinomial distribution. The matrix
         should have shape `(n, m)` and represent the probability for each cell.
-        
+
     seed : int or None
-        A seed value for random number generation. If `None`, the seed is not set. 
-        The seed is modified by the `iter` value to ensure different sequences 
+        A seed value for random number generation. If `None`, the seed is not set.
+        The seed is modified by the `iter` value to ensure different sequences
         in different iterations.
-        
+
     iter : int
-        The current iteration number, used to modify the seed for random number 
+        The current iteration number, used to modify the seed for random number
         generation.
 
     Returns
     -------
     np.ndarray
-        A 1D array of maximum log column values, computed from the generated 
-        multinomial samples and their corresponding `Z_ij` matrices.    
+        A 1D array of maximum log column values, computed from the generated
+        multinomial samples and their corresponding `Z_ij` matrices.
     """
     if seed is not None:
         seed = seed * iter

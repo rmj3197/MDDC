@@ -16,13 +16,11 @@ class MDDCTestCase(unittest.TestCase):
 
     def check_mddc_result(self, result, result_type):
         self.assertIsInstance(result, result_type)
-        expected_attrs = [
-            "signal", "corr_signal_pval", "corr_signal_adj_pval"
-        ]
+        expected_attrs = ["signal", "corr_signal_pval", "corr_signal_adj_pval"]
         if result_type is MDDCMonteCarloResult:
-            expected_attrs.extend([
-                "pval", "fisher_signal", "corr_signal_pval", "corr_signal_adj_pval"
-            ])
+            expected_attrs.extend(
+                ["pval", "fisher_signal", "corr_signal_pval", "corr_signal_adj_pval"]
+            )
         for attr in expected_attrs:
             self.assertTrue(hasattr(result, attr))
 
@@ -31,7 +29,7 @@ class MDDCTestCase(unittest.TestCase):
             "col_specific_cutoff": "some",
             "separate": "some",
             "if_col_corr": "some",
-            "seed": "some"
+            "seed": "some",
         }
         for option, value in invalid_options.items():
             with self.assertRaises(TypeError):
@@ -39,20 +37,87 @@ class MDDCTestCase(unittest.TestCase):
 
     def test_mddc_with_valid_data_and_methods(self):
         methods = [
-            {"method": "monte_carlo", "params": {"rep": 10000, "quantile": 0.95, "seed": 42}},
-            {"method": "monte_carlo", "params": {"col_specific_cutoff": False, "rep": 10000, "quantile": 0.95, "seed": 42}},
-            {"method": "monte_carlo", "params": {"separate": False, "col_specific_cutoff": False, "rep": 10000, "quantile": 0.95, "seed": 42}},
-            {"method": "monte_carlo", "params": {"if_col_corr": True, "separate": False, "col_specific_cutoff": False, "rep": 10000, "quantile": 0.95, "seed": 42}},
-            {"method": "monte_carlo", "params": {"if_col_corr": True, "separate": False, "col_specific_cutoff": False, "rep": 10000, "quantile": 0.95, "seed": 42}, "data": self.data.values},
+            {
+                "method": "monte_carlo",
+                "params": {"rep": 10000, "quantile": 0.95, "seed": 42},
+            },
+            {
+                "method": "monte_carlo",
+                "params": {
+                    "col_specific_cutoff": False,
+                    "rep": 10000,
+                    "quantile": 0.95,
+                    "seed": 42,
+                },
+            },
+            {
+                "method": "monte_carlo",
+                "params": {
+                    "separate": False,
+                    "col_specific_cutoff": False,
+                    "rep": 10000,
+                    "quantile": 0.95,
+                    "seed": 42,
+                },
+            },
+            {
+                "method": "monte_carlo",
+                "params": {
+                    "if_col_corr": True,
+                    "separate": False,
+                    "col_specific_cutoff": False,
+                    "rep": 10000,
+                    "quantile": 0.95,
+                    "seed": 42,
+                },
+            },
+            {
+                "method": "monte_carlo",
+                "params": {
+                    "if_col_corr": True,
+                    "separate": False,
+                    "col_specific_cutoff": False,
+                    "rep": 10000,
+                    "quantile": 0.95,
+                    "seed": 42,
+                },
+                "data": self.data.values,
+            },
             {"method": "boxplot", "params": {"col_specific_cutoff": False, "seed": 42}},
-            {"method": "boxplot", "params": {"col_specific_cutoff": False, "separate": False, "seed": 42}},
-            {"method": "boxplot", "params": {"col_specific_cutoff": False, "separate": False, "if_col_corr": True, "seed": 42}},
-            {"method": "boxplot", "params": {"col_specific_cutoff": False, "seed": 42}, "data": self.data.values},
-            {"method": "boxplot", "params": {"col_specific_cutoff": True, "separate": True, "seed": 42}}
+            {
+                "method": "boxplot",
+                "params": {"col_specific_cutoff": False, "separate": False, "seed": 42},
+            },
+            {
+                "method": "boxplot",
+                "params": {
+                    "col_specific_cutoff": False,
+                    "separate": False,
+                    "if_col_corr": True,
+                    "seed": 42,
+                },
+            },
+            {
+                "method": "boxplot",
+                "params": {"col_specific_cutoff": False, "seed": 42},
+                "data": self.data.values,
+            },
+            {
+                "method": "boxplot",
+                "params": {"col_specific_cutoff": True, "separate": True, "seed": 42},
+            },
         ]
         for method in methods:
-            result = mddc(self.data if "data" not in method else method["data"], method=method["method"], **method["params"])
-            result_type = MDDCMonteCarloResult if method["method"] == "monte_carlo" else MDDCBoxplotResult
+            result = mddc(
+                self.data if "data" not in method else method["data"],
+                method=method["method"],
+                **method["params"],
+            )
+            result_type = (
+                MDDCMonteCarloResult
+                if method["method"] == "monte_carlo"
+                else MDDCBoxplotResult
+            )
             self.check_mddc_result(result, result_type)
 
     def test_mddc_with_invalid_parameters(self):
@@ -63,7 +128,7 @@ class MDDCTestCase(unittest.TestCase):
             "quantile": 1.5,
             "exclude_same_drug_class": "not_a_boolean",
             "n_jobs": "not_an_integer",
-            "corr_lim": 1.5
+            "corr_lim": 1.5,
         }
         for param, value in invalid_params.items():
             with self.assertRaises(TypeError if param != "method" else ValueError):
@@ -71,6 +136,7 @@ class MDDCTestCase(unittest.TestCase):
                     mddc(self.data, method=value)
                 else:
                     mddc(self.data, method="monte_carlo", **{param: value})
+
 
 if __name__ == "__main__":
     unittest.main()

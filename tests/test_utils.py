@@ -98,6 +98,7 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
                     rho=0.5,
                 )
 
+
 class TestReportDrugAEPairs(unittest.TestCase):
     def setUp(self):
         self.contin_table = np.array([[5, 1, 0], [3, 0, 2], [0, 4, 6]])
@@ -202,6 +203,7 @@ class TestReportDrugAEPairs(unittest.TestCase):
                 self.contin_table_df, self.contin_table_signal_df, along_rows=1234
             )
 
+
 class TestPlotHeatmap(unittest.TestCase):
     def test_plot_heatmap_with_numpy_array(self):
         data = np.random.rand(10, 10)
@@ -235,18 +237,20 @@ class TestPlotHeatmap(unittest.TestCase):
         fig = plot_heatmap(data, cmap="viridis")
         self.assertIsInstance(fig, plt.Figure)
 
-class TestContingencyTableFunctions(unittest.TestCase):
 
+class TestContingencyTableFunctions(unittest.TestCase):
     def setUp(self):
         # Example contingency tables for testing
         self.contin_table_np = np.array([[10, 20], [30, 40]])
-        self.contin_table_pd = pd.DataFrame([[10, 20], [30, 40]], index=['A', 'B'], columns=['X', 'Y'])
-        
+        self.contin_table_pd = pd.DataFrame(
+            [[10, 20], [30, 40]], index=["A", "B"], columns=["X", "Y"]
+        )
+
     def test_get_expected_count_with_numpy(self):
         # Test with numpy array input
         result = get_expected_count(self.contin_table_np)
         self.assertIsInstance(result, np.ndarray)
-        
+
     def test_get_expected_count_with_pandas(self):
         # Test with pandas DataFrame input
         result = get_expected_count(self.contin_table_pd)
@@ -255,7 +259,9 @@ class TestContingencyTableFunctions(unittest.TestCase):
     def test_get_expected_count_type_error(self):
         # Test for TypeError if input is neither numpy nor pandas
         with self.assertRaises(TypeError):
-            get_expected_count([[10, 20], [30, 40]])  # Input is a list, not numpy/pandas
+            get_expected_count(
+                [[10, 20], [30, 40]]
+            )  # Input is a list, not numpy/pandas
 
     def test_get_std_pearson_res_with_numpy(self):
         # Test standardized Pearson residuals with numpy array input
@@ -270,4 +276,6 @@ class TestContingencyTableFunctions(unittest.TestCase):
     def test_get_std_pearson_res_type_error(self):
         # Test for TypeError if input is neither numpy nor pandas
         with self.assertRaises(TypeError):
-            get_std_pearson_res([[10, 20], [30, 40]])  # Input is a list, not numpy/pandas
+            get_std_pearson_res(
+                [[10, 20], [30, 40]]
+            )  # Input is a list, not numpy/pandas

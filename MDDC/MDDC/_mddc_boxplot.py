@@ -50,7 +50,7 @@ def _mddc_boxplot(
 
     corr_lim : float, optional, default=0.8
         Correlation threshold used to select connected adverse events. Utilized in Step 3 of MDDC algorithm.
-    
+
     n_jobs : int, optional, default=-1
         n_jobs specifies the maximum number of concurrently
         running workers. If 1 is given, no joblib parallelism
@@ -136,7 +136,7 @@ def _mddc_boxplot(
 
     # Process the results to update the main variables
     for z_ij_hat, i, *_ in results:
-        if len(z_ij_hat)!=0:  # Checks if z_ij_hat is not empty
+        if len(z_ij_hat) != 0:  # Checks if z_ij_hat is not empty
             if if_col_corr:
                 z_ij_hat_mat[:, i] = z_ij_hat
             else:

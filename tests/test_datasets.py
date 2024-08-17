@@ -65,6 +65,7 @@ class TestLoadStatin49ClusterIdxData(unittest.TestCase):
         self.assertIsInstance(data, np.ndarray)
         self.assertEqual(data.shape, (50, 8))
 
+
 class TestLoadAnaphylaxisData(unittest.TestCase):
     def test_default_behavior(self):
         # Test default behavior (as_dataframe=True, desc=False)
