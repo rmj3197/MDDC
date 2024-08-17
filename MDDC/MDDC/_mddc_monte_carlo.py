@@ -103,7 +103,6 @@ def _mddc_monte_carlo(
     """
 
     if chunk_size is not None:
-        print("Entered here")
         c_univ_drug, null_dist_s = get_log_bootstrap_cutoff_sequential(
             contin_table, quantile, rep, chunk_size, seed
         )

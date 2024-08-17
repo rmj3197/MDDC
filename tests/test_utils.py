@@ -6,6 +6,8 @@ import pandas as pd
 
 from MDDC.utils import (
     generate_contin_table_with_clustered_AE,
+    get_expected_count,
+    get_std_pearson_res,
     plot_heatmap,
     report_drug_AE_pairs,
 )
@@ -232,3 +234,40 @@ class TestPlotHeatmap(unittest.TestCase):
         data = np.random.rand(10, 10)
         fig = plot_heatmap(data, cmap="viridis")
         self.assertIsInstance(fig, plt.Figure)
+
+class TestContingencyTableFunctions(unittest.TestCase):
+
+    def setUp(self):
+        # Example contingency tables for testing
+        self.contin_table_np = np.array([[10, 20], [30, 40]])
+        self.contin_table_pd = pd.DataFrame([[10, 20], [30, 40]], index=['A', 'B'], columns=['X', 'Y'])
+        
+    def test_get_expected_count_with_numpy(self):
+        # Test with numpy array input
+        result = get_expected_count(self.contin_table_np)
+        self.assertIsInstance(result, np.ndarray)
+        
+    def test_get_expected_count_with_pandas(self):
+        # Test with pandas DataFrame input
+        result = get_expected_count(self.contin_table_pd)
+        self.assertIsInstance(result, pd.DataFrame)
+
+    def test_get_expected_count_type_error(self):
+        # Test for TypeError if input is neither numpy nor pandas
+        with self.assertRaises(TypeError):
+            get_expected_count([[10, 20], [30, 40]])  # Input is a list, not numpy/pandas
+
+    def test_get_std_pearson_res_with_numpy(self):
+        # Test standardized Pearson residuals with numpy array input
+        result = get_std_pearson_res(self.contin_table_np)
+        self.assertIsInstance(result, np.ndarray)
+
+    def test_get_std_pearson_res_with_pandas(self):
+        # Test standardized Pearson residuals with pandas DataFrame input
+        result = get_std_pearson_res(self.contin_table_pd)
+        self.assertIsInstance(result, pd.DataFrame)
+
+    def test_get_std_pearson_res_type_error(self):
+        # Test for TypeError if input is neither numpy nor pandas
+        with self.assertRaises(TypeError):
+            get_std_pearson_res([[10, 20], [30, 40]])  # Input is a list, not numpy/pandas

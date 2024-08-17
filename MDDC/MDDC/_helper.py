@@ -135,7 +135,6 @@ def get_log_bootstrap_cutoff_sequential(
     max_list : numpy.ndarray
         The maximum log values across all bootstrap samples.
     """
-    print(chunk_size)
     z_ij_mat, n_dot_dot, p_i_dot, p_dot_j = getZijMat(contin_table)
 
     n, m = contin_table.shape
