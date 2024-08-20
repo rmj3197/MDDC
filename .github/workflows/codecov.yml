@@ -17,7 +17,7 @@ jobs:
         pip install . --upgrade
         pip install pytest
         pip install pytest-cov
-        pytest --cov-report=xml --cov=MDDC tests/ 
+        pytest --cov-report=json --cov=MDDC tests/ 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3.1.6
       with:
