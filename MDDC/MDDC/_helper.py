@@ -444,7 +444,7 @@ def compute_whislo2(vec):
     """
     return boxplot_stats(vec)[1]
 
-
+# no cover: start
 def process_index(i, cor_u, corr_lim, contin_table, if_col_corr, u_ij_mat):
     """
     Process the correlation of a specific index with others and fit a linear regression model
@@ -577,3 +577,4 @@ def process_index(i, cor_u, corr_lim, contin_table, if_col_corr, u_ij_mat):
         ).data
         z_ij_hat[any_all_nan] = np.nan
     return z_ij_hat, i, cor_list, weight_list, fitted_value_list, coeff_list
+# no cover: stop

@@ -48,6 +48,7 @@ class MDDCTestCase(unittest.TestCase):
                     "rep": 10000,
                     "quantile": 0.95,
                     "seed": 42,
+                    "chunk_size" : 1
                 },
             },
             {
@@ -101,6 +102,10 @@ class MDDCTestCase(unittest.TestCase):
                 "method": "boxplot",
                 "params": {"col_specific_cutoff": False, "seed": 42},
                 "data": self.data.values,
+            },
+            {
+                "method": "boxplot",
+                "params": {"col_specific_cutoff": True, "separate": False, "seed": 42},
             },
             {
                 "method": "boxplot",
