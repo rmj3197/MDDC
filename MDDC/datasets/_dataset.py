@@ -168,7 +168,7 @@ def load_anaphylaxis_data(desc=False, as_dataframe=True):
     Examples
     --------
     >>> from MDDC.datasets import load_anaphylaxis_data
-    >>> statin49_with_cluster_idx = load_anaphylaxis_data()
+    >>> anaphylaxis_data = load_anaphylaxis_data()
     """
 
     if desc:
