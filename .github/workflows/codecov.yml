@@ -16,10 +16,10 @@ jobs:
       run: |
         pip install . --upgrade
         pip install pytest
-        pip install coverage
-        coverage run -m pytest
+        pip install pytest-cov
+        pytest --cov-report=xml --cov=MDDC tests/
     - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v3.1.6
+      uses: codecov/codecov-action@v4.5.0
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         slug: rmj3197/MDDC
