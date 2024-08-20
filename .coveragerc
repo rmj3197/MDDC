@@ -4,11 +4,3 @@ omit =
     */.local/*
     # omit everything in /usr
     /usr/*
-[report]
-exclude_also =
-    ; 1. Exclude an except clause of a specific form:
-    except ValueError:\n\s*assume\(False\)
-    ; 2. Comments to turn coverage on and off:
-    no cover: start(?s:.)*?no cover: stop
-    ; 3. A pragma comment that excludes an entire file:
-    (?s)\A.*# pragma: exclude file.*\Z
