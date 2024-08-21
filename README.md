@@ -1,9 +1,9 @@
 | Category          | Badge                                                                                                                        |
 |-------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| **License**        | ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)                                                       |
-| **CI/CD**          | ![Ruff](https://github.com/rmj3197/MDDC/actions/workflows/ruff.yml/badge.svg) <br> ![Build](https://github.com/rmj3197/MDDC/actions/workflows/build_wheels.yml/badge.svg) |
-| **Code Coverage**  | ![codecov](https://codecov.io/gh/rmj3197/MDDC/graph/badge.svg?token=YG6RYU4PIJ)                                               |
-| **Code Quality**   | ![Codacy Badge](https://app.codacy.com/project/badge/Grade/b95d3a123538406e9a8df21a1bf44a47) <br> ![CodeFactor](https://www.codefactor.io/repository/github/rmj3197/mddc/badge) |
+| **License**        | [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/rmj3197/MDDC/blob/main/LICENSE)                                                       |
+| **CI/CD**          | [![Ruff](https://github.com/rmj3197/MDDC/actions/workflows/ruff.yml/badge.svg)](https://github.com/rmj3197/MDDC/actions/workflows/ruff.yml) <br> [![Build](https://github.com/rmj3197/MDDC/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/rmj3197/MDDC/actions/workflows/build_wheels.yml) |
+| **Code Coverage**  | [![codecov](https://codecov.io/gh/rmj3197/MDDC/graph/badge.svg?token=YG6RYU4PIJ)](https://codecov.io/gh/rmj3197/MDDC)                                               |
+| **Code Quality**   | [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b95d3a123538406e9a8df21a1bf44a47)](https://app.codacy.com/gh/rmj3197/MDDC/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) <br> [![CodeFactor](https://www.codefactor.io/repository/github/rmj3197/mddc/badge)](https://www.codefactor.io/repository/github/rmj3197/mddc) |
 
 # Introduction
 
