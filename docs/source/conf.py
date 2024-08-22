@@ -8,15 +8,15 @@
 
 import os
 import sys
+import MDDC
 
 basedir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, basedir)
 
-
 project = "MDDC"
 copyright = "2024, Raktim Mukhopadhyay, Anran Liu, Marianthi Markatou"
 author = "Raktim Mukhopadhyay, Anran Liu, Marianthi Markatou"
-release = "1.0.dev0"
+release = MDDC.__version__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
