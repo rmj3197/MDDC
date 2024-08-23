@@ -62,7 +62,6 @@ def find_optimal_coef(
     >>> contin_table = np.random.randint(0, 100, size=(10, 5))
     >>> find_optimal_coef(contin_table)
     """
-    
     if isinstance(contin_table, pd.DataFrame):
         contin_table = contin_table.values
 
