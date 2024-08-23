@@ -48,7 +48,7 @@ class MDDCTestCase(unittest.TestCase):
                     "rep": 10000,
                     "quantile": 0.95,
                     "seed": 42,
-                    "chunk_size" : 1
+                    "chunk_size": 1,
                 },
             },
             {

@@ -14,7 +14,8 @@ Modified Detecting Deviating Data Cells (MDDC)
 .. autosummary::
    :toctree: generated/
 
-   mddc
+    find_optimal_coef
+    mddc
 
 .. automodule:: MDDC.utils
 

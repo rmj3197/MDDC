@@ -7,7 +7,7 @@ import scipy
 from mddc_cpp_helper import getFisherExactTestTable, getZijMat
 
 
-def apply_func(row, n, m):
+def apply_func(row, n, m, na=True):
     """
     Applies the `getZijMat` function to a reshaped version of the input row.
 
@@ -22,13 +22,16 @@ def apply_func(row, n, m):
         The number of rows for reshaping the input row vector.
     m : int
         The number of columns for reshaping the input row vector.
+    na : bool
+        whether NaN should be returned for cells where count is less
+        than 6.
 
     Returns
     -------
     result : numpy.ndarray
         Returns the standardized Pearson residuals Zij for the selected row.
     """
-    return getZijMat(row.reshape(n, m), True)[0]
+    return getZijMat(row.reshape(n, m), na)[0]
 
 
 def max_log_col(matrix):
@@ -444,6 +447,7 @@ def compute_whislo2(vec):
     """
     return boxplot_stats(vec)[1]
 
+
 # no cover: start
 def process_index(i, cor_u, corr_lim, contin_table, if_col_corr, u_ij_mat):
     """
@@ -577,4 +581,61 @@ def process_index(i, cor_u, corr_lim, contin_table, if_col_corr, u_ij_mat):
         ).data
         z_ij_hat[any_all_nan] = np.nan
     return z_ij_hat, i, cor_list, weight_list, fitted_value_list, coeff_list
+
+
 # no cover: stop
+
+
+def get_boxplot_outliers(dat, c_j):
+    """
+    Identifies outliers in the data based on the boxplot method.
+
+    This function computes the interquartile range (IQR) and uses it to identify outliers
+    as values that exceed a threshold defined by the IQR and a scaling factor `c_j`.
+
+    Parameters:
+    -----------
+    dat : numpy.ndarray
+        The data array from which to detect outliers. Can contain NaN values.
+    c_j : float
+        The scaling factor to adjust the outlier threshold.
+
+    Returns:
+    --------
+    outliers : numpy.ndarray
+        A boolean array where True indicates an outlier in the corresponding position.
+    """
+    q3 = np.nanquantile(dat, 0.75)
+    q1 = np.nanquantile(dat, 0.25)
+    outliers = dat > (q3 + c_j * (q3 - q1))
+    return outliers
+
+
+def compute_fdr(res_list, c_j, j):
+    """
+    Computes the mean number of outliers for a given component in a 3D array.
+
+    This function applies the `get_boxplot_outliers` function across the rows of the
+    specified component of the `res_list` array and calculates the mean number of outliers
+    across the rows.
+
+    Parameters:
+    -----------
+    res_list : numpy.ndarray
+        A 3D array containing the result values, where outliers will be computed along the rows.
+    c_j : float
+        The scaling factor passed to `get_boxplot_outliers` for determining the outlier threshold.
+    j : int
+        The index of the third dimension in `res_list` that specifies which component to analyze.
+
+    Returns:
+    --------
+    mean_outliers : float
+        The mean number of outliers across the rows of the specified component.
+    """
+    outliers = np.apply_along_axis(
+        lambda x: get_boxplot_outliers(x, c_j), axis=1, arr=res_list[:, :, j]
+    )
+    sum_outliers = np.sum(outliers, axis=1)
+    mean_outliers = np.mean(sum_outliers)
+    return mean_outliers
