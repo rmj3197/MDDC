@@ -16,8 +16,9 @@ The Modified Detecting Deviating Cells (MDDC) algorithm is described as follows:
 2. **Separating Residuals and Determining Cutoff Values**
 
    Separate the set of residuals into two groups:
-   - :math:`\{e^+_{ij}\}` for cells with :math:`n_{ij} \geq 0`
-   - :math:`\{e^0_{ij}\}` for cells with :math:`n_{ij} = 0`
+   
+      - :math:`\{e^+_{ij}\}` for cells with :math:`n_{ij} > 0`
+      - :math:`\{e^0_{ij}\}` for cells with :math:`n_{ij} = 0`
    
    The boxplot statistics are used as cutoff values for detecting the first set of outlying cells:
    

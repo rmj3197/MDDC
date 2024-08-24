@@ -3,11 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+
 Modified Detecting Deviating Data Cells (MDDC)
 ==============================================
 
 .. include:: ../../README.md
-   :parser: commonmark
+   :parser: myst_parser.sphinx_
 
 .. only:: not html
 

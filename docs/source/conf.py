@@ -31,7 +31,22 @@ extensions = [
     "sphinx.ext.githubpages",
     "nbsphinx",
     "sphinx.ext.intersphinx",
-    "myst_parser",
+    "myst_parser"
+]
+myst_enable_extensions = [
+    "amsmath",
+    "attrs_inline",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
 ]
 autosummary_generate = True
 
@@ -52,6 +67,7 @@ strip_signature_backslash = True
 latex_elements = {
     "extraclassoptions": "openany,oneside",
     "preamble": r"""
+    \usepackage{amsmath, amssymb, amsfonts}
     \usepackage{fancyhdr}
     \makeatletter
     \fancypagestyle{normal}{
