@@ -131,7 +131,15 @@ def _mddc_boxplot(
                 )
             )
         else:
-            c_univ_drug = np.apply_along_axis(compute_whishi2, 0, z_ij_mat, coef)
+            c_univ_drug = np.array(
+                list(
+                    map(
+                        lambda a: compute_whishi2(z_ij_mat[:, a], coef[a]),
+                        range(contin_table.shape[1]),
+                    )
+                )
+            )
+            
             zero_drug_cutoff = np.apply_along_axis(compute_whislo2, 0, z_ij_mat)
     else:
         if separate:
