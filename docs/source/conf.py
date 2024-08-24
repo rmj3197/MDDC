@@ -31,7 +31,7 @@ extensions = [
     "sphinx.ext.githubpages",
     "nbsphinx",
     "sphinx.ext.intersphinx",
-    "myst_parser"
+    "myst_parser",
 ]
 myst_enable_extensions = [
     "amsmath",

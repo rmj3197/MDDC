@@ -357,7 +357,7 @@ def normalize_column(a):
     return (a - mean_a) / sd_a
 
 
-def compute_whishi1(z_ij_mat, contin_table, a):
+def compute_whishi1(z_ij_mat, contin_table, coef, a):
     """
     Computes the upper whisker value from the boxplot statistics of a specific column in `z_ij_mat`.
 
@@ -371,6 +371,8 @@ def compute_whishi1(z_ij_mat, contin_table, a):
         A 2D array or matrix from which the column values are extracted for boxplot statistics computation.
     contin_table : numpy.ndarray
         A 2D array or matrix containing the indices to determine which rows of `z_ij_mat` to consider.
+    coef : float
+        Coefficient used for computing boxplot statistics.
     a : int
         The index of the column in `contin_table` to be used for filtering and extracting values from `z_ij_mat`.
 
@@ -380,10 +382,10 @@ def compute_whishi1(z_ij_mat, contin_table, a):
         The upper whisker value from the boxplot statistics of the extracted values.
     """
 
-    return boxplot_stats(z_ij_mat[contin_table[:, a] != 0, a])[3]
+    return boxplot_stats(z_ij_mat[contin_table[:, a] != 0, a], coef=coef)[3]
 
 
-def compute_whishi2(vec):
+def compute_whishi2(vec, coef):
     """
     Computes the upper whisker value from the boxplot statistics of the given vector.
 
@@ -394,13 +396,15 @@ def compute_whishi2(vec):
     ----------
     vec : numpy.ndarray
         A 1D array or sequence of numerical values for which the boxplot statistics are to be computed.
+    coef : float
+        Coefficient used for computing boxplot statistics.
 
     Returns:
     -------
     upper_whisker : float
         The upper whisker value from the boxplot statistics of the input vector.
     """
-    return boxplot_stats(vec)[3]
+    return boxplot_stats(vec, coef=coef)[3]
 
 
 def compute_whislo1(z_ij_mat, contin_table, a):
@@ -635,6 +639,35 @@ def compute_fdr(res_list, c_j, j):
     """
     outliers = np.apply_along_axis(
         lambda x: get_boxplot_outliers(x, c_j), axis=1, arr=res_list[:, :, j]
+    )
+    sum_outliers = np.sum(outliers, axis=1)
+    mean_outliers = np.mean(sum_outliers)
+    return mean_outliers
+
+
+def compute_fdr_all(res_list, c):
+    """
+    Computes the mean number of outliers for a 3D array.
+
+    This function calculates the average number of outliers across a number of
+    datasets.
+
+    Parameters:
+    -----------
+    res_list : numpy.ndarray
+        A 3D array containing the result values, where outliers will be computed along the rows.
+    c : float
+        The scaling factor passed to `get_boxplot_outliers` for determining the outlier threshold.
+
+    Returns:
+    --------
+    mean_outliers : float
+        The mean number of outliers across the rows of the specified component.
+    """
+    outliers = np.apply_along_axis(
+        lambda x: get_boxplot_outliers(x, c),
+        axis=1,
+        arr=res_list.reshape(res_list.shape[0], res_list.shape[1] * res_list.shape[2]),
     )
     sum_outliers = np.sum(outliers, axis=1)
     mean_outliers = np.mean(sum_outliers)

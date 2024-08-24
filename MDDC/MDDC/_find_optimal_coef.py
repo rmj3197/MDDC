@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from mddc_cpp_helper import getEijMat
 
-from ._helper import apply_func, compute_fdr
+from ._helper import apply_func, compute_fdr, compute_fdr_all
 
 
 def find_optimal_coef(
@@ -13,6 +13,7 @@ def find_optimal_coef(
     target_fdr=0.05,
     grid=0.1,
     exclude_small_count=True,
+    col_specific_cutoff=True,
     seed=None,
 ):
     """
@@ -41,6 +42,11 @@ def find_optimal_coef(
     exclude_small_count : bool, optional
         Whether to exclude cells with counts smaller than or equal to five
         when computing boxplot statistics. Default is True.
+
+    col_specific_cutoff : bool, optional
+        If `True`, then a single value of the coefficient is returned for the
+        entire dataset, else when `False` specific values corresponding to each
+        of the columns are returned.
 
     Returns:
     --------
@@ -85,14 +91,26 @@ def find_optimal_coef(
             lambda row: apply_func(row, n, m, True), 1, sim_tables
         )
 
-    c_vec = np.repeat(1.5, m)
-    fdr_vec = np.ones(m)
+    if col_specific_cutoff:
+        c_vec = np.repeat(1.5, m)
+        fdr_vec = np.ones(m)
 
-    for i in range(m):
-        while fdr_vec[i] > target_fdr:
-            c_vec[i] += grid
-            fdr_vec[i] = compute_fdr(res_list, c_vec[i], i)
+        for i in range(m):
+            while fdr_vec[i] > target_fdr:
+                c_vec[i] += grid
+                fdr_vec[i] = compute_fdr(res_list, c_vec[i], i)
 
-    OptimalCoef = namedtuple("OptimalCoef", ["coef", "FDR"])
-    oc = OptimalCoef(c_vec, fdr_vec)
+        OptimalCoef = namedtuple("OptimalCoef", ["coef", "FDR"])
+        oc = OptimalCoef(c_vec, fdr_vec)
+
+    else:
+        c = 1.5
+        fdr = 1
+        while fdr > target_fdr:
+            c += grid
+            fdr = compute_fdr_all(res_list, c)
+
+        OptimalCoef = namedtuple("OptimalCoef", ["coef", "FDR"])
+        oc = OptimalCoef(c, fdr)
+
     return oc

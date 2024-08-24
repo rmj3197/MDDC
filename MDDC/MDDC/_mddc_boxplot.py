@@ -20,6 +20,7 @@ def _mddc_boxplot(
     separate=True,
     if_col_corr=False,
     corr_lim=0.8,
+    coef=1.5,
     n_jobs=-1,
 ):
     """
@@ -51,6 +52,13 @@ def _mddc_boxplot(
     corr_lim : float, optional, default=0.8
         Correlation threshold used to select connected adverse events. Utilized in Step 3 of MDDC algorithm.
 
+    coef : int, float, list, numpy.ndarray, default = 1.5
+        A numeric value or a list of numeric values. If a single numeric
+        value is provided, it will be applied uniformly across all columns of the
+        contingency table. If a list is provided, its length must match the number
+        of columns in the contingency table, and each value will be used as the
+        coefficient for the corresponding column.
+
     n_jobs : int, optional, default=-1
         n_jobs specifies the maximum number of concurrently
         running workers. If 1 is given, no joblib parallelism
@@ -63,12 +71,41 @@ def _mddc_boxplot(
     result : tuple
         A tuple with the following members:
         - 'signal': np.ndarray
-            Matrix indicating significant signals with count greater than five and identified in the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
+            Matrix indicating significant signals with count greater than five and identified in
+            the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
         - 'corr_signal_pval': np.ndarray
-            p-values for each cell in the contingency table in the step 5, when the :math:`r_{ij}` (residual) values are mapped back to the standard normal distribution.
+            p-values for each cell in the contingency table in the step 5, when the :math:`r_{ij}`
+            (residual) values are mapped back to the standard normal distribution.
         - 'corr_signal_adj_pval': np.ndarray
             Benjamini-Hochberg adjusted p values for each cell in the step 5.
     """
+
+    if not isinstance(coef, (int, float, list, np.ndarray)):
+        raise TypeError("'coef' must be a numeric value, 1D numpy array, or list.")
+
+    if col_specific_cutoff:
+        if isinstance(coef, (int, float)):  # Check if coef is a numeric value
+            coef = [coef] * contin_table.shape[
+                1
+            ]  # Replicate the numeric value for each column
+        elif isinstance(coef, list):
+            if len(coef) != contin_table.shape[1]:
+                raise ValueError(
+                    "Length of 'coef' does not match the number of columns (n_col)."
+                )
+        elif isinstance(coef, np.ndarray):
+            # Flatten the array and check the length
+            coef = coef.flatten()
+            if len(coef) != contin_table.shape[1]:
+                raise ValueError(
+                    "Length of 'coef' does not match the number of columns in contin_table."
+                )
+    else:
+        if not isinstance(coef, (int, float)):
+            if len(coef) != 1:
+                raise ValueError(
+                    "'coef' must be a numeric value when 'col_specific_cutoff' is False"
+                )
 
     z_ij_mat = getZijMat(contin_table, na=False)[0]
     res_all = z_ij_mat.flatten(order="F")
@@ -80,7 +117,7 @@ def _mddc_boxplot(
             c_univ_drug = np.array(
                 list(
                     map(
-                        lambda a: compute_whishi1(z_ij_mat, contin_table, a),
+                        lambda a: compute_whishi1(z_ij_mat, contin_table, coef[a], a),
                         range(contin_table.shape[1]),
                     )
                 )
@@ -94,19 +131,21 @@ def _mddc_boxplot(
                 )
             )
         else:
-            c_univ_drug = np.apply_along_axis(compute_whishi2, 0, z_ij_mat)
+            c_univ_drug = np.apply_along_axis(compute_whishi2, 0, z_ij_mat, coef)
             zero_drug_cutoff = np.apply_along_axis(compute_whislo2, 0, z_ij_mat)
     else:
         if separate:
             c_univ_drug = np.repeat(
-                boxplot_stats(res_nonzero)[3], contin_table.shape[1]
+                boxplot_stats(res_nonzero, coef=coef)[3], contin_table.shape[1]
             )
 
             zero_drug_cutoff = np.repeat(
                 boxplot_stats(res_zero)[1], contin_table.shape[1]
             )
         else:
-            c_univ_drug = np.repeat(boxplot_stats(res_all)[3], contin_table.shape[1])
+            c_univ_drug = np.repeat(
+                boxplot_stats(res_all, coef=coef)[3], contin_table.shape[1]
+            )
             zero_drug_cutoff = np.repeat(
                 boxplot_stats(res_all)[1], contin_table.shape[1]
             )

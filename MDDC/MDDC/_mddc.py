@@ -16,6 +16,7 @@ def mddc(
     separate=True,
     if_col_corr=False,
     corr_lim=0.8,
+    coef=1.5,
     chunk_size=None,
     n_jobs=-1,
     seed=None,
@@ -61,6 +62,14 @@ def mddc(
 
     corr_lim : float, optional, default=0.8
         Correlation threshold used to select connected adverse events. Utilized in Step 3 of MDDC algorithm.
+
+    coef : int, float, list, numpy.ndarray, default = 1.5
+        Used only when `method` = `boxplot`.
+        A numeric value or a list of numeric values. If a single numeric
+        value is provided, it will be applied uniformly across all columns of the
+        contingency table. If a list is provided, its length must match the number
+        of columns in the contingency table, and each value will be used as the
+        coefficient for the corresponding column.
 
     chunk_size : int, optional, default=None
         Useful in scenarios when the dimensions of the contingency table is large as well as the number of Monte Carlo replications. In such scenario the Monte Carlo samples
@@ -216,7 +225,7 @@ def mddc(
 
     elif method == "boxplot":
         high_outlier, r_pval, r_pval_adj = _mddc_boxplot(
-            contin_table_mat, col_specific_cutoff, separate, if_col_corr, corr_lim
+            contin_table_mat, col_specific_cutoff, separate, if_col_corr, corr_lim, coef
         )
 
         if isinstance(contin_table, pd.DataFrame):
