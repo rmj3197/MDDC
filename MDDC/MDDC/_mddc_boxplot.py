@@ -139,7 +139,7 @@ def _mddc_boxplot(
                     )
                 )
             )
-            
+
             zero_drug_cutoff = np.apply_along_axis(compute_whislo2, 0, z_ij_mat)
     else:
         if separate:

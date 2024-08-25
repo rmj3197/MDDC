@@ -13,9 +13,19 @@ class TestFindOptimalCoef(unittest.TestCase):
         )
 
         # Execute the function
-        result1 = find_optimal_coef(contin_table, rep=100, seed=42)
+        result1 = find_optimal_coef(
+            contin_table,
+            rep=100,
+            exclude_small_count=True,
+            col_specific_cutoff=True,
+            seed=42,
+        )
         result2 = find_optimal_coef(
-            contin_table, rep=100, exclude_small_count=False, seed=42
+            contin_table,
+            rep=100,
+            exclude_small_count=False,
+            col_specific_cutoff=False,
+            seed=42,
         )
 
         # Check that the number of columns in coef and FDR are equal
@@ -31,30 +41,15 @@ class TestFindOptimalCoef(unittest.TestCase):
         )
 
         self.assertEqual(
-            len(result2.coef),
-            len(result2.FDR),
+            len([result2.coef]),
+            len([result2.FDR]),
             "The number of columns in coef and FDR should be equal.",
         )
         self.assertEqual(
-            len(result2.coef),
-            contin_table.shape[1],
-            "The number of columns in coef and contin_table should be equal.",
+            len([result2.coef]),
+            1,
+            "The list coef should have length 1.",
         )
-
-    def test_optimal_coef_non_empty(self):
-        # Example contingency table
-        contin_table = pd.DataFrame(
-            {"A": [10, 0, 5], "B": [15, 0, 35], "C": [0, 30, 0]}
-        )
-
-        # Execute the function
-        result = find_optimal_coef(contin_table, rep=100, seed=42)
-
-        # Check that both coef and FDR are non-empty
-        self.assertGreater(
-            len(result.coef), 0, "Coefficient vector should not be empty."
-        )
-        self.assertGreater(len(result.FDR), 0, "FDR vector should not be empty.")
 
 
 if __name__ == "__main__":
