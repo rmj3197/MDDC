@@ -17,7 +17,8 @@ def find_optimal_coef(
     seed=None,
 ):
     """
-    Find Adaptive Boxplot Coefficient `coef` via Grid Search.
+    Find Adaptive Boxplot Coefficient `coef` via Grid Search. The algorithm
+    can be found at :ref:`Algorithms <optimalc_alg>`
 
     This function performs a grid search to determine the optimal adaptive
     boxplot coefficient `coef` for each column of a contingency table, ensuring

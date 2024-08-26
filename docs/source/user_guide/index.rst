@@ -2,13 +2,14 @@
 User Guide
 =============
 
-Modified Detecting Deviating Data Cells (MDDC) Algorithm
-==========================================================
+Algorithms
+============
 .. toctree::
    :maxdepth: 4
 
    mddc_algorithm.rst
    mc_algorithm.rst
+   optimal_c_algorithm.rst
 
 Datasets
 ==========
