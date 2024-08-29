@@ -11,12 +11,48 @@ from joblib import Parallel, delayed
 from mddc_cpp_helper import getEijMat, getZijMat
 
 
+def _block_diagonal(*matrices):
+    """
+    Create a block diagonal matrix from a list of 2D NumPy arrays.
+
+    This function constructs a block diagonal matrix where the input matrices
+    are placed along the diagonal and zeros are filled in the off-diagonal blocks.
+
+    Parameters
+    ----------
+    *matrices : tuple of numpy.ndarray
+        A variable number of 2D NumPy arrays to be combined into a block diagonal matrix.
+        Each matrix should be a 2D array. The matrices are placed along the diagonal
+        in the order they are provided.
+
+    Returns
+    -------
+    numpy.ndarray
+        A 2D NumPy array representing the block diagonal matrix. The resulting matrix
+        will have a shape equal to the sum of the row and column dimensions of the input
+        matrices.
+    """
+
+    rows = sum(matrix.shape[0] for matrix in matrices)
+    cols = sum(matrix.shape[1] for matrix in matrices)
+
+    result = np.zeros((rows, cols))
+
+    current_row = 0
+    current_col = 0
+    for matrix in matrices:
+        r, c = matrix.shape
+        result[current_row : current_row + r, current_col : current_col + c] = matrix
+        current_row += r
+        current_col += c
+
+    return result
+
+
 def _generate_simulated_zijmat(
     contin_table,
     signal_mat,
-    cluster_idx,
-    count_dict,
-    rho,
+    cov_matrix,
     p_i_dot,
     p_dot_j,
     e_ij_mat,
@@ -79,29 +115,25 @@ def _generate_simulated_zijmat(
     else:
         generator = np.random.RandomState(None)
 
-    z_ij_mat = np.zeros(contin_table.shape)
-
-    for group in count_dict.keys():
-        if count_dict[group] > 1:
-            cov = np.full((count_dict[group], count_dict[group]), rho)
-            np.fill_diagonal(cov, 1)
-            z_ij_mat[np.where(cluster_idx == group), :] = generator.multivariate_normal(
-                mean=np.zeros(count_dict[group]), cov=cov, size=contin_table.shape[1]
-            ).T
-        else:
-            z_ij_mat[np.where(cluster_idx == group), :] = generator.randn(
-                contin_table.shape[1]
-            )
+    z_ij_mat = generator.multivariate_normal(
+        mean=np.zeros(contin_table.shape[0]), cov=cov_matrix, size=contin_table.shape[1]
+    ).T
     new_contin_table = np.round(
         z_ij_mat * np.sqrt(e_ij_mat * signal_mat * ((1 - p_i_dot) @ (1 - p_dot_j)))
         + e_ij_mat * signal_mat
     )
-    new_contin_table[new_contin_table < 0] = 0
+    new_contin_table[new_contin_table <= 0] = 0
     return new_contin_table
 
 
 def generate_contin_table_with_clustered_AE(
-    contin_table, signal_mat, cluster_idx, n=100, rho=0.5, n_jobs=-1, seed=None
+    contin_table,
+    signal_mat,
+    cluster_idx=None,
+    n=100,
+    rho=None,
+    n_jobs=-1,
+    seed=None,
 ):
     """
     Generate simulated contingency tables with optional incorporation of adverse event correlation within clusters.
@@ -129,9 +161,12 @@ def generate_contin_table_with_clustered_AE(
     n : int, optional, default=100
         The number of simulated contingency tables to generate.
 
-    rho : float, optional, default=0.5
-        The correlation coefficient for adverse events within each cluster. A value between 0 and 1 indicates the
-        strength of correlation, with 0 meaning no correlation and 1 meaning perfect correlation.
+    rho : float, optional, numpy.ndarray, default=None
+        - If a float or int, `rho` represents the correlation value to be used between elements within each cluster
+          specified by `cluster_idx`.
+        - If a numpy.ndarray, `rho` must be a square matrix with dimensions equal to the number of rows in `contin_table`.
+          In this case the `cluster_idx` is not used.
+        - If None, a covariance matrix is generated based on the correlation coefficients of `contin_table`.
 
     n_jobs : int, optional, default=-1
         n_jobs specifies the maximum number of concurrently
@@ -152,27 +187,7 @@ def generate_contin_table_with_clustered_AE(
         raise TypeError("contin_table must be a pandas DataFrame or numpy array.")
 
     if pd.DataFrame(contin_table).empty:
-        raise ValueError("The `contin_table` or `cluster_idx` cannot be empty")
-
-    if not isinstance(cluster_idx, (list, np.ndarray, pd.DataFrame)):
-        raise TypeError("cluster_idx must be a list or numpy array.")
-
-    if (pd.DataFrame(cluster_idx).shape[1] == 1) or (
-        pd.DataFrame(cluster_idx).shape[0] == 1
-    ):
-        cluster_idx = pd.DataFrame(cluster_idx).values.flatten()
-    else:
-        raise ValueError(
-            "The pandas DataFrame is not of the correct format. Expected a dataframe with dimensions (n,1) or (1,n)"
-        )
-
-    if contin_table.shape[0] != len(cluster_idx):
-        raise ValueError(
-            "The length of `cluster_idx` should be same as rows of `contin_table`."
-        )
-
-    if not (0 <= rho <= 1):
-        raise ValueError("The value of `rho` must lie between [0,1]")
+        raise ValueError("The `contin_table` cannot be empty")
 
     is_dataframe = False
     if isinstance(contin_table, pd.DataFrame):
@@ -180,6 +195,63 @@ def generate_contin_table_with_clustered_AE(
         row_names = list(contin_table.index)
         column_names = list(contin_table.columns)
         contin_table = contin_table.values
+
+    if isinstance(rho, (int, float)):
+        if not (0 <= rho <= 1):
+            raise ValueError("The value of `rho` must lie between [0,1]")
+        if cluster_idx is not None:
+            if not isinstance(cluster_idx, (list, np.ndarray, pd.DataFrame)):
+                raise TypeError("cluster_idx must be a list or numpy array.")
+            else:
+                if (pd.DataFrame(cluster_idx).shape[1] == 1) or (
+                    pd.DataFrame(cluster_idx).shape[0] == 1
+                ):
+                    cluster_idx = pd.DataFrame(cluster_idx).values.flatten()
+                else:
+                    raise ValueError(
+                        "The pandas DataFrame is not of the correct format. \
+                            Expected a dataframe with dimensions (n,1) or (1,n)"
+                    )
+
+                if contin_table.shape[0] != len(cluster_idx):
+                    raise ValueError(
+                        "The length of `cluster_idx` should be same as rows of `contin_table`."
+                    )
+
+                groups, group_counts = np.unique(cluster_idx, return_counts=True)
+                count_dict = dict(zip(groups, group_counts, strict=False))
+                cov_matrices = {
+                    group: np.full((count_dict[group], count_dict[group]), rho)
+                    for group in groups
+                }
+                for group in groups:
+                    np.fill_diagonal(cov_matrices[group], 1)
+                cov_matrix = _block_diagonal(*cov_matrices.values())
+        else:
+            raise ValueError(
+                "User provided `rho` but the `cluster_idx` is not provided."
+            )
+    elif isinstance(rho, np.ndarray):
+        if rho.shape != (contin_table.shape[0],) * 2:
+            raise ValueError(
+                "Please check the shape of the input matrix `rho`. It should be I x I matrix where \
+                                I is the number of rows in the contingency table."
+            )
+        else:
+            cov_matrix = rho
+    elif rho is None:
+        if cluster_idx is not None:
+            raise ValueError(
+                "User provided the `cluster_idx` but `rho` has not been provided.\
+                If user is unable to provide `rho`, then please set `cluster_idx`=None"
+            )
+        else:
+            cov_matrix = np.corrcoef(contin_table)
+    else:
+        raise ValueError(
+            "The rho must be None, a float or a numpy matrix of dimension I x I matrix where \
+                            I is the number of rows in the contingency table."
+        )
 
     e_ij_mat = getEijMat(contin_table)
     n_i_dot = e_ij_mat.sum(axis=1, keepdims=True)
@@ -189,16 +261,11 @@ def generate_contin_table_with_clustered_AE(
     p_i_dot = n_i_dot / n_dot_dot
     p_dot_j = n_dot_j / n_dot_dot
 
-    groups, group_counts = np.unique(cluster_idx, return_counts=True)
-    count_dict = dict(zip(groups, group_counts, strict=False))
-
     simulated_samples = Parallel(n_jobs=n_jobs)(
         delayed(_generate_simulated_zijmat)(
             contin_table,
             signal_mat,
-            cluster_idx,
-            count_dict,
-            rho,
+            cov_matrix,
             p_i_dot,
             p_dot_j,
             e_ij_mat,

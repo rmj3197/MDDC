@@ -34,6 +34,35 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
         self.assertEqual(len(result), 5)
         self.assertTrue(all(isinstance(table, pd.DataFrame) for table in result))
 
+    def test_valid_input_dataframe_rho_none_cluster_idx_none(self):
+        result = generate_contin_table_with_clustered_AE(
+            self.contin_table_df,
+            self.signal_mat,
+            None,
+            n=5,
+            rho=None,
+        )
+        self.assertEqual(len(result), 5)
+        self.assertTrue(all(isinstance(table, pd.DataFrame) for table in result))
+
+    def test_valid_input_dataframe_rho_user_supplied_cluster_idx_none(self):
+        rho = np.eye(self.contin_table_df.shape[0])
+        result = generate_contin_table_with_clustered_AE(
+            self.contin_table_df,
+            self.signal_mat,
+            None,
+            n=5,
+            rho=rho,
+        )
+        self.assertEqual(len(result), 5)
+        self.assertTrue(all(isinstance(table, pd.DataFrame) for table in result))
+
+    def test_valid_input_dataframe_rho_None_cluster_idx_supplied(self):
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE(
+                self.contin_table_np, self.signal_mat, None, n=5, rho=0.5
+            )
+
     def test_valid_input_numpy(self):
         result = generate_contin_table_with_clustered_AE(
             self.contin_table_np,
