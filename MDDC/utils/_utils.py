@@ -50,7 +50,8 @@ def _block_diagonal(*matrices):
 
 
 def _generate_simulated_zijmat(
-    contin_table,
+    n_rows,
+    n_columns,
     signal_mat,
     cov_matrix,
     p_i_dot,
@@ -68,9 +69,11 @@ def _generate_simulated_zijmat(
 
     Parameters:
     -----------
-    contin_table : numpy.ndarray
-        A data matrix representing the original contingency table. This matrix provides the dimensions and structure
-        for the simulated output.
+    n_rows : int
+        Number of rows in the simulated table.
+
+    n_columns : int
+        Number of columns in the simulated table.
 
     signal_mat : numpy.ndarray
         A matrix with the same dimensions as `contin_table`, where entries represent the signal strength associated
@@ -116,7 +119,7 @@ def _generate_simulated_zijmat(
         generator = np.random.RandomState(None)
 
     z_ij_mat = generator.multivariate_normal(
-        mean=np.zeros(contin_table.shape[0]), cov=cov_matrix, size=contin_table.shape[1]
+        mean=np.zeros(n_rows), cov=cov_matrix, size=n_columns
     ).T
     new_contin_table = np.round(
         z_ij_mat * np.sqrt(e_ij_mat * signal_mat * ((1 - p_i_dot) @ (1 - p_dot_j)))
@@ -127,8 +130,10 @@ def _generate_simulated_zijmat(
 
 
 def generate_contin_table_with_clustered_AE(
-    contin_table,
+    row_marginal,
+    column_marginal,
     signal_mat,
+    contin_table=None,
     cluster_idx=None,
     n=100,
     rho=None,
@@ -138,21 +143,28 @@ def generate_contin_table_with_clustered_AE(
     """
     Generate simulated contingency tables with optional incorporation of adverse event correlation within clusters.
 
-    This function generates multiple simulated contingency tables based on the input data matrix (`contin_table`),
-    signal strength matrix (`signal_mat`), and cluster indices (`cluster_idx`). It incorporates adverse event
-    correlation within each cluster according to the specified correlation parameter (`rho`).
+    This function generates multiple simulated contingency tables based on the input row and column marginals,
+    or `contin_table`, signal strength matrix (`signal_mat`), and cluster indices (`cluster_idx`).
+    It incorporates adverse event correlation within each cluster according to the specified correlation
+    parameter (`rho`).
 
     Parameters:
     -----------
-    contin_table : numpy.ndarray, pandas.DataFrame
-        A data matrix representing an I x J contingency table with row (adverse event) and column (drug) names.
-        The row and column marginals of this table are used to generate the simulated data. It is advisable to
-        check the input contingency table using the function `check_and_fix_contin_table()` before using this function.
+    row_marginal : list, np.ndarray, None
+        Marginal sums for the rows of the contingency table.
+
+    column_marginal : list, np.ndarray, None
+        Marginal sums for the columns of the contingency table.
 
     signal_mat : numpy.ndarray, pandas.DataFrame
         A data matrix of the same dimensions as `contin_table`, where entries represent signal strength. Values
         should be greater than or equal to 1, where 1 indicates no signal and values greater than 1 indicate the
         presence of a signal.
+
+    contin_table : numpy.ndarray, pandas.DataFrame, default=None
+        A data matrix representing an I x J contingency table with row (adverse event) and column (drug) names.
+        The row and column marginals of this table are used to generate the simulated data. It is advisable to
+        check the input contingency table using the function `check_and_fix_contin_table()` before using this function.
 
     cluster_idx : numpy.ndarray, list, pd.DataFrame
         An array indicating the cluster index for each row in the `contin_table`. Clusters can be represented by
@@ -183,19 +195,7 @@ def generate_contin_table_with_clustered_AE(
     simulated tables : list of numpy.ndarray
         A list containing the simulated contingency tables.
     """
-    if not isinstance(contin_table, (pd.DataFrame, np.ndarray)):
-        raise TypeError("contin_table must be a pandas DataFrame or numpy array.")
-
-    if pd.DataFrame(contin_table).empty:
-        raise ValueError("The `contin_table` cannot be empty")
-
     is_dataframe = False
-    if isinstance(contin_table, pd.DataFrame):
-        is_dataframe = True
-        row_names = list(contin_table.index)
-        column_names = list(contin_table.columns)
-        contin_table = contin_table.values
-
     if isinstance(rho, (int, float)):
         if not (0 <= rho <= 1):
             raise ValueError("The value of `rho` must lie between [0,1]")
@@ -213,10 +213,21 @@ def generate_contin_table_with_clustered_AE(
                             Expected a dataframe with dimensions (n,1) or (1,n)"
                     )
 
-                if contin_table.shape[0] != len(cluster_idx):
-                    raise ValueError(
-                        "The length of `cluster_idx` should be same as rows of `contin_table`."
-                    )
+                if contin_table is not None:
+                    if not isinstance(contin_table, (pd.DataFrame, np.ndarray)):
+                        raise TypeError(
+                            "contin_table must be a pandas DataFrame or numpy array."
+                        )
+
+                    if contin_table.shape[0] != len(cluster_idx):
+                        raise ValueError(
+                            "The length of `cluster_idx` should be same as rows of `contin_table`."
+                        )
+                else:
+                    if len(cluster_idx) != len(row_marginal):
+                        raise ValueError(
+                            "The length of `cluster_idx` should be same as length of `row_marginal`."
+                        )
 
                 groups, group_counts = np.unique(cluster_idx, return_counts=True)
                 count_dict = dict(zip(groups, group_counts, strict=False))
@@ -246,24 +257,74 @@ def generate_contin_table_with_clustered_AE(
                 If user is unable to provide `rho`, then please set `cluster_idx`=None"
             )
         else:
-            cov_matrix = np.corrcoef(contin_table)
+            if contin_table is not None:
+                cov_matrix = np.corrcoef(contin_table)
+            else:
+                raise ValueError(
+                    "rho cannot be estimated if no `contin_table` is provided."
+                )
     else:
         raise ValueError(
             "The rho must be None, a float or a numpy matrix of dimension I x I matrix where \
                             I is the number of rows in the contingency table."
         )
 
-    e_ij_mat = getEijMat(contin_table)
-    n_i_dot = e_ij_mat.sum(axis=1, keepdims=True)
-    n_dot_j = e_ij_mat.sum(axis=0, keepdims=True)
-    n_dot_dot = e_ij_mat.sum()
+    if contin_table is not None:
+        if not isinstance(contin_table, (pd.DataFrame, np.ndarray)):
+            raise TypeError("contin_table must be a pandas DataFrame or numpy array.")
+
+        if pd.DataFrame(contin_table).empty:
+            raise ValueError("The `contin_table` cannot be empty")
+
+        if isinstance(contin_table, pd.DataFrame):
+            is_dataframe = True
+            row_names = list(contin_table.index)
+            column_names = list(contin_table.columns)
+            contin_table = contin_table.values
+
+        e_ij_mat = getEijMat(contin_table)
+        n_i_dot = e_ij_mat.sum(axis=1, keepdims=True)
+        n_dot_j = e_ij_mat.sum(axis=0, keepdims=True)
+        n_dot_dot = e_ij_mat.sum()
+
+        n_rows = contin_table.shape[0]
+        n_columns = contin_table.shape[1]
+
+    elif (
+        (row_marginal is not None)
+        and (column_marginal is not None)
+        and (contin_table is None)
+    ):
+        if np.sum(row_marginal) == np.sum(column_marginal):
+            pass
+        else:
+            raise AssertionError(
+                "The sum of row and column \
+                marginals do not match."
+            )
+        n_i_dot = np.array(row_marginal).reshape(-1, 1)
+        n_dot_j = np.array(column_marginal).reshape(1, -1)
+        n_dot_dot = np.sum(n_i_dot)
+        e_ij_mat = (n_i_dot @ n_dot_j) / n_dot_dot
+
+        n_rows = len(row_marginal)
+        n_columns = len(column_marginal)
+    else:
+        if ((row_marginal is None) or (column_marginal is None)) and (
+            contin_table is None
+        ):
+            raise ValueError(
+                "`row_marginal` or `column_marginal` cannot be \
+                None when `contin_table` is also None."
+            )
 
     p_i_dot = n_i_dot / n_dot_dot
     p_dot_j = n_dot_j / n_dot_dot
 
     simulated_samples = Parallel(n_jobs=n_jobs)(
         delayed(_generate_simulated_zijmat)(
-            contin_table,
+            n_rows,
+            n_columns,
             signal_mat,
             cov_matrix,
             p_i_dot,

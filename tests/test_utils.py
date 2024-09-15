@@ -25,9 +25,11 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
 
     def test_valid_input_dataframe(self):
         result = generate_contin_table_with_clustered_AE(
-            self.contin_table_df,
-            self.signal_mat,
-            self.cluster_idx_list,
+            row_marginal=None,
+            column_marginal=None,
+            contin_table=self.contin_table_df,
+            signal_mat=self.signal_mat,
+            cluster_idx=self.cluster_idx_list,
             n=5,
             rho=0.5,
         )
@@ -36,9 +38,11 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
 
     def test_valid_input_dataframe_rho_none_cluster_idx_none(self):
         result = generate_contin_table_with_clustered_AE(
-            self.contin_table_df,
-            self.signal_mat,
-            None,
+            row_marginal=None,
+            column_marginal=None,
+            contin_table=self.contin_table_df,
+            signal_mat=self.signal_mat,
+            cluster_idx=None,
             n=5,
             rho=None,
         )
@@ -48,9 +52,11 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
     def test_valid_input_dataframe_rho_user_supplied_cluster_idx_none(self):
         rho = np.eye(self.contin_table_df.shape[0])
         result = generate_contin_table_with_clustered_AE(
-            self.contin_table_df,
-            self.signal_mat,
-            None,
+            row_marginal=None,
+            column_marginal=None,
+            contin_table=self.contin_table_df,
+            signal_mat=self.signal_mat,
+            cluster_idx=None,
             n=5,
             rho=rho,
         )
@@ -60,14 +66,22 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
     def test_valid_input_dataframe_rho_None_cluster_idx_supplied(self):
         with self.assertRaises(ValueError):
             generate_contin_table_with_clustered_AE(
-                self.contin_table_np, self.signal_mat, None, n=5, rho=0.5
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=self.contin_table_np,
+                signal_mat=self.signal_mat,
+                cluster_idx=None,
+                n=5,
+                rho=0.5,
             )
 
     def test_valid_input_numpy(self):
         result = generate_contin_table_with_clustered_AE(
-            self.contin_table_np,
-            self.signal_mat,
-            self.cluster_idx_np,
+            row_marginal=None,
+            column_marginal=None,
+            contin_table=self.contin_table_np,
+            signal_mat=self.signal_mat,
+            cluster_idx=self.cluster_idx_np,
             n=5,
             rho=0.5,
             seed=42,
@@ -78,9 +92,11 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
     def test_empty_contin_table(self):
         with self.assertRaises(ValueError):
             generate_contin_table_with_clustered_AE(
-                np.array([]),
-                self.signal_mat,
-                self.cluster_idx_list,
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=np.array([]),
+                signal_mat=self.signal_mat,
+                cluster_idx=self.cluster_idx_list,
                 n=5,
                 rho=0.5,
             )
@@ -88,22 +104,36 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
     def test_empty_cluster_idx(self):
         with self.assertRaises(ValueError):
             generate_contin_table_with_clustered_AE(
-                self.contin_table_np, self.signal_mat, [], n=5, rho=0.5
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=self.contin_table_np,
+                signal_mat=self.signal_mat,
+                cluster_idx=[],
+                n=5,
+                rho=0.5,
             )
 
     def test_mismatched_lengths(self):
         with self.assertRaises(ValueError):
             generate_contin_table_with_clustered_AE(
-                self.contin_table_np, self.signal_mat, [0], n=5, rho=0.5
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=self.contin_table_np,
+                signal_mat=self.signal_mat,
+                cluster_idx=[0],
+                n=5,
+                rho=0.5,
             )
 
     def test_invalid_rho(self):
         for invalid_rho in [-0.5, 1.5]:
             with self.assertRaises(ValueError):
                 generate_contin_table_with_clustered_AE(
-                    self.contin_table_np,
-                    self.signal_mat,
-                    self.cluster_idx_np,
+                    row_marginal=None,
+                    column_marginal=None,
+                    contin_table=self.contin_table_np,
+                    signal_mat=self.signal_mat,
+                    cluster_idx=self.cluster_idx_np,
                     n=5,
                     rho=invalid_rho,
                 )
@@ -112,17 +142,21 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
         for invalid_input in ["string"]:
             with self.assertRaises(TypeError):
                 generate_contin_table_with_clustered_AE(
-                    invalid_input,
-                    self.signal_mat,
-                    self.cluster_idx_np,
+                    row_marginal=None,
+                    column_marginal=None,
+                    contin_table=invalid_input,
+                    signal_mat=self.signal_mat,
+                    cluster_idx=self.cluster_idx_np,
                     n=5,
                     rho=0.5,
                 )
             with self.assertRaises(TypeError):
                 generate_contin_table_with_clustered_AE(
-                    self.contin_table_df,
-                    self.signal_mat,
-                    "cluster_idx_np",
+                    row_marginal=None,
+                    column_marginal=None,
+                    contin_table=self.contin_table_df,
+                    signal_mat=self.signal_mat,
+                    cluster_idx="cluster_idx_np",
                     n=5,
                     rho=0.5,
                 )
