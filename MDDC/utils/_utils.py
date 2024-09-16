@@ -196,6 +196,10 @@ def generate_contin_table_with_clustered_AE(
         A list containing the simulated contingency tables.
     """
     is_dataframe = False
+    
+    if not (isinstance(contin_table, (pd.DataFrame, np.ndarray)) or contin_table is None):
+        raise TypeError("contin_table must be a pandas DataFrame, numpy array, or None.")
+
     if isinstance(rho, (int, float)):
         if not (0 <= rho <= 1):
             raise ValueError("The value of `rho` must lie between [0,1]")
@@ -214,11 +218,6 @@ def generate_contin_table_with_clustered_AE(
                     )
 
                 if contin_table is not None:
-                    if not isinstance(contin_table, (pd.DataFrame, np.ndarray)):
-                        raise TypeError(
-                            "contin_table must be a pandas DataFrame or numpy array."
-                        )
-
                     if contin_table.shape[0] != len(cluster_idx):
                         raise ValueError(
                             "The length of `cluster_idx` should be same as rows of `contin_table`."
@@ -239,17 +238,25 @@ def generate_contin_table_with_clustered_AE(
                     np.fill_diagonal(cov_matrices[group], 1)
                 cov_matrix = _block_diagonal(*cov_matrices.values())
         else:
+            print("Reached here")
             raise ValueError(
-                "User provided `rho` but the `cluster_idx` is not provided."
+                "User provided a numeric `rho` but the `cluster_idx` is not provided."
             )
     elif isinstance(rho, np.ndarray):
-        if rho.shape != (contin_table.shape[0],) * 2:
-            raise ValueError(
-                "Please check the shape of the input matrix `rho`. It should be I x I matrix where \
-                                I is the number of rows in the contingency table."
-            )
+        print("Entered here")
+        if contin_table is not None:
+            if rho.shape != (contin_table.shape[0],) * 2:
+                raise ValueError(
+                    "Please check the shape of the input matrix `rho`. It should be I x I matrix where \
+                                    I is the number of rows in the contingency table."
+                )
         else:
-            cov_matrix = rho
+            if rho.shape != (len(row_marginal)) * 2:
+                raise ValueError(
+                    "Please check the shape of the input matrix `rho`. It should be I x I matrix where \
+                                    I is the length of the `row_marginal`."
+                )
+        cov_matrix = rho
     elif rho is None:
         if cluster_idx is not None:
             raise ValueError(
