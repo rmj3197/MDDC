@@ -20,8 +20,8 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
         )
         self.contin_table_np = np.array([[5, 10], [15, 20]])
         self.signal_mat = np.array([[1, 1.5], [1.2, 1]])
-        self.cluster_idx_list = [0, 1]
-        self.cluster_idx_np = np.array([0, 1])
+        self.cluster_idx_list = ['0', '1']
+        self.cluster_idx_np = np.array(['0', '1'])
 
     def test_valid_input_marginals(self):
         result = generate_contin_table_with_clustered_AE(

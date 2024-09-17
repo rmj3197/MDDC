@@ -238,7 +238,6 @@ def generate_contin_table_with_clustered_AE(
                     np.fill_diagonal(cov_matrices[group], 1)
                 cov_matrix = _block_diagonal(*cov_matrices.values())
         else:
-            print("Reached here")
             raise ValueError(
                 "User provided a numeric `rho` but the `cluster_idx` is not provided."
             )
