@@ -1,0 +1,1002 @@
+"","Clonazepam","Dexmedetomidine","Diazepam","Diphenhydramine","Doxepin","Lorazepam","Midazolam","Mirtazapine","Nitrazepam","Temazepam","Other"
+"Pain",781,16,617,1963,194,427,195,212,11,397,1075677
+"Fatigue",1014,7,481,2074,89,1729,37,526,37,363,1013681
+"Nausea",593,5,630,1532,38,842,228,453,13,42,758316
+"Arthralgia",454,0,229,1190,62,336,38,375,7,27,688506
+"Condition aggravated",462,27,601,708,35,411,181,250,14,70,678843
+"Dyspnoea",1412,7,532,611,40,824,115,341,27,16,675191
+"Diarrhoea",441,10,186,784,32,735,59,411,4,5,674163
+"Headache",960,2,418,1865,64,536,193,469,14,415,665152
+"Rash",276,6,103,1223,9,341,103,67,32,285,617694
+"Vomiting",721,10,710,602,24,444,104,391,11,23,522819
+"Pyrexia",503,22,354,1281,22,563,279,360,14,287,517282
+"Rheumatoid arthritis",67,0,5,1402,0,31,0,7,8,384,505635
+"Drug intolerance",110,2,85,1062,13,223,39,76,8,274,494150
+"Malaise",790,0,199,1005,27,391,141,328,3,10,488493
+"Abdominal discomfort",100,0,55,468,41,199,8,74,4,10,471028
+"Alopecia",101,0,55,442,2,366,0,41,2,21,457736
+"Dizziness",774,1,370,791,164,695,89,461,29,34,434948
+"Drug dependence",719,7,795,253,22,743,82,86,11,101,433558
+"Product use in unapproved indication",1037,77,343,1619,90,703,240,501,14,98,431572
+"Joint swelling",80,0,13,1119,3,133,2,13,3,280,434461
+"Hypersensitivity",105,4,66,1197,25,178,55,53,7,362,423125
+"Pruritus",365,5,203,491,63,290,19,294,8,10,407541
+"Product use issue",185,46,96,1046,6,454,100,56,8,317,398176
+"Swelling",77,2,17,338,27,37,5,19,0,2,395606
+"Intentional product use issue",397,4,83,645,9,68,31,18,1,43,393167
+"Hypertension",570,23,111,1139,53,232,73,161,3,289,389603
+"Contraindicated product administered",14,1,54,921,0,31,14,56,8,334,390819
+"Arthropathy",27,0,3,476,44,27,0,24,3,5,375127
+"Death",232,11,425,224,30,197,137,210,8,68,372295
+"Infusion related reaction",44,1,13,1899,0,37,96,10,8,260,370974
+"Weight increased",330,0,148,355,54,157,13,260,29,10,366499
+"Drug hypersensitivity",365,7,157,1298,21,372,96,41,8,330,363327
+"Maternal exposure during pregnancy",199,11,194,448,1,314,136,160,3,23,358653
+"Pneumonia",827,6,649,334,4,254,90,64,14,38,352735
+"Asthenia",415,2,290,430,39,381,50,449,3,6,351257
+"Overdose",491,32,759,1482,87,896,130,311,45,458,346970
+"Weight decreased",431,3,140,779,29,226,124,117,0,10,343394
+"Nasopharyngitis",227,1,18,489,15,59,2,28,0,5,340853
+"Systemic lupus erythematosus",5,0,9,264,0,21,0,6,0,3,339494
+"COVID-19",138,8,71,156,1,412,43,26,0,2,337517
+"Peripheral swelling",289,0,47,460,23,108,6,56,8,4,337146
+"Treatment failure",132,6,34,891,25,111,74,58,7,274,335393
+"General physical health deterioration",59,1,127,373,10,120,46,161,13,9,334729
+"Hepatic enzyme increased",134,2,365,985,10,56,19,18,8,364,330153
+"Abdominal pain",249,0,93,469,33,141,193,233,1,19,327164
+"Cough",724,0,194,555,12,589,20,172,20,9,324363
+"Synovitis",33,0,3,312,0,50,0,14,8,2,324762
+"Product dose omission issue",168,0,18,146,45,85,13,56,0,8,322879
+"Constipation",276,13,421,849,60,179,179,194,10,342,318447
+"Fall",700,1,524,359,198,596,61,527,36,57,317578
+"Pain in extremity",361,0,118,497,72,159,20,112,1,25,316029
+"Breast cancer",153,0,7,15,0,72,1,0,0,0,316598
+"Glossodynia",10,0,0,194,0,27,0,9,0,2,315851
+"Therapeutic product effect decreased",79,0,16,325,7,42,4,21,6,3,314285
+"Infection",88,1,55,460,12,80,24,69,11,67,309034
+"Pemphigus",0,0,0,190,0,23,0,0,0,2,308176
+"Asthma",872,0,40,776,16,388,10,6,20,367,304311
+"Hand deformity",1,0,4,194,0,26,0,0,0,2,302720
+"Decreased appetite",392,1,189,444,14,338,33,389,28,12,300421
+"Inappropriate schedule of product administration",205,0,31,174,39,212,2,39,1,2,301002
+"Anxiety",1441,5,514,457,147,940,86,436,8,69,297573
+"Prostate cancer",4,0,1,4,0,1,0,0,0,1,300897
+"Musculoskeletal stiffness",394,1,148,497,5,224,13,123,5,16,291326
+"Wound",22,0,11,179,16,23,4,1,20,2,291060
+"Discomfort",85,0,22,326,1,144,2,3,2,2,288311
+"Abdominal pain upper",136,1,52,346,21,151,26,201,0,12,282630
+"Mobility decreased",65,0,255,368,5,47,2,63,5,2,281424
+"Insomnia",695,4,215,365,188,554,42,526,14,111,277330
+"Therapeutic product effect incomplete",628,21,76,752,15,414,159,119,33,27,276681
+"Pericarditis",0,0,1,198,0,33,3,0,0,0,269635
+"Confusional state",294,15,376,272,41,460,69,394,18,57,255975
+"Wheezing",745,0,193,92,0,364,27,4,22,3,252852
+"Anti-cyclic citrullinated peptide antibody positive",0,0,0,192,0,23,0,0,0,2,239953
+"Sinusitis",230,0,11,340,24,156,3,29,0,1,238903
+"Emotional distress",97,0,86,6,9,117,3,55,0,32,225967
+"Back pain",370,0,175,833,59,171,9,76,1,332,223486
+"Blister",130,1,55,240,6,32,5,13,2,8,224075
+"Urticaria",236,7,37,537,34,134,62,29,3,1,219389
+"Lower respiratory tract infection",200,0,22,96,1,37,4,0,0,0,218871
+"Depression",1094,3,289,376,86,485,42,387,4,34,215318
+"Hypoaesthesia",204,0,193,389,122,369,10,132,1,27,215928
+"Loss of personal independence in daily activities",538,0,24,244,15,241,6,42,9,22,216101
+"Helicobacter infection",2,0,0,266,0,80,0,1,0,0,216000
+"Duodenal ulcer perforation",0,0,0,196,0,26,0,0,0,0,214687
+"Hypotension",493,117,761,407,9,457,366,196,5,27,210533
+"Blood cholesterol increased",29,0,43,331,28,46,0,24,0,0,212802
+"Stomatitis",6,0,1,102,0,30,0,3,2,6,207975
+"Gastrointestinal disorder",96,0,22,122,15,192,7,15,0,3,205482
+"Anaemia",81,1,26,275,11,67,224,84,2,5,203368
+"Somnolence",1086,37,888,994,79,934,114,804,46,103,198792
+"Gait disturbance",454,1,227,230,84,373,27,190,4,42,200289
+"Renal cancer",3,0,1,6,0,1,0,0,0,0,201031
+"Psoriatic arthropathy",60,0,4,253,0,34,0,2,8,3,200403
+"Contusion",134,1,211,132,18,399,26,152,0,12,194973
+"Ill-defined disorder",12,0,39,112,0,34,2,7,0,2,192171
+"Blood pressure increased",393,1,53,415,1,162,11,197,2,3,189268
+"Chest pain",279,5,35,194,19,140,15,63,1,3,189208
+"Incorrect dose administered",279,2,38,203,4,355,23,27,0,1,187693
+"Impaired healing",5,0,7,140,17,32,1,24,0,1,185602
+"Neutropenia",118,0,116,22,1,385,22,51,2,2,182268
+"Erythema",88,13,91,1101,23,51,210,42,9,331,180877
+"Rheumatoid factor positive",5,0,0,158,0,15,0,0,0,2,181379
+"Toxicity to various agents",1127,31,2245,1014,267,1045,195,878,121,457,173921
+"Bladder cancer",2,0,4,0,18,2,1,0,0,0,178756
+"Fibromyalgia",390,0,20,338,21,42,0,32,0,1,173025
+"Sleep disorder",233,7,216,123,36,360,5,229,2,42,172434
+"Irritable bowel syndrome",7,0,7,95,18,37,0,25,0,1,171604
+"Exposure during pregnancy",112,13,124,892,2,272,47,122,2,301,169829
+"Type 2 diabetes mellitus",26,0,16,388,15,23,0,25,8,0,169808
+"Folliculitis",0,0,0,73,0,45,0,0,0,0,170021
+"Acute kidney injury",102,20,214,82,2,129,76,123,3,6,167809
+"Injury",42,0,57,194,15,64,4,35,0,8,166299
+"Muscle spasms",319,5,233,142,38,285,27,231,0,1,164690
+"Feeling abnormal",466,3,155,273,29,341,20,169,2,44,162821
+"Dry mouth",94,0,50,294,48,84,13,125,0,2,163452
+"Dyspepsia",70,0,19,484,17,384,85,81,0,5,157879
+"Inflammation",15,0,66,232,9,42,9,15,8,1,158058
+"Memory impairment",274,3,132,106,146,278,47,80,7,62,155994
+"C-reactive protein increased",12,1,57,491,7,42,5,29,8,8,150000
+"Paraesthesia",314,1,145,133,12,246,24,148,0,3,149568
+"Migraine",291,0,28,163,19,40,13,42,0,1,148375
+"Muscle injury",1,0,9,73,0,27,0,2,0,17,147408
+"Illness",266,0,136,151,6,311,6,96,0,4,144821
+"Abdominal distension",158,0,45,67,5,81,61,44,0,0,145118
+"Disease progression",45,24,32,40,0,360,42,27,3,1,144693
+"Chronic kidney disease",20,0,9,8,10,6,0,8,0,1,144100
+"Adverse drug reaction",48,2,17,241,1,54,13,48,16,0,143524
+"Arthritis",70,0,22,335,5,94,1,46,3,4,142842
+"Injection site pain",127,0,12,81,2,101,17,11,0,0,142403
+"Rheumatic fever",0,0,0,156,0,21,0,0,0,0,142519
+"Gastrooesophageal reflux disease",427,0,220,70,0,239,3,18,1,5,140381
+"Intentional product misuse",306,2,644,821,18,602,37,113,5,301,136581
+"Sepsis",78,11,162,41,4,67,54,172,0,1,138782
+"Thrombocytopenia",63,3,39,523,1,203,154,43,0,285,136827
+"Liver injury",14,6,38,216,0,38,18,10,0,0,137423
+"Therapy non-responder",134,9,70,287,7,183,35,73,9,2,136110
+"Muscular weakness",368,3,70,316,29,134,19,58,2,1,135082
+"Urinary tract infection",189,0,111,201,20,108,11,70,5,9,134828
+"Drug withdrawal syndrome",228,32,294,32,14,299,21,113,5,7,133666
+"Oedema peripheral",207,1,209,137,7,50,28,52,24,5,133351
+"Stress",141,0,39,95,22,82,4,51,5,5,132446
+"Dependence",31,0,81,9,0,35,0,14,0,7,131997
+"Osteoarthritis",136,0,10,205,40,36,4,53,5,0,131158
+"Sleep disorder due to general medical condition, insomnia type",112,0,0,71,0,22,0,3,0,17,128082
+"Psoriasis",68,0,25,539,6,37,0,21,1,274,125973
+"Hyperhidrosis",339,9,261,897,47,416,33,215,5,368,122718
+"Oedema",314,3,34,78,18,48,11,14,0,2,124420
+"Myalgia",226,0,123,141,21,158,17,228,0,1,120876
+"Visual impairment",168,0,166,179,28,297,5,193,0,0,120674
+"Wrong technique in product usage process",181,4,47,96,7,152,7,55,2,15,119636
+"Balance disorder",321,0,357,212,132,327,17,185,3,38,118520
+"C-reactive protein abnormal",1,0,0,287,0,62,0,0,8,0,117570
+"Adverse event",191,1,9,253,0,61,4,25,2,6,116413
+"Swollen joint count increased",0,0,0,95,0,15,0,0,0,0,116779
+"Renal failure",37,10,37,33,0,76,46,35,1,2,116059
+"Drug abuse",1193,4,2153,661,62,1526,123,516,64,260,106967
+"Lung disorder",21,0,93,93,0,71,6,23,1,4,112834
+"Prescribed overdose",78,2,23,582,2,33,3,29,0,293,111824
+"Drug interaction",940,48,713,123,144,637,142,470,24,95,106531
+"White blood cell count decreased",62,0,40,68,0,45,6,26,0,2,108891
+"Cognitive disorder",153,6,318,233,5,132,39,79,1,26,107409
+"Platelet count decreased",4,4,3,27,10,354,1,15,0,2,107226
+"Influenza",271,0,9,164,10,22,3,22,0,1,106872
+"Chest discomfort",255,0,52,247,10,184,7,16,79,9,103328
+"Foetal exposure during pregnancy",149,25,175,173,21,160,127,167,12,8,102340
+"Tremor",547,3,275,126,33,507,55,296,4,23,101233
+"Heart rate increased",312,3,140,267,4,230,25,154,5,10,100482
+"Blood glucose increased",95,0,46,56,6,17,3,29,3,3,101171
+"Productive cough",348,0,9,68,5,229,22,8,20,2,99647
+"Lung neoplasm malignant",56,0,166,2,0,56,2,0,0,0,99833
+"Neuropathy peripheral",39,0,15,197,4,330,0,6,1,5,99503
+"Oropharyngeal pain",197,0,25,202,1,34,8,37,0,5,98871
+"Gait inability",42,0,22,86,1,42,8,21,0,1,98807
+"Gastric cancer",9,0,1,0,0,1,0,0,0,0,97593
+"Chills",228,1,37,133,0,73,33,184,0,0,96834
+"Sedation",149,8,366,63,10,326,31,168,12,41,95559
+"Hospitalisation",177,5,37,65,1,200,11,58,1,5,96160
+"Haemoglobin decreased",171,0,39,185,0,106,16,29,0,2,95344
+"Knee arthroplasty",3,0,0,116,0,26,0,4,0,0,95318
+"Pulmonary fibrosis",5,0,1,127,0,27,1,1,2,0,95275
+"Musculoskeletal pain",0,0,8,166,4,83,0,7,0,0,94841
+"Pulmonary embolism",30,1,27,33,1,25,31,37,32,1,94776
+"Seizure",473,11,357,149,41,711,432,203,24,9,92457
+"Febrile neutropenia",1,1,3,13,0,27,11,12,0,0,94655
+"Liver disorder",10,5,14,44,0,29,11,21,1,1,93233
+"Crohn's disease",5,0,6,93,15,42,9,21,0,0,92502
+"Bursitis",2,0,1,561,19,25,0,26,0,324,90848
+"Hip arthroplasty",2,0,0,121,0,26,0,0,0,1,91403
+"Road traffic accident",76,0,47,107,9,42,9,9,2,7,90805
+"Obesity",18,1,67,108,27,339,0,38,0,2,90243
+"Dehydration",163,1,146,69,1,106,22,15,28,38,89636
+"Hepatic cancer",1,0,1,0,0,0,0,1,0,0,90057
+"Osteoporosis",22,0,6,146,7,27,2,6,0,17,88964
+"Thrombosis",23,0,14,25,0,4,7,4,0,0,89115
+"Tachycardia",206,35,430,246,27,440,145,363,35,17,86980
+"Amnesia",173,0,103,73,2,143,15,109,0,53,86902
+"Night sweats",58,0,6,67,0,27,1,56,0,0,86404
+"Atrial fibrillation",36,5,32,42,11,114,9,44,1,2,85934
+"Joint range of motion decreased",52,0,5,51,0,33,2,1,0,0,85567
+"Medication error",67,0,40,68,8,20,3,137,1,0,84523
+"Palpitations",162,1,67,201,21,111,1,124,0,15,83961
+"Incorrect route of product administration",65,7,20,72,0,97,14,2,0,18,83993
+"Red blood cell sedimentation rate increased",0,0,57,405,0,14,0,7,6,0,83542
+"Sciatica",13,0,7,59,21,33,0,26,0,4,83086
+"Malignant neoplasm progression",10,0,0,9,0,5,5,16,1,0,82942
+"Hyponatraemia",56,0,22,11,20,98,30,175,5,13,82519
+"Depressed level of consciousness",339,6,656,71,82,305,96,180,12,68,80829
+"Diabetes mellitus",163,0,7,33,0,67,1,12,0,0,80985
+"Colitis ulcerative",7,0,0,272,0,28,168,3,0,0,80202
+"Rhinorrhoea",164,4,31,136,18,72,24,3,0,1,79868
+"Bronchitis",194,0,5,225,23,15,2,37,0,3,79778
+"Pancreatic carcinoma",0,0,0,8,0,0,0,0,0,0,79900
+"No adverse event",53,2,50,59,2,6,57,21,2,6,79380
+"Nasal congestion",157,0,6,275,16,85,5,12,0,2,78778
+"Vision blurred",151,1,146,67,1,189,6,255,0,1,77974
+"Alanine aminotransferase increased",158,0,85,241,11,27,65,36,8,4,78066
+"Haematochezia",37,0,10,305,4,9,164,14,0,4,77232
+"Therapeutic response decreased",59,0,12,263,4,44,12,18,5,0,77360
+"Upper respiratory tract infection",15,1,9,689,0,26,11,11,4,367,76644
+"Dry skin",69,0,15,72,1,13,1,11,2,0,76649
+"Obstructive airways disorder",255,2,138,4,13,143,5,16,0,0,75891
+"Neoplasm malignant",24,0,29,113,0,11,1,4,0,0,76259
+"Renal impairment",16,2,51,24,0,80,64,50,0,1,75883
+"Loss of consciousness",235,19,275,203,20,330,78,90,19,21,74559
+"Full blood count abnormal",283,0,75,1,15,235,1,3,0,0,75179
+"Blood creatinine increased",24,0,69,297,6,44,30,27,8,2,75285
+"Ascites",4,5,3,0,0,25,7,135,1,1,74762
+"Cardiac disorder",343,1,38,49,15,25,2,15,0,5,74022
+"Orthostatic hypotension",136,1,258,111,0,45,7,25,0,6,73759
+"Haemorrhage",35,7,37,27,29,62,36,29,20,6,73992
+"Multiple organ dysfunction syndrome",26,13,77,37,2,31,131,3,1,9,73177
+"Myocardial infarction",43,0,71,49,0,44,14,45,23,0,71910
+"Sleep disorder due to a general medical condition",393,0,0,7,0,216,1,0,0,0,71541
+"Syncope",208,7,52,189,8,59,21,235,0,1,69572
+"Chronic obstructive pulmonary disease",214,1,189,12,15,200,1,23,0,1,69045
+"Aspartate aminotransferase increased",18,0,23,154,0,28,8,29,9,0,68059
+"Blood calcium decreased",2,0,243,6,8,31,20,25,0,0,67805
+"Bone density decreased",3,0,17,14,22,0,0,25,0,0,67870
+"Heart rate decreased",48,13,43,143,1,87,14,10,0,0,67554
+"Blood pressure systolic increased",154,0,11,316,6,62,2,18,3,0,67261
+"Lip dry",0,0,2,39,0,21,0,2,0,0,67537
+"Drug ineffective for unapproved indication",189,43,226,147,25,374,292,101,3,11,65675
+"Cerebrovascular accident",56,6,10,84,0,30,13,25,1,3,66796
+"Hallucination",231,7,134,129,31,190,45,94,1,24,66121
+"Delirium",119,33,239,203,3,448,56,162,17,24,65493
+"Prescribed underdose",72,0,4,59,1,10,0,3,4,0,66583
+"Dyspnoea exertional",24,0,4,19,18,5,22,29,0,1,66591
+"Autoimmune disorder",1,0,1,88,1,26,1,2,0,0,66081
+"Facet joint syndrome",0,0,0,45,11,21,0,15,0,0,65799
+"Dysphagia",182,5,98,314,7,81,17,69,6,32,64087
+"Sedation complication",27,34,302,0,11,105,77,18,1,1,63497
+"Rash pruritic",6,0,2,117,0,25,8,4,8,1,63446
+"Underdose",10,0,6,51,0,138,12,13,0,0,63260
+"Frequent bowel movements",17,0,1,296,0,31,161,1,0,0,62889
+"Grip strength decreased",85,0,6,54,0,24,0,0,0,0,63088
+"Leukopenia",21,0,11,24,1,367,5,26,6,10,62648
+"Neck pain",40,0,40,49,0,50,2,6,0,0,62784
+"Live birth",12,4,11,47,0,14,7,29,0,3,62624
+"Drug-induced liver injury",20,0,11,79,4,62,27,55,3,5,62072
+"Lower limb fracture",6,0,3,77,0,30,0,1,0,0,62053
+"Deep vein thrombosis postoperative",0,0,0,78,0,25,0,0,0,0,61610
+"Dysphonia",133,0,29,35,3,38,13,10,0,0,61010
+"Creatinine renal clearance decreased",1,0,229,0,6,0,0,4,0,0,60885
+"Hypercholesterolaemia",6,0,1,286,0,92,0,0,0,0,60554
+"Oxygen saturation decreased",199,35,72,457,0,46,93,18,3,15,59902
+"Cardiac failure",161,1,35,46,7,93,23,24,15,1,59440
+"Blood pressure fluctuation",118,4,13,350,0,6,3,22,0,1,59123
+"Rectal haemorrhage",12,0,0,287,1,31,166,12,0,3,58477
+"Tinnitus",140,1,103,33,37,168,5,272,0,0,57770
+"Neutrophil count decreased",9,1,3,22,0,150,2,27,0,0,58183
+"Herpes zoster",101,0,13,70,8,4,2,20,0,0,56853
+"Nephrolithiasis",122,0,12,89,8,3,3,1,0,0,56811
+"Hereditary angioedema",6,0,6,1,10,0,1,1,0,0,56218
+"Peripheral venous disease",0,0,4,38,0,17,0,7,0,0,56002
+"Pleural effusion",15,2,12,30,14,25,20,9,0,1,54216
+"Breast cancer stage III",0,0,0,22,0,23,0,0,0,0,53934
+"Fluid retention",6,0,4,589,7,5,0,18,0,351,52870
+"Hypothyroidism",385,0,56,25,15,43,6,18,1,0,53234
+"Blood pressure decreased",146,23,54,66,2,49,33,13,4,7,53369
+"Joint stiffness",7,0,0,210,18,22,0,22,0,2,53363
+"Influenza like illness",235,0,22,300,1,38,10,40,0,1,52948
+"Myelosuppression",0,0,0,12,0,8,0,0,0,1,53331
+"Hot flush",50,0,12,86,15,3,5,47,2,4,52924
+"Wound infection",3,0,6,32,0,16,0,1,0,0,52337
+"Disease recurrence",43,6,65,57,13,31,18,21,2,1,51979
+"Renal injury",11,0,1,2,0,2,0,1,0,0,51853
+"Macular degeneration",9,0,1,903,0,5,101,3,0,0,50822
+"Ear infection",38,1,1,132,0,27,1,5,0,0,51578
+"Drug tolerance decreased",7,0,0,94,0,24,0,0,4,0,51591
+"Cardiogenic shock",24,6,92,18,0,5,30,25,0,0,51475
+"Skin ulcer",6,2,5,95,0,14,1,0,8,0,51452
+"Cataract",26,0,7,115,23,10,1,29,0,0,51251
+"Neuralgia",68,0,27,55,17,48,23,30,0,0,51035
+"Cellulitis",108,0,1,33,0,330,4,3,0,0,50179
+"Gastric disorder",16,0,12,168,0,11,0,2,2,2,49969
+"Suicidal ideation",634,1,410,27,48,403,20,489,7,71,48048
+"Product storage error",9,3,0,13,1,11,6,4,0,0,50063
+"Appendicitis",71,0,4,1,0,1,0,0,0,0,49850
+"Therapy interrupted",14,0,9,8,1,23,35,13,0,0,49557
+"Hypokalaemia",67,8,30,17,0,57,30,39,0,2,49359
+"Joint injury",115,0,8,211,13,4,2,13,3,0,49205
+"Therapeutic response shortened",29,0,9,60,0,2,0,1,0,0,49381
+"Liver function test increased",5,2,4,34,3,12,3,13,0,0,49127
+"Disability",46,0,49,34,1,11,1,5,0,1,49022
+"Suicide attempt",556,2,654,145,39,515,36,394,49,102,46291
+"Treatment noncompliance",95,2,134,32,2,75,12,51,7,2,48264
+"Swelling face",38,1,108,91,1,148,2,79,0,1,48171
+"Respiratory disorder",132,2,47,39,7,110,15,10,0,0,48200
+"Burning sensation",478,0,24,94,3,25,8,11,0,1,47729
+"Pancytopenia",6,2,13,3,0,20,11,41,1,0,47570
+"Coma",382,14,615,94,7,338,76,329,15,8,45738
+"Eye pain",79,0,147,17,0,228,1,248,0,0,46855
+"Mucosal inflammation",0,0,0,16,0,319,1,8,5,0,47075
+"Flushing",44,4,20,177,1,29,8,4,0,0,47049
+"Septic shock",42,8,58,2,0,12,31,10,0,0,47099
+"Colitis",13,0,3,245,0,2,170,17,0,0,46370
+"Feeling hot",56,0,30,109,0,37,1,22,0,1,46515
+"Foot deformity",10,0,5,109,6,29,0,6,0,0,46232
+"Interstitial lung disease",7,2,10,30,0,11,1,1,0,0,46130
+"Epistaxis",7,0,7,32,10,15,4,23,3,0,46078
+"Eczema",41,0,40,50,19,11,7,35,0,0,45736
+"Ventricular fibrillation",26,16,1,8,0,6,19,22,0,0,45607
+"Device difficult to use",1,1,2,0,0,1,2,0,0,0,45671
+"Taste disorder",12,0,3,15,0,5,0,5,0,1,45437
+"Skin exfoliation",60,1,11,74,3,4,1,17,0,0,45289
+"Depressed mood",164,2,53,172,20,196,17,114,10,21,44683
+"Agitation",333,54,377,215,13,530,90,346,9,73,43344
+"Device issue",9,0,6,4,0,3,7,3,0,0,45289
+"Epilepsy",210,4,78,5,1,44,39,24,13,0,44882
+"Vertigo",114,0,76,72,0,95,1,69,13,0,44816
+"Anaphylactic reaction",73,2,55,287,4,59,89,2,0,0,44541
+"Hypoxia",73,26,102,38,5,261,101,63,6,13,44313
+"Ulcer",1,0,4,249,0,2,24,1,8,0,44679
+"Blindness",77,1,36,44,0,4,0,139,0,0,44321
+"Injection site reaction",15,0,1,7,0,9,0,0,0,0,44439
+"Disturbance in attention",147,2,185,44,47,253,27,181,1,17,43536
+"Completed suicide",593,6,399,886,137,496,28,400,10,139,41203
+"Accidental exposure to product",58,2,23,22,4,23,1,0,1,1,44114
+"Neoplasm progression",3,0,1,5,0,129,0,2,0,1,43915
+"Ear pain",114,1,7,56,0,7,2,1,0,0,43793
+"Bacterial infection",16,0,15,9,11,2,5,12,1,0,43833
+"Respiratory failure",157,34,160,20,1,128,123,31,0,0,43068
+"Unevaluable event",88,0,54,24,3,22,4,17,0,1,43204
+"Mental disorder",214,1,133,33,41,191,10,93,8,56,41929
+"Hepatic cirrhosis",5,0,6,88,0,87,0,9,0,0,42464
+"Rash erythematous",41,0,14,648,0,28,11,0,0,369,41295
+"Deep vein thrombosis",21,1,12,31,1,29,43,7,0,1,41991
+"Sleep apnoea syndrome",379,0,77,33,7,19,8,27,0,10,41342
+"Pregnancy",6,0,6,22,0,15,0,4,1,1,41786
+"Adjustment disorder with depressed mood",0,0,0,40,0,22,0,0,0,0,41735
+"Renal disorder",317,0,12,44,0,6,2,10,1,0,41315
+"Skin cancer",30,1,2,1,2,2,0,4,0,0,41559
+"Exostosis",5,0,0,87,0,80,0,9,0,0,41222
+"Acne",31,0,10,15,0,11,0,4,0,16,41227
+"Device malfunction",289,2,98,0,0,0,10,0,0,0,40791
+"Angioedema",19,1,52,136,11,56,13,31,0,1,40458
+"Basal cell carcinoma",3,0,0,83,0,4,0,0,8,0,40155
+"Bone pain",22,0,60,49,0,74,3,17,0,2,39631
+"Flatulence",47,0,18,36,21,10,24,32,1,0,39381
+"Immunodeficiency",11,0,6,641,0,5,0,1,0,361,38523
+"Red blood cell count decreased",14,0,1,161,10,16,0,11,1,0,39266
+"Dislocation of vertebra",0,0,0,39,0,26,0,0,0,0,39337
+"Injection site haemorrhage",38,0,1,5,0,1,0,0,0,0,39277
+"Blood uric acid increased",1,0,3,125,8,0,0,2,0,0,38861
+"Blood phosphorus increased",3,0,17,0,0,0,0,18,0,0,38516
+"Multiple fractures",3,0,1,1,1,8,0,0,0,0,38386
+"Myasthenia gravis",0,1,0,6,0,8,3,0,0,0,38306
+"Drug eruption",12,2,1,84,0,9,10,10,9,0,38170
+"Cardiac arrest",152,120,176,204,39,179,169,38,5,28,37139
+"Plasma cell myeloma",1,0,1,5,0,3,0,2,0,0,38139
+"Bone erosion",0,0,0,85,0,19,0,0,0,0,37740
+"Dry eye",47,0,7,153,0,45,4,37,0,2,37534
+"Diplopia",124,0,26,27,0,17,3,138,0,0,37438
+"Rheumatoid nodule",4,0,0,89,0,0,0,0,8,0,37647
+"Hypercalcaemia",2,0,5,90,0,0,4,3,9,17,37552
+"Osteonecrosis",2,0,2,0,4,1,0,12,0,0,37418
+"Limb discomfort",44,0,11,33,0,65,14,17,1,2,37241
+"Bronchiectasis",210,0,185,13,0,24,2,1,0,0,36488
+"Drug withdrawal syndrome neonatal",20,14,57,15,2,32,16,26,13,0,36710
+"Injection site erythema",19,1,2,36,1,5,1,3,0,1,36797
+"Cystitis",28,0,15,83,4,17,0,7,0,5,36697
+"End stage renal disease",0,0,0,1,0,0,0,3,0,0,36617
+"Intentional overdose",528,2,712,285,20,501,60,479,63,49,33873
+"Body temperature increased",149,2,14,98,5,81,9,10,3,0,36163
+"Dyskinesia",136,2,140,26,1,194,41,146,6,2,35787
+"Product quality issue",91,0,20,6,2,76,16,15,0,8,36047
+"Thyroid cancer",20,0,1,1,0,0,0,0,0,0,36253
+"Bradycardia",149,253,162,52,105,307,78,55,1,30,34639
+"Withdrawal syndrome",297,70,160,31,1,239,65,166,6,42,34732
+"Gastrointestinal carcinoma",5,0,0,0,0,0,0,0,0,0,35589
+"Respiratory tract infection",114,1,94,20,0,8,0,4,0,1,35186
+"Laryngitis",1,0,0,89,0,25,0,11,0,0,35041
+"Tooth loss",9,0,3,11,0,3,0,19,0,0,34796
+"Joint dislocation",6,0,1,88,0,23,3,20,0,0,34694
+"Haemoptysis",11,0,1,0,0,30,1,1,1,0,34679
+"Hypoacusis",156,0,3,13,1,1,2,0,0,0,34441
+"Pancreatitis",12,2,2,17,4,40,6,29,0,0,34419
+"Dysgeusia",31,0,8,19,1,28,1,9,0,0,34300
+"White blood cell count increased",14,0,27,191,0,50,0,12,0,0,33952
+"Hepatotoxicity",110,2,319,122,1,51,2,1,0,1,33453
+"Coeliac disease",12,0,0,509,0,10,0,10,0,324,33165
+"Multiple sclerosis relapse",51,0,22,28,104,118,0,3,0,24,33641
+"Throat irritation",13,0,10,370,0,14,5,18,0,0,33477
+"Body temperature decreased",25,1,1,54,5,2,0,17,0,0,33625
+"Speech disorder",218,1,193,80,11,292,16,140,2,2,32753
+"Injection site bruising",29,0,2,19,0,54,1,1,0,1,33384
+"Product prescribing error",116,1,37,162,23,409,7,51,7,13,32661
+"Hypophosphataemia",1,0,0,3,0,0,1,0,0,0,33459
+"Nodule",2,0,0,18,0,0,4,2,0,0,33396
+"Psychotic disorder",447,2,475,130,50,564,15,176,2,58,31412
+"Hepatitis",13,0,5,19,4,18,2,10,0,0,33141
+"Iron deficiency",2,0,5,27,5,15,1,5,0,6,32697
+"Vasculitis",5,0,14,82,0,0,0,1,0,0,32606
+"Sputum discoloured",92,0,0,2,1,12,21,2,20,0,32539
+"Ocular hyperaemia",30,0,5,54,0,6,0,0,1,0,32517
+"Lymphadenopathy",13,0,86,31,0,32,23,17,1,0,32283
+"Schizophrenia",158,0,542,4,0,611,0,93,6,19,30880
+"Nightmare",115,1,101,22,10,160,0,177,2,8,31685
+"Procedural pain",105,1,5,333,0,0,75,0,1,0,31756
+"Lethargy",79,4,28,72,5,95,14,42,0,12,31857
+"Eosinophilia",156,0,30,15,0,135,71,14,0,0,31485
+"Impaired work ability",47,0,40,9,15,52,1,15,0,0,31553
+"C-reactive protein",0,0,0,29,0,0,0,2,0,0,31639
+"Blood test abnormal",327,0,13,125,0,4,2,2,0,0,31189
+"Skin lesion",37,3,29,15,1,21,22,3,0,0,31524
+"Intestinal obstruction",12,0,58,1,0,20,0,14,0,0,31535
+"Haematuria",107,1,4,6,14,3,15,135,0,0,31105
+"Breast cancer stage II",0,0,0,19,0,0,0,0,0,0,31161
+"Cardiac failure congestive",25,0,9,4,0,3,0,11,20,0,31092
+"Lupus vulgaris",0,0,0,84,0,23,0,0,0,0,30868
+"Bone loss",0,0,0,40,0,0,0,0,0,0,30854
+"Limb injury",138,1,83,31,14,137,2,84,20,0,30202
+"Irritability",385,7,80,25,0,68,10,91,5,70,29944
+"Musculoskeletal disorder",5,0,1,107,0,1,1,2,2,1,30433
+"Lymphocyte count decreased",18,0,13,40,0,416,0,9,0,0,29934
+"Drug resistance",88,0,38,4,1,69,45,54,12,1,30117
+"Lupus-like syndrome",0,0,0,86,1,17,0,0,0,0,30282
+"Multiple sclerosis",73,2,36,199,18,9,1,31,0,0,29802
+"Movement disorder",247,1,32,28,152,157,14,64,1,41,29333
+"Eye pruritus",2,0,2,14,0,11,0,9,0,0,29929
+"Cardio-respiratory arrest",190,21,191,203,38,83,72,198,0,85,28872
+"X-ray abnormal",1,0,0,30,0,19,0,0,0,0,29638
+"Pollakiuria",191,0,26,14,116,131,8,44,1,24,29115
+"Skeletal injury",1,0,0,0,0,0,0,0,0,0,29669
+"Electrocardiogram QT prolonged",131,17,130,87,6,98,57,129,15,18,28309
+"Premature baby",29,17,105,25,0,58,78,74,1,3,28583
+"Panniculitis",9,0,0,82,0,0,0,0,8,0,28864
+"SARS-CoV-2 test positive",4,0,4,38,0,257,1,0,0,0,28415
+"Injection site swelling",3,0,0,19,1,5,0,3,0,0,28631
+"Dysuria",118,0,17,18,1,72,8,29,3,0,28373
+"Gastrointestinal haemorrhage",10,0,12,11,0,23,44,12,0,10,28416
+"Hyperglycaemia",15,3,7,13,0,24,3,21,1,0,28417
+"Pulmonary oedema",49,7,106,49,27,26,18,48,48,21,28062
+"Chronic sinusitis",20,0,0,344,0,2,100,9,0,0,27827
+"Skin discolouration",66,1,96,28,7,164,1,80,4,5,27834
+"Poor venous access",1,1,1,49,0,1,0,0,0,0,28227
+"Blood parathyroid hormone decreased",0,0,0,83,0,0,0,0,8,0,28152
+"Viral infection",22,0,52,14,0,16,0,7,0,0,28101
+"Transient ischaemic attack",9,0,12,4,0,29,1,5,20,0,28123
+"Blepharospasm",1,0,0,5,0,1,0,9,0,0,27939
+"Skin disorder",52,0,4,12,1,8,7,0,0,2,27831
+"Skin necrosis",2,0,1,83,0,0,1,0,8,0,27798
+"Nervousness",218,1,33,83,4,118,0,23,4,9,27320
+"Eye irritation",14,0,0,41,0,23,0,2,0,0,27647
+"COVID-19 pneumonia",11,0,13,67,5,3,27,7,0,0,27568
+"Therapy partial responder",53,16,20,12,7,67,16,14,5,4,27359
+"Nail disorder",2,0,4,3,0,0,0,0,0,0,27542
+"Developmental delay",37,0,41,1,0,6,1,2,1,0,27459
+"Fungal infection",14,1,12,24,1,4,4,1,0,1,27130
+"Pneumonia aspiration",138,11,166,7,2,268,32,57,17,24,26356
+"Tenosynovitis",0,0,0,86,4,0,0,4,8,0,26969
+"Photophobia",29,0,16,17,0,11,1,122,0,0,26768
+"Paraesthesia oral",18,0,4,366,0,26,109,9,1,0,26222
+"Muscle spasticity",33,0,65,78,107,183,2,3,0,24,26239
+"Tendonitis",2,0,2,83,0,8,0,1,8,0,26594
+"Hypoglycaemia",141,4,94,39,5,32,9,36,8,0,26303
+"Hyperphosphataemia",0,0,15,0,0,0,15,0,0,0,26582
+"Toxic epidermal necrolysis",66,0,118,14,0,439,122,6,12,1,25797
+"Arrhythmia",62,4,56,46,9,71,79,50,3,10,25975
+"Red blood cell sedimentation rate abnormal",4,0,0,1,0,2,0,0,0,0,26350
+"Product availability issue",47,0,17,4,10,28,26,39,1,0,26167
+"Surgery",13,0,15,7,2,6,2,9,0,5,26171
+"Blood pressure diastolic decreased",35,0,3,223,0,5,0,0,0,0,25946
+"Restlessness",156,5,228,61,9,344,18,185,6,58,25093
+"Hepatic function abnormal",10,4,38,5,0,17,12,11,1,0,26028
+"Device leakage",1,1,4,5,0,2,0,0,0,0,26052
+"Swollen tongue",34,0,121,43,2,146,2,75,1,1,25625
+"Anti-cyclic citrullinated peptide antibody",0,0,0,122,0,0,0,0,0,0,25872
+"Diverticulitis",11,1,5,42,30,9,11,24,0,0,25710
+"Oral candidiasis",16,0,3,240,0,1,169,9,0,0,25334
+"Adrenal insufficiency",4,0,0,153,0,8,4,5,2,0,25580
+"Coronary artery disease",2,0,21,5,10,5,12,5,21,0,25384
+"Head discomfort",16,0,7,20,0,23,2,141,0,0,25248
+"Mouth ulceration",7,0,20,92,0,1,1,3,1,0,25236
+"Dysarthria",278,0,183,106,119,315,8,84,3,71,24176
+"Presyncope",17,0,5,32,1,23,4,156,0,0,24998
+"Lip swelling",10,0,9,60,2,14,21,10,0,1,25106
+"Multiple drug therapy",9,0,158,3,4,10,0,16,0,0,24779
+"Drug tolerance",41,1,23,83,0,38,5,2,2,13,24740
+"Pain in jaw",14,0,9,17,0,7,1,1,0,0,24872
+"Pneumonitis",5,0,13,0,0,0,2,8,0,0,24860
+"Uveitis",6,0,1,16,0,1,0,7,0,0,24808
+"Aggression",186,1,214,34,47,211,40,146,13,87,23810
+"Hypocalcaemia",0,1,1,6,0,5,3,2,0,0,24763
+"Extrapyramidal disorder",206,1,118,27,0,612,0,77,15,2,23639
+"Learning disability",13,0,19,1,6,4,2,1,0,0,24593
+"Anhedonia",26,0,4,2,0,12,0,16,0,0,24554
+"Impaired quality of life",20,0,3,1,0,36,1,22,0,0,24482
+"Product dose omission in error",16,0,2,29,0,8,1,2,0,4,24455
+"Pulmonary mass",26,1,100,16,0,7,0,13,0,0,24299
+"Pain of skin",1,0,2,16,0,0,0,4,0,0,24391
+"Laboratory test abnormal",10,0,2,14,0,23,2,3,0,0,24325
+"Cytopenia",0,0,0,0,0,0,2,1,0,0,24363
+"Uterine cancer",0,0,0,1,0,0,0,0,0,0,24275
+"Altered state of consciousness",232,2,270,7,5,104,34,211,26,13,23318
+"Granuloma skin",0,0,0,62,0,0,0,0,8,0,24114
+"Walking aid user",6,0,0,23,0,18,0,3,0,3,24120
+"Food allergy",11,0,1,673,1,3,0,4,1,360,23069
+"Secretion discharge",103,0,19,4,0,41,0,0,6,4,23942
+"Tubulointerstitial nephritis",0,0,7,1,0,2,0,16,0,0,24091
+"Eating disorder",67,0,34,81,0,58,5,34,1,0,23735
+"Eye disorder",33,0,15,20,0,28,2,11,0,5,23858
+"Urinary retention",122,3,155,75,17,196,4,148,21,3,23137
+"Wrong technique in device usage process",0,0,0,2,0,2,0,0,0,0,23759
+"Drug level decreased",4,0,0,4,0,4,1,0,0,0,23749
+"Conjunctivitis",12,0,39,22,0,29,3,10,6,0,23609
+"Needle issue",3,0,0,4,0,54,0,17,0,0,23588
+"Staphylococcal infection",7,0,4,21,0,5,1,0,1,0,23555
+"Hepatic steatosis",36,0,65,20,2,1,4,16,10,1,23411
+"Osteopenia",4,0,7,45,26,2,1,31,0,0,23428
+"Muscle twitching",38,0,29,32,9,33,8,52,0,1,23297
+"Ejection fraction decreased",5,2,19,2,0,3,14,0,0,0,23410
+"Candida infection",7,0,66,27,0,6,1,4,0,0,23325
+"Angina pectoris",23,3,4,84,26,8,2,25,0,0,23250
+"Retinitis",0,0,0,74,0,15,0,0,0,0,23324
+"Hepatic cytolysis",39,1,86,0,0,12,68,37,0,0,23128
+"Drug effective for unapproved indication",17,0,6,507,0,16,1,14,2,0,22764
+"Skin burning sensation",46,0,7,14,2,8,0,8,0,0,23032
+"Lacrimation increased",8,0,10,15,0,3,0,11,0,0,23033
+"Heart rate irregular",27,1,5,9,1,31,3,24,0,0,22950
+"Rash maculo-papular",8,0,7,25,0,6,102,8,1,0,22821
+"Hyperkalaemia",9,4,42,27,0,27,17,19,0,5,22707
+"Injection site pruritus",0,0,1,30,1,5,0,0,2,0,22800
+"Drug reaction with eosinophilia and systemic symptoms",45,0,73,11,0,19,129,44,3,0,22462
+"Rales",106,0,0,9,0,0,2,2,0,0,22392
+"Transaminases increased",10,0,14,5,5,8,18,16,1,0,22384
+"Disorientation",91,2,185,39,8,296,11,170,9,18,21630
+"Weight fluctuation",12,0,1,41,0,2,5,1,0,0,22388
+"Poor quality sleep",34,0,5,31,1,27,1,33,0,2,22214
+"Gastroenteritis viral",13,0,0,8,0,1,1,0,0,0,22272
+"Injection site mass",4,0,0,8,0,56,4,0,0,0,22214
+"Metabolic acidosis",26,4,51,81,3,111,125,9,2,1,21762
+"Localised infection",21,0,11,13,2,16,0,0,0,0,22085
+"Device dislocation",290,0,8,6,0,2,0,4,0,0,21827
+"Drug level below therapeutic",22,0,45,15,0,12,7,7,0,0,21892
+"Breath sounds abnormal",0,0,11,2,0,3,4,7,0,0,21956
+"Rhinitis allergic",438,0,186,4,0,32,0,0,0,1,21301
+"Haematemesis",6,0,4,8,0,9,39,164,1,1,21710
+"Emotional disorder",56,0,101,16,2,166,9,92,0,4,21448
+"Sneezing",17,0,9,89,11,2,5,12,0,0,21613
+"Hallucination, auditory",223,1,34,39,2,400,3,59,3,33,20958
+"Blood potassium decreased",10,0,2,10,0,8,3,10,0,0,21669
+"Blood glucose decreased",71,0,3,132,0,62,0,2,0,0,21317
+"Clostridium difficile infection",3,1,11,24,0,26,5,1,0,0,21389
+"Dysstasia",125,0,11,8,0,24,0,20,0,0,21182
+"Osteomyelitis",34,0,11,69,11,0,0,12,2,0,21217
+"Middle insomnia",185,0,2,16,17,93,0,15,1,2,20996
+"Cholelithiasis",124,0,345,29,0,3,4,11,0,0,20722
+"Renal function test abnormal",0,0,119,0,0,0,0,0,0,0,21075
+"Cytokine release syndrome",0,1,2,6,0,3,9,1,0,0,21166
+"Seasonal allergy",13,0,2,31,0,10,0,2,0,0,21032
+"Panic attack",326,0,60,32,10,104,11,68,0,15,20460
+"Sinus disorder",181,0,4,68,0,65,2,4,0,0,20694
+"Femur fracture",24,0,5,56,11,6,0,17,7,3,20873
+"Abscess",8,0,14,8,0,36,21,0,0,0,20869
+"Feeling cold",121,0,14,76,8,45,2,24,4,1,20648
+"Extra dose administered",10,0,4,24,1,11,6,12,1,3,20847
+"Gynaecomastia",10,0,6,2,1,7,0,25,0,1,20794
+"Tongue disorder",3,0,0,82,1,1,0,2,10,0,20725
+"Cytomegalovirus infection",1,0,0,0,0,0,0,0,1,0,20703
+"Abortion spontaneous",21,0,7,2,0,81,2,8,0,0,20428
+"Aphasia",55,3,102,79,2,192,8,72,1,0,19968
+"Respiratory tract congestion",32,0,0,84,0,11,0,0,0,0,20347
+"Head injury",71,0,24,5,0,70,8,9,2,0,20260
+"Haemorrhoids",12,0,3,19,1,0,8,0,0,0,20372
+"Urinary incontinence",121,0,50,50,7,102,25,25,2,0,20020
+"Haematocrit decreased",3,0,23,11,0,3,0,26,0,0,20310
+"Enthesopathy",3,0,0,82,0,0,0,0,8,3,20236
+"Accidental overdose",76,4,201,115,2,43,9,55,7,17,19744
+"Therapeutic response unexpected",81,0,6,147,1,22,0,21,0,1,19974
+"Carpal tunnel syndrome",323,0,3,9,0,5,0,0,0,0,19891
+"Subarachnoid haemorrhage",2,0,5,17,0,0,3,6,0,0,20135
+"Skin irritation",7,0,5,16,7,2,0,7,0,0,20085
+"Aphthous ulcer",34,0,0,3,0,1,1,2,0,0,19898
+"Pallor",51,1,95,17,2,150,19,77,1,0,19480
+"Back injury",5,0,2,5,0,9,1,0,0,0,19823
+"Ventricular tachycardia",10,9,33,28,1,22,7,21,0,0,19688
+"Intervertebral disc protrusion",42,0,13,4,37,29,2,33,0,0,19534
+"Blood count abnormal",27,0,21,1,28,58,1,19,0,0,19426
+"Anal fissure",1,0,1,1,0,0,0,0,0,0,19571
+"Ovarian cancer",4,0,0,1,0,0,0,5,0,0,19521
+"Oral herpes",20,1,2,30,4,0,0,5,0,2,19444
+"Feeding disorder",93,5,16,20,9,9,5,33,0,1,19305
+"Neutrophil count increased",8,0,0,173,0,342,1,5,0,0,18896
+"Premature delivery",20,13,63,5,0,39,41,54,0,7,19170
+"Glycosylated haemoglobin increased",98,0,0,161,6,7,0,4,0,0,19124
+"Quality of life decreased",22,6,12,15,6,20,7,22,0,0,19290
+"Fistula",0,0,0,19,0,0,0,3,0,0,19353
+"Product administration error",41,7,40,53,1,27,6,35,0,2,19158
+"Intentional dose omission",29,0,4,4,0,10,2,4,0,0,19312
+"Lymphoma",21,0,0,3,0,1,0,1,0,0,19313
+"Dementia",29,0,7,23,0,59,2,10,0,0,19191
+"Tooth disorder",4,0,15,65,0,0,0,1,0,0,19221
+"Proteinuria",1,0,0,9,20,1,0,1,0,0,19196
+"Crying",66,8,15,38,0,56,6,30,0,0,18966
+"Haemarthrosis",0,0,0,1,0,0,0,5,0,0,19147
+"Dermatitis atopic",24,0,3,5,0,1,0,2,0,0,19019
+"Rib fracture",13,0,9,48,21,22,0,22,0,1,18857
+"Blood bilirubin increased",114,1,319,8,0,7,1,8,0,0,18428
+"Tenderness",2,0,45,34,2,80,0,0,0,2,18690
+"Hypophagia",19,0,14,13,0,47,1,52,2,20,18664
+"Hypersomnia",54,8,17,51,4,32,20,50,2,1,18526
+"Ocular discomfort",13,0,25,2,0,2,1,160,0,0,18541
+"Rash macular",14,0,0,16,0,1,5,0,0,0,18706
+"Adverse reaction",2,1,17,17,0,25,0,14,0,0,18609
+"Onychomycosis",2,0,1,6,0,2,0,0,0,0,18644
+"Mental impairment",152,0,63,14,31,188,13,41,1,14,18088
+"Fear of injection",0,0,0,92,0,2,0,0,3,0,18368
+"Abnormal behaviour",205,4,66,31,7,114,10,42,1,19,17964
+"Flank pain",1,0,0,9,0,22,1,12,0,0,18401
+"Haematoma",38,0,50,4,21,46,8,31,0,0,18154
+"Gastritis",8,0,8,36,15,14,2,32,0,0,18210
+"Eye swelling",16,0,7,85,1,14,0,2,0,0,18144
+"Therapy cessation",10,2,4,1,0,16,1,21,5,0,18098
+"Rhabdomyolysis",118,14,157,42,2,146,61,60,19,0,17498
+"Female genital tract fistula",7,0,0,256,0,0,170,3,0,0,17557
+"Generalised oedema",1,0,3,2,1,0,3,138,0,0,17699
+"Nephropathy",106,0,8,68,0,0,0,0,0,0,17642
+"Maternal exposure timing unspecified",5,0,0,6,0,8,0,2,0,0,17739
+"Lymphopenia",7,0,8,6,0,5,0,10,0,0,17719
+"Anosmia",11,0,2,0,0,3,0,10,0,0,17684
+"Deafness",20,0,8,16,0,4,0,2,1,0,17658
+"Rash papular",12,0,7,35,0,3,1,7,0,0,17617
+"Product dispensing error",25,1,14,15,3,17,9,12,0,3,17519
+"Pneumothorax",18,0,11,2,0,26,25,0,0,0,17495
+"Temperature regulation disorder",12,0,11,568,0,1,0,13,0,349,16619
+"Metastases to bone",2,0,1,9,0,0,2,0,1,3,17544
+"Sickle cell anaemia with crisis",0,0,0,7,0,1,0,0,0,0,17509
+"Platelet count increased",1,0,10,0,0,0,0,8,0,0,17487
+"Infusion site pain",0,0,5,36,0,0,0,1,0,0,17414
+"Gout",9,0,3,7,0,0,0,0,0,0,17429
+"Onychomadesis",28,0,2,3,0,0,0,0,0,0,17397
+"Nervous system disorder",57,3,27,4,2,16,54,26,1,27,17183
+"Vaginal discharge",17,0,2,244,0,0,157,0,0,0,16961
+"Respiratory symptom",0,0,0,1,0,0,4,0,0,0,17357
+"Alanine aminotransferase abnormal",1,0,0,80,0,1,0,1,6,0,17252
+"Kidney infection",3,0,6,10,0,5,1,3,0,0,17308
+"Rhinitis",10,0,2,37,0,4,2,0,0,0,17059
+"Metastases to liver",6,0,0,0,0,17,4,6,0,3,17060
+"Affective disorder",32,0,20,2,16,402,2,25,0,1,16583
+"Deformity",3,0,0,6,1,0,3,0,0,0,17053
+"Obstructive sleep apnoea syndrome",134,0,1,2,1,7,1,11,0,1,16908
+"Glaucoma",19,0,4,4,1,7,0,0,20,0,16966
+"Hernia",9,0,2,21,0,1,0,11,0,0,16921
+"Foot fracture",9,0,3,16,0,1,0,0,0,1,16927
+"Hip fracture",50,0,15,7,0,18,0,20,0,3,16826
+"Palmar-plantar erythrodysaesthesia syndrome",1,0,1,2,0,2,0,1,0,0,16919
+"Tooth infection",2,0,2,3,10,1,0,4,0,0,16811
+"Atelectasis",22,6,4,11,0,169,10,6,0,0,16600
+"Pericardial effusion",22,0,23,16,0,8,4,6,1,0,16734
+"Leukocytosis",13,1,15,16,7,232,78,9,1,2,16419
+"Ankylosing spondylitis",26,0,0,17,1,23,0,2,1,1,16715
+"Facial pain",3,0,0,9,0,12,0,3,0,0,16654
+"Proctitis",7,0,0,233,0,0,160,0,0,0,16242
+"Drug level increased",57,0,41,16,2,32,5,12,11,10,16431
+"Joint effusion",3,0,0,26,15,2,0,19,0,0,16497
+"Dystonia",130,2,148,15,7,179,27,144,8,25,15866
+"Skin laceration",208,0,30,17,1,27,2,29,0,0,16187
+"Mood swings",61,0,122,21,5,148,3,176,0,41,15922
+"Hepatic failure",18,0,21,42,0,8,33,5,0,1,16353
+"Eosinophil count increased",14,0,99,5,0,3,2,5,0,0,16296
+"Oral pain",9,0,0,4,0,11,0,0,0,0,16361
+"Device breakage",2,0,8,25,0,0,0,0,0,1,16331
+"Nasal polyps",160,0,185,5,0,0,2,0,0,0,16013
+"Musculoskeletal discomfort",72,0,1,43,12,56,0,15,0,3,16142
+"Lactic acidosis",18,1,17,36,0,77,26,62,14,0,16086
+"Dermatitis",8,0,9,13,0,9,0,1,0,1,16288
+"Arteriosclerosis",8,0,12,9,1,4,2,7,1,0,16241
+"Radiculopathy",9,0,0,239,5,2,165,5,0,0,15851
+"Foetal death",2,0,19,392,0,31,19,17,0,232,15552
+"Blood pressure diastolic increased",8,0,0,57,0,5,0,0,0,0,16175
+"Pharyngitis",7,0,1,72,0,0,0,0,0,4,16052
+"Hypomagnesaemia",4,0,5,2,0,11,4,1,0,0,15966
+"Expired product administered",10,0,7,38,1,10,7,0,0,12,15842
+"Liver function test abnormal",3,2,3,5,0,1,7,7,0,16,15676
+"Blood lactate dehydrogenase increased",141,0,60,0,0,5,51,7,6,1,15447
+"Increased appetite",13,0,9,1,1,10,4,38,0,0,15635
+"Gamma-glutamyltransferase increased",14,0,45,1,0,6,9,21,4,0,15435
+"Blood alkaline phosphatase increased",8,0,17,126,0,5,3,28,0,0,15306
+"Encephalopathy",91,9,64,45,20,63,47,50,1,3,15056
+"Respiratory distress",122,5,57,15,0,43,18,20,1,0,15144
+"Blood iron decreased",145,0,1,17,28,1,2,26,0,0,15203
+"Product prescribing issue",34,0,14,5,1,25,12,27,1,3,15285
+"Serotonin syndrome",259,3,233,39,1,396,100,347,3,5,14019
+"Product complaint",8,0,0,22,0,7,23,0,0,0,15343
+"Restless legs syndrome",71,12,108,84,0,144,0,148,1,22,14796
+"Sinus congestion",39,0,0,72,0,22,0,0,0,0,15212
+"Blood pressure abnormal",5,0,6,21,0,27,1,8,0,5,15224
+"Anger",75,0,75,32,1,70,6,182,3,48,14770
+"Circumstance or information capable of leading to medication error",5,3,2,3,0,11,3,13,0,1,15193
+"Drug level above therapeutic",23,0,19,9,1,6,2,0,4,4,15146
+"Red blood cell sedimentation rate",0,0,0,75,0,0,0,0,6,0,15129
+"Seronegative arthritis",0,0,0,26,0,0,0,0,0,0,15145
+"Incorrect product administration duration",83,1,12,15,0,28,0,0,1,1,15004
+"Polyneuropathy",1,0,7,0,8,2,17,16,0,0,14937
+"Blood creatine phosphokinase increased",186,7,88,6,1,115,89,33,9,25,14377
+"Agranulocytosis",31,0,34,1,2,19,1,42,0,0,14791
+"Neurological symptom",7,0,10,0,0,12,3,2,0,1,14827
+"Lymphoedema",2,2,2,10,16,19,0,21,0,0,14774
+"Paranoia",236,2,25,17,0,39,2,88,0,44,14389
+"Product label confusion",2,8,2,7,0,4,9,0,0,0,14799
+"Hallucination, visual",180,5,59,517,0,45,5,120,5,34,13843
+"Gastroenteritis",2,0,4,15,6,1,0,11,0,0,14756
+"Upper limb fracture",9,0,5,22,0,1,0,21,0,2,14715
+"Fear",56,1,60,15,11,90,24,26,0,9,14460
+"Abdominal pain lower",0,0,4,24,4,1,4,7,0,0,14690
+"Device delivery system issue",0,1,0,0,0,0,0,0,0,0,14728
+"Hypokinesia",149,0,85,15,9,63,28,29,0,12,14256
+"Spinal pain",6,0,52,2,5,22,0,7,0,1,14489
+"Arteriosclerosis coronary artery",52,0,50,8,0,13,0,7,3,28,14339
+"Device adhesion issue",0,0,1,0,0,0,0,0,0,0,14497
+"Cerebral haemorrhage",12,4,12,24,0,14,14,15,0,0,14380
+"Toothache",7,0,8,30,0,18,0,1,0,7,14397
+"Pulmonary congestion",37,0,82,25,2,24,3,18,24,6,14230
+"Brain neoplasm malignant",0,0,0,0,0,1,3,0,0,0,14416
+"Parkinson's disease",22,0,11,0,0,24,0,38,0,0,14310
+"Full blood count decreased",0,0,0,0,0,54,0,0,0,0,14269
+"Granuloma",0,0,1,90,0,0,1,0,2,1,14212
+"Photosensitivity reaction",28,0,12,22,9,16,1,15,0,3,14162
+"Rheumatoid lung",0,0,0,58,0,0,0,0,2,0,14197
+"Musculoskeletal chest pain",11,0,5,19,0,6,0,6,0,0,14206
+"Forced expiratory volume decreased",58,0,0,0,0,4,0,0,0,0,14184
+"Ageusia",10,0,2,0,0,0,0,14,0,0,14178
+"Skin plaque",41,0,10,1,8,15,0,0,0,0,14081
+"Respiratory depression",77,23,216,202,86,577,86,81,6,45,12755
+"Finger deformity",2,0,0,67,0,0,0,0,0,0,14015
+"Feeling jittery",39,0,91,80,0,167,2,90,0,0,13580
+"Vaginal flatulence",7,0,0,237,0,0,159,0,0,0,13621
+"Micturition urgency",10,1,3,5,105,122,0,36,0,26,13642
+"Oropharyngeal discomfort",9,0,13,12,0,26,6,4,0,9,13847
+"Nocturia",3,0,4,2,125,120,0,30,0,25,13585
+"Polyarthritis",0,0,0,6,3,0,0,0,0,3,13875
+"Syringe issue",7,2,2,0,0,1,0,0,0,0,13870
+"Product substitution issue",172,0,16,11,2,156,36,35,0,6,13401
+"Polycystic ovaries",378,0,12,0,0,2,0,2,0,0,13383
+"Device related infection",3,1,1,0,11,2,1,15,0,0,13723
+"Thyroid disorder",30,0,2,14,0,89,0,6,0,0,13586
+"Colon cancer",2,0,1,2,0,4,0,0,0,0,13690
+"Erectile dysfunction",121,0,31,4,106,134,0,31,2,24,13194
+"Benign prostatic hyperplasia",14,0,0,0,0,4,2,9,0,1,13608
+"Prostatic disorder",2,0,1,1,0,4,0,0,0,0,13622
+"Pulmonary hypertension",2,2,7,0,0,10,3,1,0,0,13594
+"Incorrect dose administered by device",8,1,4,0,0,0,0,0,0,0,13572
+"Product preparation error",6,2,10,3,1,2,4,0,0,0,13532
+"Pulmonary toxicity",0,0,0,109,0,0,0,0,0,0,13435
+"Acute myeloid leukaemia",5,0,0,0,0,1,0,0,0,0,13522
+"Hyperthyroidism",12,0,20,4,6,7,10,0,2,0,13433
+"Acute respiratory failure",9,2,14,8,5,23,26,14,0,1,13334
+"Eructation",10,0,2,12,0,4,0,1,2,0,13315
+"Anaphylactic shock",1,10,15,41,0,0,52,0,2,0,13196
+"Device occlusion",0,2,0,0,0,8,0,6,0,0,13284
+"Cholestasis",0,1,32,4,0,3,41,98,0,0,13082
+"Pulmonary alveolar haemorrhage",0,0,0,0,0,10,2,0,0,0,13239
+"Acute myocardial infarction",1,4,3,13,0,3,7,2,20,0,13132
+"Nerve injury",19,0,8,2,2,41,0,14,0,0,13057
+"Muscle rigidity",129,2,165,14,0,188,7,116,3,17,12489
+"Upper-airway cough syndrome",16,0,96,0,0,15,0,0,0,0,12991
+"Akathisia",105,0,76,32,0,72,11,122,7,1,12676
+"Urinary tract disorder",8,0,5,1,0,3,1,135,0,0,12928
+"Decreased immune responsiveness",1,0,1,80,0,0,0,1,0,37,12939
+"Tension headache",2,0,2,2,14,5,0,28,0,0,13000
+"Throat tightness",25,0,20,87,0,23,4,2,0,11,12873
+"Insurance issue",1,0,4,2,0,3,2,0,0,0,13012
+"Tooth injury",16,1,3,1,0,8,0,16,0,0,12922
+"Bacteraemia",3,1,1,11,0,4,6,11,0,0,12925
+"Delusion",147,0,86,17,1,70,9,76,6,21,12513
+"Bone disorder",3,0,0,26,0,56,1,1,0,0,12844
+"Faecal calprotectin increased",0,0,0,1,0,0,0,0,0,0,12910
+"Blood urine present",98,0,2,75,0,2,3,0,0,0,12689
+"Hiatus hernia",10,0,4,9,0,0,0,7,0,0,12830
+"Cardiac murmur",65,0,186,5,6,10,0,0,0,0,12582
+"Synovial cyst",0,0,0,9,8,0,0,0,0,0,12771
+"Ligament sprain",12,0,2,16,10,1,1,14,0,0,12673
+"Shock",99,4,53,47,0,56,50,18,2,2,12273
+"Pathogen resistance",1,0,0,0,0,0,0,0,0,0,12601
+"Gastrointestinal pain",2,0,1,13,0,8,0,0,0,6,12531
+"Haemorrhagic stroke",0,0,0,1,3,0,0,145,0,0,12367
+"Aphonia",2,0,10,8,0,0,0,0,0,0,12486
+"Faeces discoloured",3,0,0,8,0,2,5,4,0,0,12471
+"Acute respiratory distress syndrome",22,5,14,15,6,69,35,66,0,2,12176
+"Neurotoxicity",17,2,12,1,13,13,27,9,0,2,12275
+"Cytomegalovirus infection reactivation",0,0,2,0,0,0,0,0,0,0,12368
+"Multiple allergies",0,0,95,9,0,15,0,0,0,0,12191
+"Cervix carcinoma",0,0,1,3,0,0,0,0,0,0,12304
+"Fracture",8,0,1,5,6,10,0,13,2,0,12251
+"Vitamin D deficiency",15,0,10,123,18,13,1,28,0,21,12047
+"Mood altered",115,0,25,15,5,49,3,22,2,10,12024
+"Hemiparesis",19,1,8,67,0,1,4,7,0,0,12145
+"Aspiration",20,9,60,10,0,18,16,33,5,18,12034
+"Dust allergy",5,0,0,0,0,0,0,0,0,0,12215
+"Motor dysfunction",22,6,9,64,0,5,8,3,4,1,12079
+"Leukaemia",2,0,0,0,0,19,0,0,0,0,12175
+"Diffuse large B-cell lymphoma",0,0,0,1,0,0,0,0,0,0,12179
+"Pancreatitis acute",6,0,19,21,0,3,0,50,0,0,12038
+"Sleep terror",10,0,0,3,0,4,0,19,0,0,12091
+"Decreased activity",11,0,5,3,2,1,0,1,0,0,12088
+"Renal cyst",3,0,51,6,0,5,0,1,0,0,12041
+"Spondylitis",5,0,0,16,0,0,0,2,0,0,12079
+"Low birth weight baby",13,5,25,0,1,6,26,43,1,1,11953
+"Blood sodium decreased",34,0,98,5,0,140,1,84,0,0,11659
+"Pruritus genital",3,0,8,0,0,8,0,0,0,0,11969
+"Plantar fasciitis",0,0,0,1,0,1,0,0,0,0,11965
+"Sexual dysfunction",89,0,4,0,0,13,0,44,0,0,11742
+"Lung opacity",1,0,0,2,0,12,2,0,0,0,11842
+"Clostridium difficile colitis",2,0,0,2,0,1,12,4,0,0,11788
+"Blood potassium increased",141,0,79,0,0,15,43,3,0,0,11519
+"Ankle fracture",4,0,4,20,0,5,1,1,0,0,11740
+"Pneumocystis jirovecii pneumonia",0,0,0,0,0,0,0,0,1,0,11772
+"Atrial tachycardia",0,0,0,0,17,0,0,20,0,0,11731
+"Mycotic allergy",0,0,0,1,0,0,0,0,0,0,11763
+"Cardiomyopathy",20,2,49,10,0,7,2,1,0,20,11639
+"Product adhesion issue",0,0,1,0,0,0,0,0,0,0,11715
+"Device use issue",3,0,0,2,0,15,0,1,0,0,11693
+"Gastric ulcer",5,0,3,4,0,2,2,0,0,1,11656
+"Spinal fracture",2,0,7,10,0,11,1,5,0,0,11629
+"Unresponsive to stimuli",170,14,65,77,5,109,53,17,1,22,11096
+"Carotid artery occlusion",0,2,0,2,0,1,1,0,0,0,11595
+"Skin fissures",9,0,1,4,1,0,0,0,0,0,11581
+"Product administration interrupted",11,0,20,3,0,1,1,4,0,1,11552
+"Small intestinal obstruction",22,0,5,2,0,1,0,3,0,0,11531
+"Accident",10,0,12,21,0,0,0,1,0,1,11486
+"Retching",18,0,7,30,0,15,1,0,0,3,11446
+"Generalised tonic-clonic seizure",72,2,44,13,17,59,87,20,0,2,11187
+"Sensation of foreign body",8,0,7,4,18,2,0,23,0,0,11439
+"Blood pressure diastolic abnormal",28,0,0,129,0,0,0,0,0,0,11337
+"Splenomegaly",2,0,82,4,8,5,1,3,0,0,11378
+"Choking",36,0,33,32,0,15,0,12,20,1,11333
+"Scar",18,0,5,24,28,9,3,28,0,1,11220
+"Neuritis",1,0,0,0,0,0,0,0,0,0,11305
+"Normochromic normocytic anaemia",0,0,13,0,0,1,0,1,0,0,11259
+"Ejection fraction",313,0,1,0,0,0,0,3,0,0,10950
+"Death neonatal",1,0,0,175,0,3,5,0,0,0,11059
+"Diabetes mellitus inadequate control",0,0,4,33,0,11,0,18,0,0,11165
+"Mass",18,0,2,12,1,56,4,1,0,0,11066
+"Vaginal haemorrhage",12,0,24,9,0,1,2,1,0,0,11097
+"Sinus tachycardia",104,1,100,48,0,190,24,62,0,16,10597
+"Bronchopulmonary aspergillosis",0,0,1,0,0,0,2,4,2,0,11115
+"Melaena",6,0,0,2,0,7,1,7,0,0,11080
+"Glomerular filtration rate decreased",7,0,4,2,0,8,0,5,0,2,11065
+"Emphysema",2,0,16,1,0,9,2,13,0,3,11043
+"Sensitisation",325,0,0,0,0,57,0,0,0,0,10698
+"Skin haemorrhage",4,0,0,69,1,10,0,2,0,0,10949
+"Brain injury",36,1,41,15,0,62,8,2,3,9,10858
+"Euphoric mood",18,0,36,20,0,16,4,9,0,20,10902
+"Hyperlipidaemia",10,0,2,3,22,4,0,26,0,2,10949
+"Neutropenic sepsis",0,0,0,0,0,0,0,7,0,0,10985
+"Faeces soft",71,0,0,6,0,0,2,0,0,0,10907
+"Drug effect less than expected",32,2,4,31,1,22,3,1,0,0,10848
+"Cyst",5,0,3,15,18,2,0,23,0,0,10874
+"Product administered at inappropriate site",4,0,1,2,1,0,0,0,0,1,10898
+"Drug specific antibody present",0,0,0,7,0,0,1,0,0,0,10892
+"Joint destruction",1,0,1,19,0,0,0,0,1,0,10844
+"Respiratory rate increased",9,0,14,52,0,3,7,3,0,0,10765
+"Tooth abscess",2,0,0,38,0,1,0,4,0,0,10807
+"Infusion site extravasation",0,0,1,8,0,0,4,0,0,0,10839
+"Skin infection",6,0,11,6,0,1,1,1,0,0,10810
+"Dyslipidaemia",6,0,17,0,0,8,0,0,0,0,10800
+"Crepitations",3,0,1,29,6,2,0,7,20,0,10729
+"Dermatitis allergic",2,0,0,10,4,5,9,27,0,0,10706
+"Conjunctivitis allergic",6,0,0,1,0,1,0,0,0,0,10727
+"Steroid dependence",0,0,0,0,0,0,0,3,0,0,10726
+"Mite allergy",0,0,0,0,0,11,0,0,0,0,10686
+"Coordination abnormal",42,0,12,209,0,22,3,47,0,8,10330
+"Skin reaction",18,0,1,3,0,2,0,3,1,0,10643
+"Mental status changes",112,13,38,62,1,51,16,27,1,0,10330
+"Blood urea increased",18,0,15,131,0,6,0,8,1,1,10450
+"Haemophagocytic lymphohistiocytosis",10,0,0,0,0,0,38,1,0,0,10564
+"Blood calcium increased",0,0,1,1,1,0,0,1,0,0,10593
+"Myelodysplastic syndrome",0,0,0,0,0,3,0,0,0,0,10575
+"Thirst",21,0,11,8,1,6,2,23,0,0,10501
+"Post-traumatic stress disorder",62,0,33,154,0,26,8,5,0,1,10284
+"Spinal fusion surgery",4,0,2,14,0,2,0,0,1,1,10546
+"Immune system disorder",6,0,0,16,10,0,0,0,0,0,10537
+"Incontinence",51,0,92,28,1,143,0,75,0,0,10176
+"Device use error",0,1,0,0,0,1,1,0,0,0,10562
+"Drug use disorder",95,0,77,12,0,23,3,10,1,3,10312
+"Thinking abnormal",136,0,35,22,9,57,12,40,0,16,10198
+"On and off phenomenon",13,0,12,0,0,6,0,19,0,0,10442
+"Appetite disorder",8,0,8,2,0,9,0,6,0,0,10456
+"Cerebral infarction",4,11,2,3,0,15,1,2,1,18,10400
+"Back disorder",3,0,2,6,0,0,1,0,0,0,10409
+"Respiratory arrest",60,7,108,93,17,97,64,22,2,21,9918
+"Foot operation",0,0,0,2,0,0,2,0,0,0,10400
+"Pharyngeal swelling",20,0,3,32,0,13,1,8,0,0,10317
+"Blood glucose abnormal",0,0,2,1,8,1,0,2,0,1,10364
+"Pneumonia bacterial",4,5,5,1,0,8,3,1,0,0,10351
+"Myocarditis",13,0,51,37,0,26,1,25,1,19,10189
+"Amaurosis fugax",0,0,0,0,0,0,0,133,0,0,10182
+"Metastases to lung",0,0,0,0,0,0,0,13,0,0,10294
+"Wheelchair user",7,0,0,2,0,4,1,0,0,0,10284
+"Chromaturia",2,0,1,2,0,0,1,2,0,0,10281
+"Wrist fracture",58,0,4,5,0,7,1,2,0,0,10211
+"Multiple-drug resistance",169,2,59,0,0,103,191,8,35,0,9705
+"Brain natriuretic peptide increased",0,0,0,0,0,0,2,0,0,0,10263
+"Gingival pain",0,0,0,1,0,1,0,3,0,0,10257
+"Personality change",30,0,31,1,9,29,2,13,2,10,10119
+"Breast cancer metastatic",2,0,2,9,0,0,1,0,0,0,10226
+"Parosmia",25,0,85,5,0,132,0,68,0,0,9898
+"Delusion of grandeur",0,0,0,0,0,345,0,0,0,12,9852
+"Ulcer haemorrhage",16,0,4,8,0,5,0,1,0,0,10173
+"Sensitivity to weather change",53,0,0,1,1,5,0,3,0,0,10139
+"Respiration abnormal",16,0,4,7,0,20,3,18,0,0,10131
+"Injection site rash",0,0,1,6,0,0,0,1,0,0,10187
+"Metabolic disorder",7,0,9,2,0,5,2,1,6,0,10163
+"Blood magnesium decreased",1,0,20,11,0,30,20,12,0,0,10092
+"Congenital anomaly",4,0,20,12,0,0,7,0,0,0,10115
+"Stevens-Johnson syndrome",34,0,32,4,0,24,22,2,5,7,10027
+"Troponin increased",138,0,82,1,0,12,66,29,0,22,9795
+"Jaundice",6,0,4,3,0,57,0,20,1,0,10050
+"Tooth fracture",5,0,0,44,0,4,1,26,0,0,9999
+"Anal incontinence",7,0,18,18,0,33,10,6,0,0,9959
+"Red cell distribution width increased",0,0,23,46,0,2,0,26,0,0,9943
+"Anal abscess",0,0,0,3,0,0,0,3,0,0,10031
+"Second primary malignancy",0,0,0,0,0,1,0,1,0,0,10026
+"Infusion site erythema",1,2,4,32,0,0,0,0,0,0,9976
+"Frustration tolerance decreased",2,0,1,4,0,64,0,6,0,11,9917
+"Hypoaesthesia oral",135,0,86,27,2,147,12,76,0,0,9499
+"Spinal stenosis",4,0,3,1,1,30,0,1,0,0,9907
+"Sensory loss",44,0,87,73,0,131,1,76,0,1,9534
+"Apathy",15,0,6,6,0,23,0,25,0,0,9871
+"Bronchopulmonary aspergillosis allergic",96,0,0,2,0,19,2,0,0,0,9823
+"Intentional self-injury",124,1,133,21,0,276,6,130,3,3,9244
+"Cushingoid",0,0,0,12,1,0,0,0,0,0,9868
+"Muscle tightness",95,0,20,11,7,35,1,9,0,0,9661
+"Bone cancer",2,0,0,0,0,0,0,0,0,0,9837
+"Abnormal faeces",5,0,0,5,0,2,20,4,0,0,9801
+"Post procedural complication",18,0,0,3,0,1,4,0,0,0,9804
+"Tachypnoea",8,10,18,25,5,32,19,22,0,1,9659
+"Pulmonary thrombosis",0,0,1,7,0,1,0,0,0,0,9789
+"Blood pressure systolic abnormal",37,0,0,152,0,0,0,0,0,0,9593
+"Transplant rejection",0,0,0,18,0,0,2,0,0,16,9711
+"Acute hepatic failure",16,0,70,40,8,11,36,10,0,0,9533
+"Obsessive-compulsive disorder",19,0,9,9,0,23,0,30,0,31,9584
+"Gastrointestinal infection",7,0,0,4,23,1,2,27,0,0,9593
+"Metastases to central nervous system",1,0,0,0,0,1,0,1,1,0,9604
+"Peripheral coldness",8,0,21,10,0,57,8,3,0,0,9485
+"Pharyngitis streptococcal",1,0,1,5,0,1,0,0,0,0,9579
+"Iron deficiency anaemia",1,0,1,6,0,1,3,3,0,0,9523
+"Pseudomonas infection",44,0,4,12,0,5,16,0,0,0,9448
+"Ataxia",83,0,65,6,132,200,11,7,0,24,8991
+"Pulmonary pain",0,0,0,7,0,5,4,0,0,0,9499
+"Creatinine renal clearance increased",0,0,48,1,0,0,0,0,0,0,9457
+"Paralysis",38,2,140,19,0,242,7,99,1,1,8940
+"Disturbance in social behaviour",6,0,11,0,0,11,0,14,0,0,9403
+"Temperature intolerance",16,0,6,189,0,0,0,2,0,0,9211
+"Tumour lysis syndrome",0,0,0,1,0,5,0,0,0,0,9415
+"Bowel movement irregularity",0,0,6,3,0,1,0,0,0,0,9409
+"Product use complaint",9,0,4,5,1,7,2,5,0,1,9383
+"Mitral valve incompetence",7,0,16,1,2,1,0,6,0,0,9374
+"Circulatory collapse",12,3,31,9,3,11,37,76,12,0,9209
+"Neoplasm",13,0,6,0,0,4,2,9,0,0,9358
+"Juvenile idiopathic arthritis",0,0,0,88,0,223,0,0,0,0,9080
+"Eye injury",2,0,0,2,0,3,0,0,0,0,9336
+"Hyperaesthesia",16,23,31,0,0,1,2,0,0,1,9254
+"Injury associated with device",0,0,2,1,0,0,0,0,0,0,9269
+"Anal fistula",14,0,1,7,0,0,0,3,0,0,9229
+"Injection site urticaria",0,0,0,9,0,0,0,1,0,0,9217
+"Visual acuity reduced",0,0,3,3,0,4,2,8,0,0,9203
+"Eye infection",7,0,1,20,0,0,0,7,0,0,9163
+"Infusion site swelling",0,2,4,19,0,0,0,0,0,0,9167
+"Inflammatory marker increased",0,0,6,2,0,5,0,0,0,0,9163
+"Gastrointestinal toxicity",0,0,0,109,0,0,0,0,0,1,9065
+"Therapeutic product effect variable",23,1,3,13,0,5,0,8,0,3,9113
+"Proctalgia",0,0,5,16,0,56,20,3,0,0,9066
+"Electrolyte imbalance",2,11,19,23,0,10,9,3,0,0,9080
+"Poisoning deliberate",18,0,301,6,4,92,3,137,1,1,8590
+"Dizziness postural",123,0,7,0,0,9,1,7,0,0,9000
+"Coagulopathy",17,0,3,9,1,10,66,4,0,0,8994
+"Obstruction",61,0,0,2,0,67,0,1,0,0,8969
+"Intervertebral disc degeneration",4,0,12,0,0,2,0,0,0,1,9062
+"Rhinalgia",0,0,0,0,0,251,0,1,0,0,8816
+"Hydronephrosis",12,0,1,2,2,6,0,0,0,0,9008
+"Ejection fraction abnormal",189,0,6,0,0,9,0,7,0,0,8815
+"Defaecation urgency",0,0,0,3,0,0,0,0,0,0,9011
+"Hypogammaglobulinaemia",1,1,2,2,0,3,2,0,0,0,8999
+"Thrombotic microangiopathy",0,0,0,0,0,0,26,3,0,0,8966
+"Spinal osteoarthritis",3,0,2,2,22,0,0,27,0,3,8927
+"Immune thrombocytopenia",1,0,12,13,0,4,0,7,0,0,8944
+"Scratch",22,0,4,26,2,10,0,3,0,0,8909
+"Urosepsis",0,0,2,5,0,3,1,3,0,0,8933
+"Other AEs",22508,1731,16674,17204,2928,22093,8098,11925,631,2541,9212373

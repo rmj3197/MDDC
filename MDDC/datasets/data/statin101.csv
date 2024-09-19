@@ -1,0 +1,103 @@
+"","Atorvastatin","Fluvastatin","Rosuvastatin","Simvastatin","Other"
+"Fatigue",1064,123,975,948,762995
+"Pain",951,10,3365,794,749928
+"Nausea",1108,106,489,1450,592594
+"Arthralgia",1050,138,801,761,540673
+"Headache",1005,170,754,841,526625
+"Dyspnoea",1104,140,2653,1043,521640
+"Diarrhoea",797,150,355,874,521428
+"Rash",344,6,392,315,453502
+"Vomiting",531,122,415,1270,423623
+"Pyrexia",875,129,404,821,412169
+"Malaise",1062,136,397,1020,405048
+"Drug intolerance",317,25,460,286,376643
+"Abdominal discomfort",185,17,272,861,349383
+"Dizziness",689,184,571,736,346115
+"Hypertension",373,31,518,143,319799
+"Pruritus",693,139,275,783,316828
+"Drug hypersensitivity",252,6,474,502,300275
+"Swelling",92,38,182,308,295844
+"COVID-19",176,27,208,709,284360
+"Asthenia",806,151,573,283,273296
+"Abdominal pain",620,118,297,891,269975
+"Cough",736,129,1015,227,250149
+"Pain in extremity",680,10,532,182,245801
+"Decreased appetite",426,136,139,216,245923
+"Fall",799,132,2771,472,237011
+"Abdominal pain upper",434,126,384,965,232871
+"Insomnia",521,152,251,665,217400
+"Overdose",182,30,1147,184,206985
+"Hypoaesthesia",184,7,223,86,184222
+"Back pain",451,6,185,586,172328
+"Somnolence",333,197,207,688,158606
+"Gait disturbance",426,18,255,98,156167
+"Sleep disorder",167,11,117,276,147083
+"Blood pressure increased",521,141,294,186,145841
+"Incorrect dose administered",102,36,65,8,141165
+"Muscle spasms",628,10,688,179,133436
+"Liver injury",199,6,76,22,126229
+"C-reactive protein increased",112,35,80,79,125246
+"Abdominal distension",204,6,75,591,122361
+"Muscular weakness",653,10,305,646,112933
+"Sepsis",171,137,18,630,109763
+"Gastrooesophageal reflux disease",107,35,586,28,109348
+"Oedema peripheral",203,36,341,72,108233
+"Acute kidney injury",500,11,443,149,104499
+"Myalgia",1591,221,1164,595,90505
+"Drug interaction",549,94,1509,371,81247
+"Liver disorder",75,17,23,16,83215
+"Chest discomfort",304,8,328,15,78275
+"Chronic kidney disease",164,54,292,24,78388
+"Haemoglobin decreased",229,37,139,54,72439
+"Chills",320,132,33,167,71551
+"Thrombosis",41,51,37,317,71459
+"Tachycardia",248,131,76,666,70244
+"Ascites",152,133,18,631,64633
+"Atrial fibrillation",257,59,450,74,64546
+"Alanine aminotransferase increased",124,7,183,40,58308
+"Vision blurred",257,116,23,151,57573
+"Haemorrhage",90,21,43,26,57661
+"Drug-induced liver injury",279,12,145,54,54142
+"Syncope",430,132,184,183,52832
+"Myocardial infarction",526,39,232,568,51118
+"Renal impairment",124,28,128,67,49832
+"Tinnitus",299,135,212,617,48407
+"Cerebrovascular accident",291,34,254,91,45370
+"Swelling face",63,21,28,8,38769
+"Eye pain",183,131,8,142,37858
+"Blindness",156,132,7,724,36447
+"Septic shock",45,26,12,42,34129
+"Disturbance in attention",93,16,45,501,33562
+"Vertigo",92,34,168,15,33230
+"Diplopia",231,136,30,620,31944
+"Red blood cell count decreased",59,33,30,45,30598
+"Bone pain",34,6,25,9,28736
+"Bradycardia",174,34,168,33,25201
+"Haematuria",235,133,30,166,23560
+"Cardio-respiratory arrest",169,134,17,153,22911
+"Presyncope",179,166,85,157,20746
+"Head discomfort",163,135,19,151,20580
+"Altered state of consciousness",180,136,8,156,19524
+"Hepatic function abnormal",111,19,78,9,17674
+"Hepatic steatosis",76,36,24,18,17611
+"Haemorrhoids",42,35,32,28,15588
+"Metabolic acidosis",89,33,77,32,15414
+"Generalised oedema",146,135,13,148,15104
+"Glycosylated haemoglobin increased",80,39,57,7,13441
+"Rhabdomyolysis",590,7,581,170,11672
+"Urinary tract disorder",165,131,7,141,11513
+"Haemorrhagic stroke",148,135,15,154,11125
+"Blood creatine phosphokinase increased",320,9,306,133,10462
+"Pulmonary hypertension",20,21,18,13,9616
+"Pancreatitis acute",95,17,35,50,8385
+"Renal cyst",27,18,18,21,7650
+"Activated partial thromboplastin time prolonged",15,38,11,42,6705
+"Vitamin D decreased",26,23,31,21,6576
+"Spinal osteoarthritis",35,34,9,25,6402
+"Swelling of eyelid",30,21,25,21,5152
+"Left ventricular hypertrophy",10,33,96,8,4417
+"International normalised ratio increased",33,6,13,12,3792
+"Atrioventricular block",18,17,9,7,3205
+"Autoimmune hepatitis",110,6,13,12,2341
+"Pancreatitis necrotising",23,16,7,15,725
+"Other AEs",68014,2257,98339,56231,42613381
