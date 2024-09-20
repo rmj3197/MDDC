@@ -439,7 +439,7 @@ def report_drug_AE_pairs(
     )
 
     mat_expected_count = np.round(getEijMat(contin_table), 4)
-    mat_std_res = np.round(getZijMat(contin_table)[0], 4)
+    mat_std_res = np.round(getZijMat(contin_table, False)[0], 4)
 
     pairs = []
 
@@ -465,7 +465,7 @@ def report_drug_AE_pairs(
                 along_rows,
                 "Observed Count",
                 "Expected Count",
-                "Standard Pearson Residual",
+                "Std Pearson Resid",
             ],
         )
         return pairs_df
@@ -481,7 +481,7 @@ def report_drug_AE_pairs(
                 along_rows,
                 "Observed Count",
                 "Expected Count",
-                "Standard Pearson Residual",
+                "Std Pearson Resid",
             ]
         )
 

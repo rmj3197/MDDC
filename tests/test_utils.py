@@ -203,7 +203,7 @@ class TestReportDrugAEPairs(unittest.TestCase):
             "AE",
             "Observed Count",
             "Expected Count",
-            "Standard Pearson Residual",
+            "Std Pearson Resid",
         ]
         self.assertEqual(result.columns.tolist(), expected_columns)
         self.assertEqual(len(result), 4)
@@ -218,7 +218,7 @@ class TestReportDrugAEPairs(unittest.TestCase):
             "AE",
             "Observed Count",
             "Expected Count",
-            "Standard Pearson Residual",
+            "Std Pearson Resid",
         ]
         self.assertEqual(result.columns.tolist(), expected_columns)
         self.assertEqual(len(result), 4)
@@ -235,7 +235,7 @@ class TestReportDrugAEPairs(unittest.TestCase):
             "AE",
             "Observed Count",
             "Expected Count",
-            "Standard Pearson Residual",
+            "Std Pearson Resid",
         ]
         self.assertEqual(result.columns.tolist(), expected_columns)
         self.assertEqual(len(result), 0)
