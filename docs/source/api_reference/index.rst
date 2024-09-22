@@ -28,6 +28,7 @@ Utility Functions
    :toctree: generated/
 
     generate_contin_table_with_clustered_AE
+    generate_contin_table_with_clustered_AE_with_tol
     report_drug_AE_pairs
     plot_heatmap
 
