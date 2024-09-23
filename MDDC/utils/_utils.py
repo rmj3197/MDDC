@@ -675,8 +675,9 @@ def generate_contin_table_with_clustered_AE_with_tol(
     n_jobs=-1,
 ):
     """
-    Generate simulated contingency tables with optional incorporation of adverse event correlation within clusters.
-
+    Generate simulated contingency tables with the option of incorporating
+    adverse event correlation within clusters and tolerance for total report count.
+    
     This function generates multiple simulated contingency tables based on the input row and column marginals,
     or `contin_table`, signal strength matrix (`signal_mat`), and cluster indices (`cluster_idx`).
     It incorporates adverse event correlation within each cluster according to the specified correlation
