@@ -166,7 +166,7 @@ def load_statin101_data(desc=False, as_dataframe=True):
     Examples
     --------
     >>> from MDDC.datasets import load_statin101_data
-    >>> statin49 = load_statin101_data()
+    >>> statin101 = load_statin101_data()
     """
 
     if desc:
@@ -226,7 +226,7 @@ def load_betablocker500_data(desc=False, as_dataframe=True):
     Examples
     --------
     >>> from MDDC.datasets import load_betablocker500_data
-    >>> statin49 = load_betablocker500_data()
+    >>> betablocker = load_betablocker500_data()
     """
 
     if desc:
@@ -285,7 +285,7 @@ def load_sedative1000_data(desc=False, as_dataframe=True):
     Examples
     --------
     >>> from MDDC.datasets import load_sedative1000_data
-    >>> statin49 = load_sedative1000_data()
+    >>> sedative = load_sedative1000_data()
     """
 
     if desc:
