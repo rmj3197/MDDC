@@ -203,6 +203,55 @@ def generate_contin_table_with_clustered_AE(
         raise TypeError(
             "contin_table must be a pandas DataFrame, numpy array, or None."
         )
+        
+    if contin_table is not None:
+        if pd.DataFrame(contin_table).empty:
+            raise ValueError("The `contin_table` cannot be empty")
+
+        if isinstance(contin_table, pd.DataFrame):
+            is_dataframe = True
+            row_names = list(contin_table.index)
+            column_names = list(contin_table.columns)
+            contin_table = contin_table.values
+
+        e_ij_mat = getEijMat(contin_table)
+        n_i_dot = e_ij_mat.sum(axis=1, keepdims=True)
+        n_dot_j = e_ij_mat.sum(axis=0, keepdims=True)
+        n_dot_dot = e_ij_mat.sum()
+
+        n_rows = contin_table.shape[0]
+        n_columns = contin_table.shape[1]
+
+    elif (
+        (row_marginal is not None)
+        and (column_marginal is not None)
+        and (contin_table is None)
+    ):
+        if np.sum(row_marginal) == np.sum(column_marginal):
+            pass
+        else:
+            raise AssertionError(
+                "The sum of row and column \
+                marginals do not match."
+            )
+        n_i_dot = np.array(row_marginal).reshape(-1, 1)
+        n_dot_j = np.array(column_marginal).reshape(1, -1)
+        n_dot_dot = np.sum(n_i_dot)
+        e_ij_mat = (n_i_dot @ n_dot_j) / n_dot_dot
+
+        n_rows = len(row_marginal)
+        n_columns = len(column_marginal)
+    else:
+        if ((row_marginal is None) or (column_marginal is None)) and (
+            contin_table is None
+        ):
+            raise ValueError(
+                "`row_marginal` or `column_marginal` cannot be \
+                None when `contin_table` is also None."
+            )
+
+    p_i_dot = n_i_dot / n_dot_dot
+    p_dot_j = n_dot_j / n_dot_dot
 
     if isinstance(rho, (int, float)):
         if not (0 <= rho <= 1):
@@ -273,62 +322,11 @@ def generate_contin_table_with_clustered_AE(
                     "rho cannot be estimated if no `contin_table` is provided."
                 )
     else:
-        raise ValueError(
+        raise TypeError(
             "The rho must be None, a float or a numpy matrix of dimension I x I matrix where \
                             I is the number of rows in the contingency table."
         )
 
-    if contin_table is not None:
-        if not isinstance(contin_table, (pd.DataFrame, np.ndarray)):
-            raise TypeError("contin_table must be a pandas DataFrame or numpy array.")
-
-        if pd.DataFrame(contin_table).empty:
-            raise ValueError("The `contin_table` cannot be empty")
-
-        if isinstance(contin_table, pd.DataFrame):
-            is_dataframe = True
-            row_names = list(contin_table.index)
-            column_names = list(contin_table.columns)
-            contin_table = contin_table.values
-            
-        e_ij_mat = getEijMat(contin_table)
-        n_i_dot = e_ij_mat.sum(axis=1, keepdims=True)
-        n_dot_j = e_ij_mat.sum(axis=0, keepdims=True)
-        n_dot_dot = e_ij_mat.sum()
-
-        n_rows = contin_table.shape[0]
-        n_columns = contin_table.shape[1]
-
-    elif (
-        (row_marginal is not None)
-        and (column_marginal is not None)
-        and (contin_table is None)
-    ):
-        if np.sum(row_marginal) == np.sum(column_marginal):
-            pass
-        else:
-            raise AssertionError(
-                "The sum of row and column \
-                marginals do not match."
-            )
-        n_i_dot = np.array(row_marginal).reshape(-1, 1)
-        n_dot_j = np.array(column_marginal).reshape(1, -1)
-        n_dot_dot = np.sum(n_i_dot)
-        e_ij_mat = (n_i_dot @ n_dot_j) / n_dot_dot
-
-        n_rows = len(row_marginal)
-        n_columns = len(column_marginal)
-    else:
-        if ((row_marginal is None) or (column_marginal is None)) and (
-            contin_table is None
-        ):
-            raise ValueError(
-                "`row_marginal` or `column_marginal` cannot be \
-                None when `contin_table` is also None."
-            )
-
-    p_i_dot = n_i_dot / n_dot_dot
-    p_dot_j = n_dot_j / n_dot_dot
 
     simulated_samples = Parallel(n_jobs=n_jobs)(
         delayed(_generate_simulated_zijmat)(
@@ -677,7 +675,7 @@ def generate_contin_table_with_clustered_AE_with_tol(
     """
     Generate simulated contingency tables with the option of incorporating
     adverse event correlation within clusters and tolerance for total report count.
-    
+
     This function generates multiple simulated contingency tables based on the input row and column marginals,
     or `contin_table`, signal strength matrix (`signal_mat`), and cluster indices (`cluster_idx`).
     It incorporates adverse event correlation within each cluster according to the specified correlation
@@ -695,13 +693,13 @@ def generate_contin_table_with_clustered_AE_with_tol(
         A data matrix of the same dimensions as `contin_table`, where entries represent signal strength. Values
         should be greater than or equal to 1, where 1 indicates no signal and values greater than 1 indicate the
         presence of a signal.
-    
+
     tol : float, optional, default=0.1
         Tolerance for the total report count, expressed in terms of the Relative Total Difference (RTD), defined as:
-        
+
         .. math::
             RTD = \\frac{|n^{orig}_{\\cdot \\cdot} - n^{sim}_{\\cdot \\cdot}|}{n^{orig}_{\\cdot \\cdot}} \\times 100
-        
+
         This indicates the difference in the total number of reports in the simulated datasets and the original input
         total number of reports. A lower value of tolerance will mean that the generated tables will have total number
         of reports closer to the actual supplied value.
@@ -731,7 +729,7 @@ def generate_contin_table_with_clustered_AE_with_tol(
         is used at all, which is useful for debugging. For more
         information on joblib `n_jobs` refer to -
         https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
-        
+
     Returns:
     --------
     simulated tables : list of numpy.ndarray
@@ -739,13 +737,61 @@ def generate_contin_table_with_clustered_AE_with_tol(
     """
     is_dataframe = False
 
-
     if not (
         isinstance(contin_table, (pd.DataFrame, np.ndarray)) or contin_table is None
     ):
         raise TypeError(
             "contin_table must be a pandas DataFrame, numpy array, or None."
         )
+
+    if contin_table is not None:
+        if pd.DataFrame(contin_table).empty:
+            raise ValueError("The `contin_table` cannot be empty")
+
+        if isinstance(contin_table, pd.DataFrame):
+            is_dataframe = True
+            row_names = list(contin_table.index)
+            column_names = list(contin_table.columns)
+            contin_table = contin_table.values
+
+        e_ij_mat = getEijMat(contin_table)
+        n_i_dot = e_ij_mat.sum(axis=1, keepdims=True)
+        n_dot_j = e_ij_mat.sum(axis=0, keepdims=True)
+        n_dot_dot = e_ij_mat.sum()
+
+        n_rows = contin_table.shape[0]
+        n_columns = contin_table.shape[1]
+
+    elif (
+        (row_marginal is not None)
+        and (column_marginal is not None)
+        and (contin_table is None)
+    ):
+        if np.sum(row_marginal) == np.sum(column_marginal):
+            pass
+        else:
+            raise AssertionError(
+                "The sum of row and column \
+                marginals do not match."
+            )
+        n_i_dot = np.array(row_marginal).reshape(-1, 1)
+        n_dot_j = np.array(column_marginal).reshape(1, -1)
+        n_dot_dot = np.sum(n_i_dot)
+        e_ij_mat = (n_i_dot @ n_dot_j) / n_dot_dot
+
+        n_rows = len(row_marginal)
+        n_columns = len(column_marginal)
+    else:
+        if ((row_marginal is None) or (column_marginal is None)) and (
+            contin_table is None
+        ):
+            raise ValueError(
+                "`row_marginal` or `column_marginal` cannot be \
+                None when `contin_table` is also None."
+            )
+
+    p_i_dot = n_i_dot / n_dot_dot
+    p_dot_j = n_dot_j / n_dot_dot
 
     if isinstance(rho, (int, float)):
         if not (0 <= rho <= 1):
@@ -816,62 +862,10 @@ def generate_contin_table_with_clustered_AE_with_tol(
                     "rho cannot be estimated if no `contin_table` is provided."
                 )
     else:
-        raise ValueError(
+        raise TypeError(
             "The rho must be None, a float or a numpy matrix of dimension I x I matrix where \
                             I is the number of rows in the contingency table."
         )
-
-    if contin_table is not None:
-        if not isinstance(contin_table, (pd.DataFrame, np.ndarray)):
-            raise TypeError("contin_table must be a pandas DataFrame or numpy array.")
-
-        if pd.DataFrame(contin_table).empty:
-            raise ValueError("The `contin_table` cannot be empty")
-
-        if isinstance(contin_table, pd.DataFrame):
-            is_dataframe = True
-            row_names = list(contin_table.index)
-            column_names = list(contin_table.columns)
-            contin_table = contin_table.values
-
-        e_ij_mat = getEijMat(contin_table)
-        n_i_dot = e_ij_mat.sum(axis=1, keepdims=True)
-        n_dot_j = e_ij_mat.sum(axis=0, keepdims=True)
-        n_dot_dot = e_ij_mat.sum()
-
-        n_rows = contin_table.shape[0]
-        n_columns = contin_table.shape[1]
-
-    elif (
-        (row_marginal is not None)
-        and (column_marginal is not None)
-        and (contin_table is None)
-    ):
-        if np.sum(row_marginal) == np.sum(column_marginal):
-            pass
-        else:
-            raise AssertionError(
-                "The sum of row and column \
-                marginals do not match."
-            )
-        n_i_dot = np.array(row_marginal).reshape(-1, 1)
-        n_dot_j = np.array(column_marginal).reshape(1, -1)
-        n_dot_dot = np.sum(n_i_dot)
-        e_ij_mat = (n_i_dot @ n_dot_j) / n_dot_dot
-
-        n_rows = len(row_marginal)
-        n_columns = len(column_marginal)
-    else:
-        if ((row_marginal is None) or (column_marginal is None)) and (
-            contin_table is None
-        ):
-            raise ValueError(
-                "`row_marginal` or `column_marginal` cannot be \
-                None when `contin_table` is also None."
-            )
-
-    p_i_dot = n_i_dot / n_dot_dot
-    p_dot_j = n_dot_j / n_dot_dot
 
     simulated_samples = Parallel(n_jobs=n_jobs)(
         delayed(_generate_simulated_zijmat)(
@@ -887,12 +881,12 @@ def generate_contin_table_with_clustered_AE_with_tol(
         )
         for i in range(n)
     )
-    
+
     simulated_table_sums = [sim_table.sum() for sim_table in simulated_samples]
     rtd_values = (
         np.abs(simulated_table_sums - np.sum(n_i_dot)) / np.sum(n_i_dot)
     ) * 100
-    
+
     if np.max(rtd_values) > tol:
         indices = list(np.where(rtd_values > tol)[0])
         num_rejected_samples = len(indices)
@@ -911,16 +905,18 @@ def generate_contin_table_with_clustered_AE_with_tol(
                     1,
                     None,
                 )
-                
+
                 current_rtd = (
                     np.abs(np.sum(n_i_dot) - np.sum(sample_replacement))
                     / np.sum(n_i_dot)
                 ) * 100
-                
+
             new_samples.append(sample_replacement)
-                    
-        accepted_samples = [item for idx, item in enumerate(simulated_samples) if idx not in indices]
-        
+
+        accepted_samples = [
+            item for idx, item in enumerate(simulated_samples) if idx not in indices
+        ]
+
         simulated_samples = accepted_samples + new_samples
 
     if is_dataframe:

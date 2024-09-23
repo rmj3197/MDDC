@@ -102,6 +102,9 @@ def _mddc_boxplot(
                 )
     else:
         if not isinstance(coef, (int, float)):
+            if isinstance(coef, np.ndarray):
+                coef = coef.flatten()
+                
             if len(coef) != 1:
                 raise ValueError(
                     "'coef' must be a numeric value when 'col_specific_cutoff' is False"

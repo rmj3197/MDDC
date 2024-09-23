@@ -1,5 +1,6 @@
 import unittest
 
+import numpy as np
 import pandas as pd
 
 from MDDC.MDDC import mddc
@@ -125,7 +126,7 @@ class MDDCTestCase(unittest.TestCase):
             )
             self.check_mddc_result(result, result_type)
 
-    def test_mddc_with_invalid_parameters(self):
+    def test_montecarlo_with_invalid_parameters(self):
         invalid_params = {
             "data": ([1, 2, 3, 4], "monte_carlo"),
             "method": "invalid_method",
@@ -141,6 +142,26 @@ class MDDCTestCase(unittest.TestCase):
                     mddc(self.data, method=value)
                 else:
                     mddc(self.data, method="monte_carlo", **{param: value})
+
+    def test_boxplot_with_invalid_length_coef(self):
+        coef = [1, 4, 5, 6]
+        with self.assertRaises(ValueError):
+            mddc(self.data, method="boxplot", coef=coef)
+    
+    def test_boxplot_with_invalid_type_coef(self):
+        coef = pd.DataFrame([1, 4, 5])
+        with self.assertRaises(TypeError):
+            mddc(self.data, method="boxplot", coef=coef)
+
+    def test_boxplot_with_invalid_length_coef_numpy(self):
+        coef = np.array([[1, 4, 5, 7]])
+        with self.assertRaises(ValueError):
+            mddc(self.data, method="boxplot", coef=coef)
+    
+    def test_boxplot_with_option_mismatch(self):
+        coef = np.array([[1, 4, 5, 7]])
+        with self.assertRaises(ValueError):
+            mddc(self.data, method="boxplot", coef=coef, col_specific_cutoff = False)
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@ import pandas as pd
 
 from MDDC.utils import (
     generate_contin_table_with_clustered_AE,
+    generate_contin_table_with_clustered_AE_with_tol,
     get_expected_count,
     get_std_pearson_res,
     plot_heatmap,
@@ -172,7 +173,365 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
                     n=5,
                     rho=0.5,
                 )
+    
+    def test_cluster_idx_length_mismatch(self):
+        row_marginal = [60, 60]
+        col_marginal = [60, 60]
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE(
+                row_marginal=row_marginal,
+                column_marginal=col_marginal,
+                signal_mat=self.signal_mat,
+                cluster_idx=[1,3,4],
+                n=5,
+                rho=0.1,
+            )
+    
+    def test_rho_dim_mismatch_marginals(self):
+        row_marginal = [60, 60]
+        col_marginal = [60, 60]
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE(
+                row_marginal=row_marginal,
+                column_marginal=col_marginal,
+                signal_mat=self.signal_mat,
+                cluster_idx=[1,3],
+                n=5,
+                rho=np.array([[0.1, 0.1, 0.1],[0.1, 0.1, 0.1],[0.1, 0.1, 0.1]]),
+            )
+    
+    def test_rho_dim_mismatch_contin_table(self):
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE(
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=self.contin_table_np,
+                signal_mat=self.signal_mat,
+                cluster_idx=[1,3],
+                n=5,
+                rho=np.array([[0.1, 0.1, 0.1],[0.1, 0.1, 0.1],[0.1, 0.1, 0.1]]),
+            )
+    
+    def test_rho_cluster_idx_mismatch(self):
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE(
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=self.contin_table_np,
+                signal_mat=self.signal_mat,
+                cluster_idx=[1,3],
+                n=5,
+                rho=None,
+            )
+            
+    def test_rho_cluster_idx_mismatch_contin_table(self):
+        row_marginal = [60, 60]
+        col_marginal = [60, 60]
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE(
+                row_marginal=row_marginal,
+                column_marginal=col_marginal,
+                signal_mat=self.signal_mat,
+                n=5,
+                rho=None,
+            )
+    
+    def test_rho_type(self):
+        row_marginal = [60, 60]
+        col_marginal = [60, 60]
+        with self.assertRaises(TypeError):
+            generate_contin_table_with_clustered_AE(
+                row_marginal=row_marginal,
+                column_marginal=col_marginal,
+                signal_mat=self.signal_mat,
+                n=5,
+                rho=[1,2],
+            )
+    
+    def test_sum_mismatch(self):
+        row_marginal = [60, 50]
+        col_marginal = [60, 60]
+        with self.assertRaises(AssertionError):
+            generate_contin_table_with_clustered_AE(
+                row_marginal=row_marginal,
+                column_marginal=col_marginal,
+                signal_mat=self.signal_mat,
+                n=5,
+                rho = 0.1,
+                cluster_idx=[1,2]
+            )
 
+    
+    def test_all_none(self):
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE(
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=None,
+                signal_mat=self.signal_mat,
+                n=5,
+                rho = 0.1,
+                cluster_idx=None
+            )
+
+class TestGenerateContinTableWithClusteredAEwithTol(unittest.TestCase):
+    def setUp(self):
+        self.contin_table_df = pd.DataFrame(
+            [[5, 10], [15, 20]], index=["AE1", "AE2"], columns=["Drug1", "Drug2"]
+        )
+        self.contin_table_np = np.array([[5, 10], [15, 20]])
+        self.signal_mat = np.array([[1, 1.5], [1.2, 1]])
+        self.cluster_idx_list = ['0', '1']
+        self.cluster_idx_np = np.array(['0', '1'])
+
+    def test_valid_input_marginals(self):
+        result = generate_contin_table_with_clustered_AE_with_tol(
+            row_marginal=self.contin_table_np.sum(axis=1),
+            column_marginal=self.contin_table_np.sum(axis=0),
+            signal_mat=self.signal_mat,
+            cluster_idx=self.cluster_idx_list,
+            n=5,
+            rho=0.5,
+        )
+        self.assertEqual(len(result), 5)
+        self.assertTrue(all(isinstance(table, np.ndarray) for table in result))
+
+    def test_valid_input_dataframe(self):
+        result = generate_contin_table_with_clustered_AE_with_tol(
+            row_marginal=None,
+            column_marginal=None,
+            contin_table=self.contin_table_df,
+            signal_mat=self.signal_mat,
+            cluster_idx=self.cluster_idx_list,
+            n=5,
+            rho=0.5,
+        )
+        self.assertEqual(len(result), 5)
+        self.assertTrue(all(isinstance(table, pd.DataFrame) for table in result))
+
+    def test_valid_input_dataframe_rho_none_cluster_idx_none(self):
+        result = generate_contin_table_with_clustered_AE_with_tol(
+            row_marginal=None,
+            column_marginal=None,
+            contin_table=self.contin_table_df,
+            signal_mat=self.signal_mat,
+            cluster_idx=None,
+            n=5,
+            rho=None,
+        )
+        self.assertEqual(len(result), 5)
+        self.assertTrue(all(isinstance(table, pd.DataFrame) for table in result))
+
+    def test_valid_input_dataframe_rho_user_supplied_cluster_idx_none(self):
+        rho = np.eye(self.contin_table_df.shape[0])
+        result = generate_contin_table_with_clustered_AE_with_tol(
+            row_marginal=None,
+            column_marginal=None,
+            contin_table=self.contin_table_df,
+            signal_mat=self.signal_mat,
+            cluster_idx=None,
+            n=5,
+            rho=rho,
+        )
+        self.assertEqual(len(result), 5)
+        self.assertTrue(all(isinstance(table, pd.DataFrame) for table in result))
+
+    def test_valid_input_dataframe_rho_None_cluster_idx_supplied(self):
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE_with_tol(
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=self.contin_table_np,
+                signal_mat=self.signal_mat,
+                cluster_idx=None,
+                n=5,
+                rho=0.5,
+            )
+
+    def test_valid_input_numpy(self):
+        result = generate_contin_table_with_clustered_AE_with_tol(
+            row_marginal=None,
+            column_marginal=None,
+            contin_table=self.contin_table_np,
+            signal_mat=self.signal_mat,
+            cluster_idx=self.cluster_idx_np,
+            n=5,
+            rho=0.5
+        )
+        self.assertEqual(len(result), 5)
+        self.assertTrue(all(isinstance(table, np.ndarray) for table in result))
+
+    def test_empty_contin_table(self):
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE_with_tol(
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=np.array([]),
+                signal_mat=self.signal_mat,
+                cluster_idx=self.cluster_idx_list,
+                n=5,
+                rho=0.5,
+            )
+
+    def test_empty_cluster_idx(self):
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE_with_tol(
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=self.contin_table_np,
+                signal_mat=self.signal_mat,
+                cluster_idx=[],
+                n=5,
+                rho=0.5,
+            )
+
+    def test_mismatched_lengths(self):
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE_with_tol(
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=self.contin_table_np,
+                signal_mat=self.signal_mat,
+                cluster_idx=[0],
+                n=5,
+                rho=0.5,
+            )
+
+    def test_invalid_rho(self):
+        for invalid_rho in [-0.5, 1.5]:
+            with self.assertRaises(ValueError):
+                generate_contin_table_with_clustered_AE_with_tol(
+                    row_marginal=None,
+                    column_marginal=None,
+                    contin_table=self.contin_table_np,
+                    signal_mat=self.signal_mat,
+                    cluster_idx=self.cluster_idx_np,
+                    n=5,
+                    rho=invalid_rho,
+                )
+
+    def test_invalid_options(self):
+        for invalid_input in ["string"]:
+            with self.assertRaises(TypeError):
+                generate_contin_table_with_clustered_AE_with_tol(
+                    row_marginal=None,
+                    column_marginal=None,
+                    contin_table=invalid_input,
+                    signal_mat=self.signal_mat,
+                    cluster_idx=self.cluster_idx_np,
+                    n=5,
+                    rho=0.5,
+                )
+            with self.assertRaises(TypeError):
+                generate_contin_table_with_clustered_AE_with_tol(
+                    row_marginal=None,
+                    column_marginal=None,
+                    contin_table=self.contin_table_df,
+                    signal_mat=self.signal_mat,
+                    cluster_idx="cluster_idx_np",
+                    n=5,
+                    rho=0.5,
+                )
+    
+    def test_cluster_idx_length_mismatch(self):
+        row_marginal = [60, 60]
+        col_marginal = [60, 60]
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE_with_tol(
+                row_marginal=row_marginal,
+                column_marginal=col_marginal,
+                signal_mat=self.signal_mat,
+                cluster_idx=[1,3,4],
+                n=5,
+                rho=0.1,
+            )
+    
+    def test_rho_dim_mismatch_marginals(self):
+        row_marginal = [60, 60]
+        col_marginal = [60, 60]
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE_with_tol(
+                row_marginal=row_marginal,
+                column_marginal=col_marginal,
+                signal_mat=self.signal_mat,
+                cluster_idx=[1,3],
+                n=5,
+                rho=np.array([[0.1, 0.1, 0.1],[0.1, 0.1, 0.1],[0.1, 0.1, 0.1]]),
+            )
+    
+    def test_rho_dim_mismatch_contin_table(self):
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE_with_tol(
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=self.contin_table_np,
+                signal_mat=self.signal_mat,
+                cluster_idx=[1,3],
+                n=5,
+                rho=np.array([[0.1, 0.1, 0.1],[0.1, 0.1, 0.1],[0.1, 0.1, 0.1]]),
+            )
+    
+    def test_rho_cluster_idx_mismatch(self):
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE_with_tol(
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=self.contin_table_np,
+                signal_mat=self.signal_mat,
+                cluster_idx=[1,3],
+                n=5,
+                rho=None,
+            )
+            
+    def test_rho_cluster_idx_mismatch_contin_table(self):
+        row_marginal = [60, 60]
+        col_marginal = [60, 60]
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE_with_tol(
+                row_marginal=row_marginal,
+                column_marginal=col_marginal,
+                signal_mat=self.signal_mat,
+                n=5,
+                rho=None,
+            )
+    
+    def test_rho_type(self):
+        row_marginal = [60, 60]
+        col_marginal = [60, 60]
+        with self.assertRaises(TypeError):
+            generate_contin_table_with_clustered_AE_with_tol(
+                row_marginal=row_marginal,
+                column_marginal=col_marginal,
+                signal_mat=self.signal_mat,
+                n=5,
+                rho=[1,2],
+            )
+    
+    def test_sum_mismatch(self):
+        row_marginal = [60, 50]
+        col_marginal = [60, 60]
+        with self.assertRaises(AssertionError):
+            generate_contin_table_with_clustered_AE_with_tol(
+                row_marginal=row_marginal,
+                column_marginal=col_marginal,
+                signal_mat=self.signal_mat,
+                n=5,
+                rho = 0.1,
+                cluster_idx=[1,2]
+            )
+
+    
+    def test_all_none(self):
+        with self.assertRaises(ValueError):
+            generate_contin_table_with_clustered_AE_with_tol(
+                row_marginal=None,
+                column_marginal=None,
+                contin_table=None,
+                signal_mat=self.signal_mat,
+                n=5,
+                rho = 0.1,
+                cluster_idx=None
+            )
 
 class TestReportDrugAEPairs(unittest.TestCase):
     def setUp(self):
