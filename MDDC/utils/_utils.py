@@ -701,8 +701,8 @@ def generate_contin_table_with_clustered_AE_with_tol(
             RTD = \\frac{|n^{orig}_{\\cdot \\cdot} - n^{sim}_{\\cdot \\cdot}|}{n^{orig}_{\\cdot \\cdot}} \\times 100
 
         This indicates the difference in the total number of reports in the simulated datasets and the original input
-        total number of reports. A lower value of tolerance will mean that the generated tables will have total number
-        of reports closer to the actual supplied value.
+        total number of reports. Sufficiently low values of tolerance will return generated tables with total number 
+        of reports equal to the actual supplied value.
 
     contin_table : numpy.ndarray, pandas.DataFrame, default=None
         A data matrix representing an I x J contingency table with row (adverse event) and column (drug) names.

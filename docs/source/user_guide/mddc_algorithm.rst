@@ -7,6 +7,10 @@ The Modified Detecting Deviating Cells (MDDC) algorithm is described as follows:
 
 1. **Standardized Pearson Residual Calculation**
 
+   Let the row marginals of a contingency table be denoted as :math:`n_{i\bullet} = \sum_{j = 1}^{J} n_{ij}`, the column marginals as :math:`n_{\bullet j} = \sum_{i = 1}^{I} n_{ij}`, 
+   and the total number of reports as :math:`n_{\bullet \bullet} = \sum_{i = 1}^{I} \sum_{j = 1}^{J} n_{ij}`.
+
+
    For each cell in the contingency table, compute the standardized Pearson residual:
    
    .. math::
@@ -20,7 +24,7 @@ The Modified Detecting Deviating Cells (MDDC) algorithm is described as follows:
       - :math:`\{e^+_{ij}\}` for cells with :math:`n_{ij} > 0`
       - :math:`\{e^0_{ij}\}` for cells with :math:`n_{ij} = 0`
    
-   The boxplot statistics are used as cutoff values for detecting the first set of outlying cells:
+   To identify the cutoff value use either the boxplot statistic defined below or the Monte Carlo (MC) method applied to the standardized Pearson residuals.
    
    .. math::
    
