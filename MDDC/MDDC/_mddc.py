@@ -49,11 +49,11 @@ def mddc(
 
     col_specific_cutoff : bool, optional, default=True
         Apply Monte Carlo method to the standardized Pearson residuals of the entire table, or within each drug column.
-        If True, applies the Monte Carlo method to residuals within each drug column. If False, applies it to the entire table.
+        If True, applies the Monte Carlo/Boxplot method to residuals within each drug column. If False, applies it to the entire table.
         Utilized in Step 2 of the algorithm.
 
     separate : bool, optional, default=True
-        Whether to separate the standardized Pearson residuals for the zero cells and non zero cells and apply MC method separately or together.
+        Whether to separate the standardized Pearson residuals for the zero cells and non zero cells and apply Monte Carlo/Boxplot method separately or together.
         If True, separates zero and non-zero cells for cutoff application. If False, applies the cutoff method to all cells together. Utilized in Step 2 of MDDC algorithm.
 
     if_col_corr : bool, optional, default=False
@@ -110,7 +110,7 @@ def mddc(
 
     Notes
     ------
-    This `chunk_size` option of the function function is designed to be used in scenarios where the contingency table dimensions and the number of Monte Carlo replications are large. In such cases,
+    This `chunk_size` option of the function is designed to be used in scenarios where the contingency table dimensions and the number of Monte Carlo replications are large. In such cases,
     the Monte Carlo samples need to be generated sequentially to ensure that the memory footprint remains manageable and the generated samples fit into the available RAM.
     """
 
