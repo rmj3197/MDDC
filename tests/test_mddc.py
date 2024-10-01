@@ -147,7 +147,7 @@ class MDDCTestCase(unittest.TestCase):
         coef = [1, 4, 5, 6]
         with self.assertRaises(ValueError):
             mddc(self.data, method="boxplot", coef=coef)
-    
+
     def test_boxplot_with_invalid_type_coef(self):
         coef = pd.DataFrame([1, 4, 5])
         with self.assertRaises(TypeError):
@@ -157,11 +157,11 @@ class MDDCTestCase(unittest.TestCase):
         coef = np.array([[1, 4, 5, 7]])
         with self.assertRaises(ValueError):
             mddc(self.data, method="boxplot", coef=coef)
-    
+
     def test_boxplot_with_option_mismatch(self):
         coef = np.array([[1, 4, 5, 7]])
         with self.assertRaises(ValueError):
-            mddc(self.data, method="boxplot", coef=coef, col_specific_cutoff = False)
+            mddc(self.data, method="boxplot", coef=coef, col_specific_cutoff=False)
 
 
 if __name__ == "__main__":

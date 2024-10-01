@@ -63,7 +63,7 @@ API documentation
 
 The API documentation is built automatically from the docstrings of classes, functions, etc. in the source files. The docs are built with sphinx and use the "sphinx_book_theme" theme. If you have the dependencies installed (tool.poetry.group.doc.dependencies inside pyproject.toml) you can build the documentation locally with ``make html`` in the /doc directory. Opening the /doc/build/index.html file with a browser will then allow you to browse the documentation and check your contributions locally.
 
-- Go to ``MDDC/`` directory in the `code repository <repo>`.
+- Go to ``MDDC/`` directory in the `code repository <repo>`_.
 - Look for the file with the name of the function.
 - `Propose a file change <https://help.github.com/articles/editing-files-in-another-user-s-repository/>`_ to update the function documentation in the roxygen comments (starting with ``#'``).
 

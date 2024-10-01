@@ -7,10 +7,12 @@ This algorithm describes a method to determine the value of `c` in the cutoff fo
 
 **Steps:**
 
-1. Generate a large number of :math:`I \times J` tables under the assumption of independence (:math:`\lambda_{ij} = 1`).
+1. For a given contingency table of dimension :math:`I \times J` calculate the :math:`n_{\cdot \cdot}`, and the :math:`\undertilde{p} = p_{11}, p_{12}, \ldots p_{IJ}`.
 
-2. Compute the standardized Pearson residuals.
+2. Generate a large number of :math:`I\times J$` tables :math:`r=1,\ldots,R` under the assumption of independence from multinomial distribution using the :math:`n_{\cdot \cdot}` and :math:`\undertilde{p}` determined in Step 1.
 
-3. Compute the upper limits of the boxplot statistic with :math:`c = 1.5`, and calculate the FDR.
+3. Compute the standardized Pearson residuals.
 
-4. If :math:`FDR < 0.05`, stop. Otherwise, if :math:`FDR > 0.05`, use a grid search to find the optimal `c` such that :math:`FDR \leq 0.05`.
+4. Compute the upper limits of the boxplot statistic with :math:`c = 1.5`, and calculate the FDR.
+
+5. If :math:`FDR < 0.05`, stop. Otherwise, if :math:`FDR > 0.05`, use a grid search to find the optimal `c` such that :math:`FDR \leq 0.05`.

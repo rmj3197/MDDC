@@ -30,8 +30,8 @@ def mddc(
     Parameters
     ----------
     contin_table : pd.DataFrame or np.ndarray
-        A contingency table of shape (I, J) where rows represent adverse events and columns represent drugs.
-        If a DataFrame, it might have index and column names corresponding to the adverse events and drugs.
+        A contingency table of shape (I, J) where rows represent adverse events and columns represent drugs or vaccines.
+        If a DataFrame, it might have index and column names corresponding to the adverse events and drugs/vaccines.
 
     method : str, optional, default="monte_carlo"
         Method for cutoff selection. Can be either "monte_carlo" or "boxplot".
@@ -45,11 +45,11 @@ def mddc(
         Used in Step 2 of the MDDC algorithm. Only used if method is "monte_carlo".
 
     exclude_same_drug_class : bool, optional, default=True
-        If True, excludes other drugs in the same class when constructing 2x2 tables for Fisher's exact test. Only used if method is "monte_carlo".
+        If True, excludes other drugs/vaccines in the same class when constructing 2x2 tables for Fisher's exact test. Only used if method is "monte_carlo".
 
     col_specific_cutoff : bool, optional, default=True
-        Apply Monte Carlo method to the standardized Pearson residuals of the entire table, or within each drug column.
-        If True, applies the Monte Carlo/Boxplot method to residuals within each drug column. If False, applies it to the entire table.
+        Apply Monte Carlo method to the standardized Pearson residuals of the entire table, or within each drug/vaccine column.
+        If True, applies the Monte Carlo/Boxplot method to residuals within each drug/vaccine column. If False, applies it to the entire table.
         Utilized in Step 2 of the algorithm.
 
     separate : bool, optional, default=True
@@ -57,8 +57,8 @@ def mddc(
         If True, separates zero and non-zero cells for cutoff application. If False, applies the cutoff method to all cells together. Utilized in Step 2 of MDDC algorithm.
 
     if_col_corr : bool, optional, default=False
-        Whether to use column (drug) correlation or row (adverse event) correlation
-        If True, uses drug correlation instead of adverse event correlation. Utilized in Step 3 of the MDDC algorithm.
+        Whether to use column (drug/vaccine) correlation or row (adverse event) correlation
+        If True, uses drug/vaccine correlation instead of adverse event correlation. Utilized in Step 3 of the MDDC algorithm.
 
     corr_lim : float, optional, default=0.8
         Correlation threshold used to select connected adverse events. Utilized in Step 3 of MDDC algorithm.

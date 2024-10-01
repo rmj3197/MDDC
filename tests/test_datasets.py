@@ -38,7 +38,8 @@ class TestLoadStatin49Data(unittest.TestCase):
         self.assertIsInstance(desc, str)
         self.assertIsInstance(data, np.ndarray)
         self.assertEqual(data.shape, (50, 7))
-        
+
+
 class TestLoadStatin49ClusterIdxData(unittest.TestCase):
     def test_default_behavior(self):
         # Test default behavior (as_dataframe=True, desc=False)
@@ -65,6 +66,7 @@ class TestLoadStatin49ClusterIdxData(unittest.TestCase):
         self.assertIsInstance(desc, str)
         self.assertIsInstance(data, np.ndarray)
         self.assertEqual(data.shape, (50, 8))
+
 
 class TestLoadBetaBlocker500Data(unittest.TestCase):
     def test_default_behavior(self):
@@ -93,6 +95,7 @@ class TestLoadBetaBlocker500Data(unittest.TestCase):
         self.assertIsInstance(data, np.ndarray)
         self.assertEqual(data.shape, (501, 9))
 
+
 class TestLoadSedative1000Data(unittest.TestCase):
     def test_default_behavior(self):
         # Test default behavior (as_dataframe=True, desc=False)
@@ -119,6 +122,7 @@ class TestLoadSedative1000Data(unittest.TestCase):
         self.assertIsInstance(desc, str)
         self.assertIsInstance(data, np.ndarray)
         self.assertEqual(data.shape, (1001, 11))
+
 
 class TestLoadStatin101Data(unittest.TestCase):
     def test_default_behavior(self):

@@ -21,8 +21,8 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
         )
         self.contin_table_np = np.array([[5, 10], [15, 20]])
         self.signal_mat = np.array([[1, 1.5], [1.2, 1]])
-        self.cluster_idx_list = ['0', '1']
-        self.cluster_idx_np = np.array(['0', '1'])
+        self.cluster_idx_list = ["0", "1"]
+        self.cluster_idx_np = np.array(["0", "1"])
 
     def test_valid_input_marginals(self):
         result = generate_contin_table_with_clustered_AE(
@@ -173,7 +173,7 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
                     n=5,
                     rho=0.5,
                 )
-    
+
     def test_cluster_idx_length_mismatch(self):
         row_marginal = [60, 60]
         col_marginal = [60, 60]
@@ -182,11 +182,11 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
                 row_marginal=row_marginal,
                 column_marginal=col_marginal,
                 signal_mat=self.signal_mat,
-                cluster_idx=[1,3,4],
+                cluster_idx=[1, 3, 4],
                 n=5,
                 rho=0.1,
             )
-    
+
     def test_rho_dim_mismatch_marginals(self):
         row_marginal = [60, 60]
         col_marginal = [60, 60]
@@ -195,11 +195,11 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
                 row_marginal=row_marginal,
                 column_marginal=col_marginal,
                 signal_mat=self.signal_mat,
-                cluster_idx=[1,3],
+                cluster_idx=[1, 3],
                 n=5,
-                rho=np.array([[0.1, 0.1, 0.1],[0.1, 0.1, 0.1],[0.1, 0.1, 0.1]]),
+                rho=np.array([[0.1, 0.1, 0.1], [0.1, 0.1, 0.1], [0.1, 0.1, 0.1]]),
             )
-    
+
     def test_rho_dim_mismatch_contin_table(self):
         with self.assertRaises(ValueError):
             generate_contin_table_with_clustered_AE(
@@ -207,11 +207,11 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
                 column_marginal=None,
                 contin_table=self.contin_table_np,
                 signal_mat=self.signal_mat,
-                cluster_idx=[1,3],
+                cluster_idx=[1, 3],
                 n=5,
-                rho=np.array([[0.1, 0.1, 0.1],[0.1, 0.1, 0.1],[0.1, 0.1, 0.1]]),
+                rho=np.array([[0.1, 0.1, 0.1], [0.1, 0.1, 0.1], [0.1, 0.1, 0.1]]),
             )
-    
+
     def test_rho_cluster_idx_mismatch(self):
         with self.assertRaises(ValueError):
             generate_contin_table_with_clustered_AE(
@@ -219,11 +219,11 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
                 column_marginal=None,
                 contin_table=self.contin_table_np,
                 signal_mat=self.signal_mat,
-                cluster_idx=[1,3],
+                cluster_idx=[1, 3],
                 n=5,
                 rho=None,
             )
-            
+
     def test_rho_cluster_idx_mismatch_contin_table(self):
         row_marginal = [60, 60]
         col_marginal = [60, 60]
@@ -235,7 +235,7 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
                 n=5,
                 rho=None,
             )
-    
+
     def test_rho_type(self):
         row_marginal = [60, 60]
         col_marginal = [60, 60]
@@ -245,9 +245,9 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
                 column_marginal=col_marginal,
                 signal_mat=self.signal_mat,
                 n=5,
-                rho=[1,2],
+                rho=[1, 2],
             )
-    
+
     def test_sum_mismatch(self):
         row_marginal = [60, 50]
         col_marginal = [60, 60]
@@ -257,11 +257,10 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
                 column_marginal=col_marginal,
                 signal_mat=self.signal_mat,
                 n=5,
-                rho = 0.1,
-                cluster_idx=[1,2]
+                rho=0.1,
+                cluster_idx=[1, 2],
             )
 
-    
     def test_all_none(self):
         with self.assertRaises(ValueError):
             generate_contin_table_with_clustered_AE(
@@ -270,9 +269,10 @@ class TestGenerateContinTableWithClusteredAE(unittest.TestCase):
                 contin_table=None,
                 signal_mat=self.signal_mat,
                 n=5,
-                rho = 0.1,
-                cluster_idx=None
+                rho=0.1,
+                cluster_idx=None,
             )
+
 
 class TestGenerateContinTableWithClusteredAEwithTol(unittest.TestCase):
     def setUp(self):
@@ -281,8 +281,8 @@ class TestGenerateContinTableWithClusteredAEwithTol(unittest.TestCase):
         )
         self.contin_table_np = np.array([[5, 10], [15, 20]])
         self.signal_mat = np.array([[1, 1.5], [1.2, 1]])
-        self.cluster_idx_list = ['0', '1']
-        self.cluster_idx_np = np.array(['0', '1'])
+        self.cluster_idx_list = ["0", "1"]
+        self.cluster_idx_np = np.array(["0", "1"])
 
     def test_valid_input_marginals(self):
         result = generate_contin_table_with_clustered_AE_with_tol(
@@ -356,7 +356,7 @@ class TestGenerateContinTableWithClusteredAEwithTol(unittest.TestCase):
             signal_mat=self.signal_mat,
             cluster_idx=self.cluster_idx_np,
             n=5,
-            rho=0.5
+            rho=0.5,
         )
         self.assertEqual(len(result), 5)
         self.assertTrue(all(isinstance(table, np.ndarray) for table in result))
@@ -432,7 +432,7 @@ class TestGenerateContinTableWithClusteredAEwithTol(unittest.TestCase):
                     n=5,
                     rho=0.5,
                 )
-    
+
     def test_cluster_idx_length_mismatch(self):
         row_marginal = [60, 60]
         col_marginal = [60, 60]
@@ -441,11 +441,11 @@ class TestGenerateContinTableWithClusteredAEwithTol(unittest.TestCase):
                 row_marginal=row_marginal,
                 column_marginal=col_marginal,
                 signal_mat=self.signal_mat,
-                cluster_idx=[1,3,4],
+                cluster_idx=[1, 3, 4],
                 n=5,
                 rho=0.1,
             )
-    
+
     def test_rho_dim_mismatch_marginals(self):
         row_marginal = [60, 60]
         col_marginal = [60, 60]
@@ -454,11 +454,11 @@ class TestGenerateContinTableWithClusteredAEwithTol(unittest.TestCase):
                 row_marginal=row_marginal,
                 column_marginal=col_marginal,
                 signal_mat=self.signal_mat,
-                cluster_idx=[1,3],
+                cluster_idx=[1, 3],
                 n=5,
-                rho=np.array([[0.1, 0.1, 0.1],[0.1, 0.1, 0.1],[0.1, 0.1, 0.1]]),
+                rho=np.array([[0.1, 0.1, 0.1], [0.1, 0.1, 0.1], [0.1, 0.1, 0.1]]),
             )
-    
+
     def test_rho_dim_mismatch_contin_table(self):
         with self.assertRaises(ValueError):
             generate_contin_table_with_clustered_AE_with_tol(
@@ -466,11 +466,11 @@ class TestGenerateContinTableWithClusteredAEwithTol(unittest.TestCase):
                 column_marginal=None,
                 contin_table=self.contin_table_np,
                 signal_mat=self.signal_mat,
-                cluster_idx=[1,3],
+                cluster_idx=[1, 3],
                 n=5,
-                rho=np.array([[0.1, 0.1, 0.1],[0.1, 0.1, 0.1],[0.1, 0.1, 0.1]]),
+                rho=np.array([[0.1, 0.1, 0.1], [0.1, 0.1, 0.1], [0.1, 0.1, 0.1]]),
             )
-    
+
     def test_rho_cluster_idx_mismatch(self):
         with self.assertRaises(ValueError):
             generate_contin_table_with_clustered_AE_with_tol(
@@ -478,11 +478,11 @@ class TestGenerateContinTableWithClusteredAEwithTol(unittest.TestCase):
                 column_marginal=None,
                 contin_table=self.contin_table_np,
                 signal_mat=self.signal_mat,
-                cluster_idx=[1,3],
+                cluster_idx=[1, 3],
                 n=5,
                 rho=None,
             )
-            
+
     def test_rho_cluster_idx_mismatch_contin_table(self):
         row_marginal = [60, 60]
         col_marginal = [60, 60]
@@ -494,7 +494,7 @@ class TestGenerateContinTableWithClusteredAEwithTol(unittest.TestCase):
                 n=5,
                 rho=None,
             )
-    
+
     def test_rho_type(self):
         row_marginal = [60, 60]
         col_marginal = [60, 60]
@@ -504,9 +504,9 @@ class TestGenerateContinTableWithClusteredAEwithTol(unittest.TestCase):
                 column_marginal=col_marginal,
                 signal_mat=self.signal_mat,
                 n=5,
-                rho=[1,2],
+                rho=[1, 2],
             )
-    
+
     def test_sum_mismatch(self):
         row_marginal = [60, 50]
         col_marginal = [60, 60]
@@ -516,11 +516,10 @@ class TestGenerateContinTableWithClusteredAEwithTol(unittest.TestCase):
                 column_marginal=col_marginal,
                 signal_mat=self.signal_mat,
                 n=5,
-                rho = 0.1,
-                cluster_idx=[1,2]
+                rho=0.1,
+                cluster_idx=[1, 2],
             )
 
-    
     def test_all_none(self):
         with self.assertRaises(ValueError):
             generate_contin_table_with_clustered_AE_with_tol(
@@ -529,9 +528,10 @@ class TestGenerateContinTableWithClusteredAEwithTol(unittest.TestCase):
                 contin_table=None,
                 signal_mat=self.signal_mat,
                 n=5,
-                rho = 0.1,
-                cluster_idx=None
+                rho=0.1,
+                cluster_idx=None,
             )
+
 
 class TestReportDrugAEPairs(unittest.TestCase):
     def setUp(self):

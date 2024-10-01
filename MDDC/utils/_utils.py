@@ -203,7 +203,7 @@ def generate_contin_table_with_clustered_AE(
         raise TypeError(
             "contin_table must be a pandas DataFrame, numpy array, or None."
         )
-        
+
     if contin_table is not None:
         if pd.DataFrame(contin_table).empty:
             raise ValueError("The `contin_table` cannot be empty")
@@ -327,7 +327,6 @@ def generate_contin_table_with_clustered_AE(
                             I is the number of rows in the contingency table."
         )
 
-
     simulated_samples = Parallel(n_jobs=n_jobs)(
         delayed(_generate_simulated_zijmat)(
             n_rows,
@@ -360,17 +359,17 @@ def report_drug_AE_pairs(
     contin_table, contin_table_signal, along_rows="AE", along_columns="Drug"
 ):
     """
-    Report potential adverse events for drugs based on the contingency table.
+    Report potential adverse events for drugs/vaccines based on the contingency table.
 
     This function analyzes the provided contingency table and signal matrix to identify potential adverse events
-    associated with each drug. It computes the observed counts, expected counts, and standardized Pearson residuals
-    for each (drug, adverse event) pair.
+    associated with each drug/vaccine. It computes the observed counts, expected counts, and standardized Pearson residuals
+    for each (drug/vaccine, adverse event) pair.
 
     Parameters:
     -----------
     contin_table : numpy.ndarray, pandas.DataFrame
         A data matrix representing an I x J contingency table with rows corresponding to adverse events and columns
-        corresponding to drugs. The row and column names of this matrix are used in the analysis. It is advisable
+        corresponding to drugs/vaccines. The row and column names of this matrix are used in the analysis. It is advisable
         to check the input contingency table using the function `check_and_fix_contin_table()` before using this
         function.
 
@@ -380,20 +379,20 @@ def report_drug_AE_pairs(
         be obtained using the function `MDDC.MDDC.mddc()`.
 
     along_rows : str, optional, default = "AE"
-        Specifies the content along the rows of the `contin_table` (e.g. AE or Drug).
+        Specifies the content along the rows of the `contin_table` (e.g. AE or Drug/Vaccine).
 
     along_columns : str, optional, default = "Drug"
-        Specifies the content along the columns of the `contin_table` (e.g. AE or Drug).
+        Specifies the content along the columns of the `contin_table` (e.g. AE or Drug/Vaccine).
 
     Returns:
     --------
-    Identified Drug-AE pairs : pandas.DataFrame
+    Identified Drug/Vaccine-AE pairs : pandas.DataFrame
         A DataFrame with five columns:
-            - `Drug` : str, The name of the drug. In case the `contin_table_signal` is a numpy.ndarray the `Drug` represents the column index.
-            - `AE` : str, The potential adverse event associated with the drug. n case the `contin_table_signal` is a numpy.ndarray the `AE` represents the row index.
-            - `Observed Count` : int, The observed count of the (drug, adverse event) pair.
-            - `Expected Count` : float, The expected count of the (drug, adverse event) pair.
-            - `Standard Pearson Residual` : float, The value of the standardized Pearson residual for the (drug, adverse event) pair.
+            - `Drug` : str, The name of the drug/vaccine. In case the `contin_table_signal` is a numpy.ndarray the `Drug` represents the column index.
+            - `AE` : str, The potential adverse event associated with the drug/vaccine. n case the `contin_table_signal` is a numpy.ndarray the `AE` represents the row index.
+            - `Observed Count` : int, The observed count of the (drug/vaccine, adverse event) pair.
+            - `Expected Count` : float, The expected count of the (drug/vaccine, adverse event) pair.
+            - `Standard Pearson Residual` : float, The value of the standardized Pearson residual for the (drug/vaccine, adverse event) pair.
     """
     if not (
         isinstance(contin_table, (np.ndarray, pd.DataFrame))
@@ -701,7 +700,7 @@ def generate_contin_table_with_clustered_AE_with_tol(
             RTD = \\frac{|n^{orig}_{\\cdot \\cdot} - n^{sim}_{\\cdot \\cdot}|}{n^{orig}_{\\cdot \\cdot}} \\times 100
 
         This indicates the difference in the total number of reports in the simulated datasets and the original input
-        total number of reports. Sufficiently low values of tolerance will return generated tables with total number 
+        total number of reports. Sufficiently low values of tolerance will return generated tables with total number
         of reports equal to the actual supplied value.
 
     contin_table : numpy.ndarray, pandas.DataFrame, default=None

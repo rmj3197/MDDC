@@ -131,6 +131,7 @@ def load_statin49_cluster_idx_data(desc=False, as_dataframe=True):
         else:
             return data.values
 
+
 def load_statin101_data(desc=False, as_dataframe=True):
     """
     A 102 by 5 data matrix of a contingency table processed from FDA Adverse Event Reporting System (FAERS)
@@ -159,8 +160,8 @@ def load_statin101_data(desc=False, as_dataframe=True):
 
     Data Source
     ------------
-    
-    The quarterly files can be found at https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html . 
+
+    The quarterly files can be found at https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html .
 
 
     Examples
@@ -189,8 +190,8 @@ def load_statin101_data(desc=False, as_dataframe=True):
             return (fdescr, data.values)
         else:
             return data.values
-        
-        
+
+
 def load_betablocker500_data(desc=False, as_dataframe=True):
     """
     A 501 by 9 data matrix of a contingency table processed from FDA Adverse Event Reporting System (FAERS)
@@ -219,8 +220,8 @@ def load_betablocker500_data(desc=False, as_dataframe=True):
 
     Data Source
     ------------
-    
-    The quarterly files can be found at https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html . 
+
+    The quarterly files can be found at https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html .
 
 
     Examples
@@ -249,7 +250,8 @@ def load_betablocker500_data(desc=False, as_dataframe=True):
             return (fdescr, data.values)
         else:
             return data.values
-        
+
+
 def load_sedative1000_data(desc=False, as_dataframe=True):
     """
     A 1001 by 11 data matrix of a contingency table processed from FDA Adverse Event Reporting System (FAERS)
@@ -278,8 +280,8 @@ def load_sedative1000_data(desc=False, as_dataframe=True):
 
     Data Source
     ------------
-    
-    The quarterly files can be found at https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html . 
+
+    The quarterly files can be found at https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html .
 
 
     Examples
