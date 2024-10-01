@@ -63,8 +63,9 @@ def load_statin49_data(desc=False, as_dataframe=True):
 
 def load_statin49_cluster_idx_data(desc=False, as_dataframe=True):
     """
-    A 50 by 7 data matrix of a contingency table processed from FDA Adverse Event Reporting System (FAERS)
-    database from the third quarter of 2014 to the fourth quarter of 2020.
+    A 50 by 7 data matrix of a contingency table processed from FDA Adverse Event Reporting System (FAERS) database from the third quarter of 2014 to the fourth quarter of 2020; 
+    this dataset also contains the cluster index of the various adverse events. 
+
 
     The 49 rows represent 49 important adverse events associated with the statin class, with the final row aggregating the remaining 5,990 adverse events.
     The 49 AEs are classified into three clusters:

@@ -6,7 +6,7 @@
 Description
 -----------
 
-A 50 by 7 data matrix of a contingency table processed from FDA Adverse Event Reporting System (FAERS) database from the third quarter of 2014 to the fourth quarter of 2020. This dataset also contains the cluster index of the various adverse events. 
+A 50 by 7 data matrix of a contingency table processed from FDA Adverse Event Reporting System (FAERS) database from the third quarter of 2014 to the fourth quarter of 2020; this dataset also contains the cluster index of the various adverse events. 
 
 Format
 ------
