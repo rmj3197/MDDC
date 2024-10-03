@@ -77,4 +77,8 @@ The work has been supported by Food and Drug Administration, and Kaleida Health 
 
 ## References
 
+Liu, A., Mukhopadhyay, R., and Markatou, M. (2024). MDDC: An R and Python package for adverse event identification in pharmacovigilance data. arXiv preprint. arXiv:2410.01168
+
+Liu, A., Markatou, M., Dang, O., & Ball, R. (2024). Pattern discovery in pharmacovigilance through the Modified Detecting Deviating Cells (MDDC) algorithm (Technical Report). Department of Biostatistics, University at Buffalo.
+
 Rousseeuw, P. J., & Bossche, W. V. D. (2018). Detecting deviating data cells. Technometrics, 60(2), 135-145.
