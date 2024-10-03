@@ -72,6 +72,22 @@ The code of conduct can be found at [Code of Conduct](https://mddc.readthedocs.i
 
 This project uses the [GPL-3.0 license](https://github.com/rmj3197/MDDC/blob/main/LICENSE), with a full version of the license included in the repository.
 
+## Citation
+
+If you use this package in your research or work, please cite it as follows:
+
+```
+@misc{liu2024mddcrpythonpackage,
+      title={MDDC: An R and Python Package for Adverse Event Identification in Pharmacovigilance Data}, 
+      author={Anran Liu and Raktim Mukhopadhyay and Marianthi Markatou},
+      year={2024},
+      eprint={2410.01168},
+      archivePrefix={arXiv},
+      primaryClass={stat.CO},
+      url={https://arxiv.org/abs/2410.01168}, 
+}
+```
+
 ## Funding Information
 The work has been supported by Food and Drug Administration, and Kaleida Health Foundation.
 
