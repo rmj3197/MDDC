@@ -19,11 +19,12 @@ REQUIRED_PACKAGES = [
     "scipy>=1.11.0",
 ]
 
-LONG_DESCRIPTION = """
+DESCRIPTION = """
 Methods for detecting signals related to adverse event
 and medical product (e.g., drugs, vaccines) pairs. This includes a data
 generation function for simulating pharmacovigilance datasets, along with
-various utility functions.
+various utility functions. For more details, see Liu A., Mukhopadhyay R., and Markatou M. 
+[arXiv:2410.01168](https://doi.org/10.48550/arXiv.2410.01168).
 """
 
 
@@ -60,9 +61,9 @@ setup(
     author=AUTHOR,
     author_email=AUTHOR_EMAIL,
     url=URL,
-    description="Modified Detecting Deviating Cells Algorithm in Pharmacovigilance",
-    long_description=LONG_DESCRIPTION,
-    long_description_content_type="text/markdown",
+    description=DESCRIPTION,
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     packages=setuptools.find_packages(),
     install_requires=REQUIRED_PACKAGES,
     ext_modules=ext_modules,
