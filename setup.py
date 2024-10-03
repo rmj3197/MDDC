@@ -23,8 +23,7 @@ LONG_DESCRIPTION = """
 Methods for detecting signals related to adverse event
 and medical product (e.g., drugs, vaccines) pairs. This includes a data
 generation function for simulating pharmacovigilance datasets, along with
-various utility functions. For more details, see Liu A., Mukhopadhyay R., and Markatou M. 
-[arXiv:2410.01168](https://doi.org/10.48550/arXiv.2410.01168).
+various utility functions.
 """
 
 
