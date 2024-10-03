@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pybind11
 import setuptools
 from pybind11.setup_helpers import Pybind11Extension, build_ext
@@ -27,6 +29,8 @@ various utility functions. For more details, see Liu A., Mukhopadhyay R., and Ma
 [arXiv:2410.01168](https://doi.org/10.48550/arXiv.2410.01168).
 """
 
+this_directory = Path(__file__).parent
+LONG_DESCRIPTION = (this_directory / "README.md").read_text()
 
 class get_eigen_include:
     """Helper class to determine the Eigen include path
@@ -40,7 +44,6 @@ class get_eigen_include:
 
     def __str__(self):
         import peigen
-
         return peigen.header_path
 
 
@@ -62,7 +65,7 @@ setup(
     author_email=AUTHOR_EMAIL,
     url=URL,
     description=DESCRIPTION,
-    long_description=open('README.md').read(),
+    long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
     packages=setuptools.find_packages(),
     install_requires=REQUIRED_PACKAGES,
