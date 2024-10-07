@@ -59,6 +59,7 @@ setup(
     author_email=AUTHOR_EMAIL,
     url=URL,
     description=DESCRIPTION,
+    description_content_type='text/markdown',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
     packages=setuptools.find_packages(),
