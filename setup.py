@@ -5,7 +5,7 @@ import setuptools
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup
 
-__version__ = "1.1.dev1"
+__version__ = "1.1.dev2"
 
 AUTHOR = "Raktim Mukhopadhyay, Anran Liu, Marianthi Markatou"
 AUTHOR_EMAIL = "raktimmu@buffalo.edu, anranliu@buffalo.edu, markatou@buffalo.edu"
@@ -21,7 +21,7 @@ REQUIRED_PACKAGES = [
     "scipy>=1.11.0",
 ]
 
-DESCRIPTION = """Methods for detecting signals related to adverse event and medical product (e.g., drugs, vaccines) pairs. This includes a data generation function for simulating pharmacovigilance datasets, along with various utility functions. For more details, see Liu A., Mukhopadhyay R., and Markatou M. [arXiv:2410.01168](https://doi.org/10.48550/arXiv.2410.01168)."""
+DESCRIPTION = """Methods for detecting signals related to adverse event and medical product (e.g., drugs, vaccines) pairs. This includes a data generation function for simulating pharmacovigilance datasets, along with various utility functions. For more details, please see - Liu A, Mukhopadhyay R, Markatou M (2024). “MDDC: An R and Python Package for Adverse Event Identification in Pharmacovigilance Data.” arXiv preprint. https://doi.org/10.48550/arXiv.2410.01168."""
 
 this_directory = Path(__file__).parent
 LONG_DESCRIPTION = (this_directory / "README.md").read_text()
