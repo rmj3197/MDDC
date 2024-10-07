@@ -47,7 +47,7 @@ jobs:
   upload_pypi:
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
-    environment: testpypi
+    environment: PyPI
     permissions:
       id-token: write
     if: github.event_name == 'release' && github.event.action == 'published'
@@ -63,4 +63,4 @@ jobs:
 
       - uses: pypa/gh-action-pypi-publish@release/v1
         with:
-            password: ${{ secrets.PYPI_ACCESS_TOKEN }}
+            password: ${{ secrets.TEST_PYPI_ACCESS_TOKEN }}
