@@ -5,7 +5,7 @@ import setuptools
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup
 
-__version__ = "1.1.dev0"
+__version__ = "1.1.dev1"
 
 AUTHOR = "Raktim Mukhopadhyay, Anran Liu, Marianthi Markatou"
 AUTHOR_EMAIL = "raktimmu@buffalo.edu, anranliu@buffalo.edu, markatou@buffalo.edu"
