@@ -48,7 +48,7 @@ def mddc(
         If True, excludes other drugs/vaccines in the same class when constructing 2x2 tables for Fisher's exact test. Only used if method is "monte_carlo".
 
     col_specific_cutoff : bool, optional, default=True
-        Apply Monte Carlo method to the standardized Pearson residuals of the entire table, or within each drug/vaccine column.
+        Apply Monte Carlo/Boxplot method to the standardized Pearson residuals of the entire table, or within each drug/vaccine column.
         If True, applies the Monte Carlo/Boxplot method to residuals within each drug/vaccine column. If False, applies it to the entire table.
         Utilized in Step 2 of the algorithm.
 

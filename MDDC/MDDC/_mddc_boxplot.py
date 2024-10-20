@@ -37,8 +37,8 @@ def _mddc_boxplot(
         If a DataFrame, it might have index and column names corresponding to the adverse events and drugs.
 
     col_specific_cutoff : bool, optional, default=True
-        Apply Monte Carlo method to the standardized Pearson residuals of the entire table, or within each drug column.
-        If True, applies the Monte Carlo method to residuals within each drug column. If False, applies it to the entire table.
+        Apply Boxplot method to the standardized Pearson residuals of the entire table, or within each drug column.
+        If True, applies the Boxplot method to residuals within each drug column. If False, applies it to the entire table.
         Utilized in Step 2 of the algorithm.
 
     separate : bool, optional, default=True
