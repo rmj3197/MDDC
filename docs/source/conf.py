@@ -88,3 +88,10 @@ latex_documents = [
         "manual",
     )
 ]
+
+
+# -------------------------------------------------------------
+# Adopted from documentation of krotov
+# https://github.com/qucontrol/krotov/blob/969fc980346e6411903de854118c48c51208a810/docs/conf.py#L321
+def setup(app):
+    app.add_js_file("version-alert.js")
