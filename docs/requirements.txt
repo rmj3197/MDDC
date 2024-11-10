@@ -4,4 +4,5 @@ sphinx-autobuild>=2021.0
 sphinx-book-theme>=1.0
 nbsphinx>0.9
 ipykernel
+sphinx-version-warning==1.1.2
 git+https://github.com/rmj3197/MDDC.git
