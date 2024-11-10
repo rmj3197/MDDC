@@ -26,6 +26,7 @@ DESCRIPTION = """Methods for detecting signals related to adverse event and medi
 this_directory = Path(__file__).parent
 LONG_DESCRIPTION = (this_directory / "README.md").read_text()
 
+
 class get_eigen_include:
     """Helper class to determine the Eigen include path
     The purpose of this class is to postpone importing Eigen
@@ -38,6 +39,7 @@ class get_eigen_include:
 
     def __str__(self):
         import peigen
+
         return peigen.header_path
 
 
@@ -59,9 +61,9 @@ setup(
     author_email=AUTHOR_EMAIL,
     url=URL,
     description=DESCRIPTION,
-    description_content_type='text/markdown',
+    description_content_type="text/markdown",
     long_description=LONG_DESCRIPTION,
-    long_description_content_type='text/markdown',
+    long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
     install_requires=REQUIRED_PACKAGES,
     ext_modules=ext_modules,
@@ -76,6 +78,6 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
-        "Programming Language :: Python :: Implementation :: CPython"
+        "Programming Language :: Python :: Implementation :: CPython",
     ],
 )
