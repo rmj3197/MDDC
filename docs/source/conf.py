@@ -61,6 +61,7 @@ exclude_patterns = []
 html_theme = "sphinx_book_theme"
 html_static_path = ["_static"]
 html_css_files = ["css/custom.css"]
+# html_js_files = ["js/version_warning.js"]
 strip_signature_backslash = True
 
 # -- Options for Latex output -------------------------------------------------
@@ -88,3 +89,9 @@ latex_documents = [
         "manual",
     )
 ]
+
+# Version warning to display on Read the Docs, this is taken from
+# https://github.com/qucontrol/krotov/blob/969fc980346e6411903de854118c48c51208a810/docs/conf.py#L321
+# Krotov Package
+def setup(app):
+    app.add_js_file("js/version_warning.js")  # Custom JS file for version warning
