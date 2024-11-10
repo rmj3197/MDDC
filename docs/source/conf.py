@@ -32,6 +32,7 @@ extensions = [
     "nbsphinx",
     "sphinx.ext.intersphinx",
     "myst_parser",
+    "versionwarning.extension",
 ]
 myst_enable_extensions = [
     "amsmath",
@@ -89,9 +90,13 @@ latex_documents = [
     )
 ]
 
-
-# -------------------------------------------------------------
-# Adopted from documentation of krotov
-# https://github.com/qucontrol/krotov/blob/969fc980346e6411903de854118c48c51208a810/docs/conf.py#L321
-def setup(app):
-    app.add_js_file("version-alert.js")
+# sphinx-version-warning config
+versionwarning_messages = {
+    "latest": (
+        "This document is for the development version. "
+        'For the stable version documentation, see <a href="/en/stable/">here</a>.'
+    )
+}
+# Show warning at top of page
+versionwarning_body_selector = "div.document"
+versionwarning_banner_title = ""
