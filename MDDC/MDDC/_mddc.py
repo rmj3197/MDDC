@@ -91,25 +91,14 @@ def mddc(
         - If method is "monte_carlo" returns MDDCMonteCarloResult:
             * pval : numpy.ndarray, pandas.DataFrame
                 p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method for cells with count greater than five, and Fisher's exact test for cells with count less than or equal to five.
-                Please note the p-values are not adjusted for multiple testing.
-            * pval_adj: np.ndarray, pandas.DataFrame
-                Matrix of adjusted p-values using the Benjamini-Hochberg procedure for each cell in the second step.
             * signal : numpy.ndarray, pd.DataFrame
                 Matrix indicating significant signals with count greater than five and identified in the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
-                Please note the **unadjusted p-values** are used to identify signals here.
             * fisher_signal : numpy.ndarray, pd.DataFrame
                 Matrix indicating signals with a count less than or equal to five and identified by Fisher's exact test. 1 indicates a signal, 0 indicates non-signal.
-                Please note the **unadjusted p-values** are used to identify signals here.
-            * signal_adj : numpy.ndarray, pd.DataFrame
-                Matrix indicating significant signals with count greater than five and identified in the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
-                Please note the **adjusted p-values** are used to identify signals here.
-            * fisher_signal_adj : numpy.ndarray, pd.DataFrame
-                Matrix indicating signals with a count less than or equal to five and identified by Fisher's exact test. 1 indicates a signal, 0 indicates non-signal.
-                Please note the **adjusted p-values** are used to identify signals here.
             * corr_signal_pval : numpy.ndarray, pd.DataFrame
                 p-values for each cell in the contingency table in the step 5, when the :math:`r_{ij}` (residual) values are mapped back to the standard normal distribution.
             * corr_signal_adj_pval : numpy.ndarray, pd.DataFrame
-                Benjamini-Hochberg adjusted p-values for each cell in the step 5.
+                Benjamini-Hochberg adjusted p values for each cell in the step 5.
 
         - If method is "boxplot" returns MDDCBoxplotResult:
             * signal : numpy.ndarray, pd.DataFrame
@@ -177,27 +166,20 @@ def mddc(
         contin_table_mat = contin_table
 
     if method == "monte_carlo":
-        (
-            p_val_mat,
-            p_val_mat_adj,
-            signal_mat,
-            second_signal_mat,
-            signal_mat_adj,
-            second_signal_mat_adj,
-            r_pval,
-            r_pval_adj,
-        ) = _mddc_monte_carlo(
-            contin_table_mat,
-            rep,
-            quantile,
-            exclude_same_drug_class,
-            col_specific_cutoff,
-            separate,
-            if_col_corr,
-            corr_lim,
-            chunk_size,
-            n_jobs,
-            seed,
+        p_val_mat, signal_mat, second_signal_mat, r_pval, r_pval_adj = (
+            _mddc_monte_carlo(
+                contin_table_mat,
+                rep,
+                quantile,
+                exclude_same_drug_class,
+                col_specific_cutoff,
+                separate,
+                if_col_corr,
+                corr_lim,
+                chunk_size,
+                n_jobs,
+                seed,
+            )
         )
 
         if isinstance(contin_table, pd.DataFrame):
@@ -208,10 +190,6 @@ def mddc(
             p_val_mat.index = row_names
             p_val_mat.columns = col_names
 
-            p_val_mat_adj = pd.DataFrame(p_val_mat_adj)
-            p_val_mat_adj.index = row_names
-            p_val_mat_adj.columns = col_names
-
             signal_mat = pd.DataFrame(signal_mat)
             signal_mat.index = row_names
             signal_mat.columns = col_names
@@ -219,14 +197,6 @@ def mddc(
             second_signal_mat = pd.DataFrame(second_signal_mat)
             second_signal_mat.index = row_names
             second_signal_mat.columns = col_names
-
-            signal_mat_adj = pd.DataFrame(signal_mat_adj)
-            signal_mat_adj.index = row_names
-            signal_mat_adj.columns = col_names
-
-            second_signal_mat_adj = pd.DataFrame(second_signal_mat_adj)
-            second_signal_mat_adj.index = row_names
-            second_signal_mat_adj.columns = col_names
 
             r_pval = pd.DataFrame(r_pval)
             r_pval.index = row_names
@@ -238,11 +208,8 @@ def mddc(
 
             return MDDCMonteCarloResult(
                 pval=p_val_mat,
-                pval_adj=p_val_mat_adj,
                 signal=signal_mat,
                 fisher_signal=second_signal_mat,
-                signal_adj=signal_mat_adj,
-                fisher_signal_adj=second_signal_mat_adj,
                 corr_signal_pval=r_pval,
                 corr_signal_adj_pval=r_pval_adj,
             )
@@ -250,11 +217,8 @@ def mddc(
         else:
             return MDDCMonteCarloResult(
                 pval=p_val_mat,
-                pval_adj=p_val_mat_adj,
                 signal=signal_mat,
                 fisher_signal=second_signal_mat,
-                signal_adj=signal_mat_adj,
-                fisher_signal_adj=second_signal_mat_adj,
                 corr_signal_pval=r_pval,
                 corr_signal_adj_pval=r_pval_adj,
             )

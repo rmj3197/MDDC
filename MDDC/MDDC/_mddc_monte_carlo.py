@@ -87,21 +87,10 @@ def _mddc_monte_carlo(
         A tuple with the following members:
         - 'pval': np.ndarray
             p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method for cells with count greater than five, and Fisher's exact test for cells with count less than or equal to five.
-            Please note the p-values are not adjusted for multiple testing.
-        - 'pval_adj': np.ndarray
-            Matrix of adjusted p-values using the Benjamini-Hochberg procedure for each cell in the second step.
         - 'signal': np.ndarray
             Matrix indicating significant signals with count greater than five and identified in the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
-            Please note the **unadjusted p-values** are used to identify signals here.
         - 'fisher_signal': np.ndarray
             Matrix indicating signals with a count less than or equal to five and identified by Fisher's exact test. 1 indicates a signal, 0 indicates non-signal.
-            Please note the **unadjusted p-values** are used to identify signals here.
-        - 'signal_adj': np.ndarray
-            Matrix indicating significant signals with count greater than five and identified in the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
-            Please note the **adjusted p-values** are used to identify signals here.
-        - 'fisher_signal_adj': np.ndarray
-            Matrix indicating signals with a count less than or equal to five and identified by Fisher's exact test. 1 indicates a signal, 0 indicates non-signal.
-            Please note the **adjusted p-values** are used to identify signals here.
         - 'corr_signal_pval': np.ndarray
             p-values for each cell in the contingency table in the step 5, when the :math:`r_{ij}` (residual) values are mapped back to the standard normal distribution.
         - 'corr_signal_adj_pval': np.ndarray
@@ -149,20 +138,10 @@ def _mddc_monte_carlo(
         p_val_mat[i, j] = p_value
 
     p_val_mat = np.nan_to_num(p_val_mat, nan=1)
-    p_val_mat_adj = scipy.stats.false_discovery_control(p_val_mat, axis=None).reshape(
-        contin_table.shape
-    )
 
     signal_mat = np.where((p_val_mat < (1 - quantile)) & (contin_table > 5), 1, 0)
     second_signal_mat = np.where(
         (p_val_mat < (1 - quantile)) & (contin_table < 6), 1, 0
-    )
-
-    signal_mat_adj = np.where(
-        (p_val_mat_adj < (1 - quantile)) & (contin_table > 5), 1, 0
-    )
-    second_signal_mat_adj = np.where(
-        (p_val_mat_adj < (1 - quantile)) & (contin_table < 6), 1, 0
     )
 
     res_all = z_ij_mat.flatten(order="F")
@@ -235,13 +214,4 @@ def _mddc_monte_carlo(
     r_pval_adj[r_adj_pval_nan_mask] = bh_values
 
     r_pval_adj = r_pval_adj.reshape(contin_table.shape)
-    return (
-        p_val_mat,
-        p_val_mat_adj,
-        signal_mat,
-        second_signal_mat,
-        signal_mat_adj,
-        second_signal_mat_adj,
-        r_pval,
-        r_pval_adj,
-    )
+    return (p_val_mat, signal_mat, second_signal_mat, r_pval, r_pval_adj)

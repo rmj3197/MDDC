@@ -51,8 +51,6 @@ ext_modules = [
         define_macros=[("VERSION_INFO", __version__)],
         language="c++",
         cxx_std=17,
-        extra_compile_args=[],
-        extra_link_args=[],
     ),
 ]
 
