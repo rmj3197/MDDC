@@ -7,7 +7,8 @@ easy access to specific result fields by name.
 1. `MDDCMonteCarloResult`:
     - Represents the result of a Monte Carlo simulation analysis in MDDC.
     - Fields:
-      - `pval`: p-value of the test.
+      - `pval`: p-value from Step 2 using Monte Carlo method.
+      - `pval_fisher`: p-value from MC method and Fisher's exact test.
       - `signal`: computed signal value.
       - `fisher_signal`: signal value from Fisher's exact test.
       - `corr_signal_pval`: p-value of the correlation signal.
@@ -27,7 +28,14 @@ from scipy._lib._bunch import _make_tuple_bunch
 
 MDDCMonteCarloResult = _make_tuple_bunch(
     "MDDCMonteCarloResult",
-    ["pval", "signal", "fisher_signal", "corr_signal_pval", "corr_signal_adj_pval"],
+    [
+        "pval",
+        "pval_fisher",
+        "signal",
+        "fisher_signal",
+        "corr_signal_pval",
+        "corr_signal_adj_pval",
+    ],
 )
 
 MDDCBoxplotResult = _make_tuple_bunch(

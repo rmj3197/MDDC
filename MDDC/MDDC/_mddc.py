@@ -90,6 +90,8 @@ def mddc(
     result : namedtuple
         - If method is "monte_carlo" returns MDDCMonteCarloResult:
             * pval : numpy.ndarray, pandas.DataFrame
+                p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method.
+            * pval_fisher : numpy.ndarray, pd.DataFrame
                 p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method for cells with count greater than five, and Fisher's exact test for cells with count less than or equal to five.
             * signal : numpy.ndarray, pd.DataFrame
                 Matrix indicating significant signals with count greater than five and identified in the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
@@ -166,7 +168,7 @@ def mddc(
         contin_table_mat = contin_table
 
     if method == "monte_carlo":
-        p_val_mat, signal_mat, second_signal_mat, r_pval, r_pval_adj = (
+        p_val_mat_mc, p_val_mat, signal_mat, second_signal_mat, r_pval, r_pval_adj = (
             _mddc_monte_carlo(
                 contin_table_mat,
                 rep,
@@ -185,6 +187,10 @@ def mddc(
         if isinstance(contin_table, pd.DataFrame):
             row_names = list(contin_table.index)
             col_names = list(contin_table.columns)
+
+            p_val_mat_mc = pd.DataFrame(p_val_mat_mc)
+            p_val_mat_mc.index = row_names
+            p_val_mat_mc.columns = col_names
 
             p_val_mat = pd.DataFrame(p_val_mat)
             p_val_mat.index = row_names
@@ -207,7 +213,8 @@ def mddc(
             r_pval_adj.columns = col_names
 
             return MDDCMonteCarloResult(
-                pval=p_val_mat,
+                pval=p_val_mat_mc,
+                pval_fisher=p_val_mat,
                 signal=signal_mat,
                 fisher_signal=second_signal_mat,
                 corr_signal_pval=r_pval,
@@ -216,7 +223,8 @@ def mddc(
 
         else:
             return MDDCMonteCarloResult(
-                pval=p_val_mat,
+                pval=p_val_mat_mc,
+                pval_fisher=p_val_mat,
                 signal=signal_mat,
                 fisher_signal=second_signal_mat,
                 corr_signal_pval=r_pval,

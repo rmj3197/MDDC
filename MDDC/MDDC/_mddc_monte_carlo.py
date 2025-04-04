@@ -86,7 +86,10 @@ def _mddc_monte_carlo(
     result : tuple
         A tuple with the following members:
         - 'pval': np.ndarray
-            p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method for cells with count greater than five, and Fisher's exact test for cells with count less than or equal to five.
+            p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method.
+        - 'pval_fisher': np.ndarray
+            p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method for cells with count greater than five and
+            p-values obtained from the Fisher's exact test for cells with count less than or equal to five in the contingency table.
         - 'signal': np.ndarray
             Matrix indicating significant signals with count greater than five and identified in the step 2 by the Monte Carlo method. 1 indicates a signal, 0 indicates non-signal.
         - 'fisher_signal': np.ndarray
@@ -124,6 +127,8 @@ def _mddc_monte_carlo(
             )
         )
     ).T
+
+    p_val_mat_mc = p_val_mat.copy()
 
     # Fisher Exact Test
     mask = (contin_table < 6) & (contin_table > 0)
@@ -214,4 +219,4 @@ def _mddc_monte_carlo(
     r_pval_adj[r_adj_pval_nan_mask] = bh_values
 
     r_pval_adj = r_pval_adj.reshape(contin_table.shape)
-    return (p_val_mat, signal_mat, second_signal_mat, r_pval, r_pval_adj)
+    return (p_val_mat_mc, p_val_mat, signal_mat, second_signal_mat, r_pval, r_pval_adj)
