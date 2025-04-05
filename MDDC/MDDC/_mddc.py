@@ -89,7 +89,7 @@ def mddc(
     -------
     result : namedtuple
         - If method is "monte_carlo" returns MDDCMonteCarloResult:
-            * pval : numpy.ndarray, pandas.DataFrame
+            * pval : numpy.ndarray, pd.DataFrame
                 p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method.
             * pval_fisher : numpy.ndarray, pd.DataFrame
                 p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method for cells with count greater than five, and Fisher's exact test for cells with count less than or equal to five.
