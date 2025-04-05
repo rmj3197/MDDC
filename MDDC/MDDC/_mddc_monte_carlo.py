@@ -129,6 +129,7 @@ def _mddc_monte_carlo(
     ).T
 
     p_val_mat_mc = p_val_mat.copy()
+    p_val_mat_mc = np.nan_to_num(p_val_mat_mc, nan=1)
 
     # Fisher Exact Test
     mask = (contin_table < 6) & (contin_table > 0)
