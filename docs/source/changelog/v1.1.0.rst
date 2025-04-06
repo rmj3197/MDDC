@@ -1,0 +1,12 @@
+MDDC Version 1.1.0
+========================
+
+In this version, we have updated the output for the the `MDDC.mddc()` method when method is set to `monte_carlo`.
+
+We now include additional output element: 
+- `pval_fisher`: p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method
+for cells with count greater than five and p-values obtained from the Fisher's exact test for cells with count 
+less than or equal to five in the contingency table.
+
+Another output element `pval` is now updated and and now outputs: p-values for each cell in the step 2 of the algorithm,
+calculated using the Monte Carlo method.
