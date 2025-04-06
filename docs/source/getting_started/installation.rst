@@ -8,7 +8,7 @@ Installation
 Which Python?
 --------------
 
-You’ll need **Python 3.10 or greater** (>=3.10, <3.13).
+You’ll need **Python 3.10 or greater** (>=3.10, <3.14).
 
 Installation using ``pip``
 ----------------------------
