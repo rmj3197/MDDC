@@ -90,7 +90,7 @@ def mddc(
     result : namedtuple
         - If method is "monte_carlo" returns MDDCMonteCarloResult:
             * pval : numpy.ndarray, pd.DataFrame
-                p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method.
+                p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method (Algorithm 3 of Liu et al.(2024)).
             * pval_fisher : numpy.ndarray, pd.DataFrame
                 p-values for each cell in the step 2 of the algorithm, calculated using the Monte Carlo method for cells with count greater than five, and Fisher's exact test for cells with count less than or equal to five.
             * signal : numpy.ndarray, pd.DataFrame
@@ -114,6 +114,10 @@ def mddc(
     ------
     This `chunk_size` option of the function is designed to be used in scenarios where the contingency table dimensions and the number of Monte Carlo replications are large. In such cases,
     the Monte Carlo samples need to be generated sequentially to ensure that the memory footprint remains manageable and the generated samples fit into the available RAM.
+    
+    References
+    -----------
+    Liu, A., Mukhopadhyay, R., and Markatou, M. (2024). MDDC: An R and Python package for adverse event identification in pharmacovigilance data. arXiv preprint. arXiv:2410.01168
     """
 
     # Check the type of contin_table
