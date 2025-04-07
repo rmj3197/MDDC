@@ -114,7 +114,7 @@ def mddc(
     ------
     This `chunk_size` option of the function is designed to be used in scenarios where the contingency table dimensions and the number of Monte Carlo replications are large. In such cases,
     the Monte Carlo samples need to be generated sequentially to ensure that the memory footprint remains manageable and the generated samples fit into the available RAM.
-    
+
     References
     -----------
     Liu, A., Mukhopadhyay, R., and Markatou, M. (2024). MDDC: An R and Python package for adverse event identification in pharmacovigilance data. arXiv preprint. arXiv:2410.01168
